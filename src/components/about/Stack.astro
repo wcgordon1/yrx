@@ -1,0 +1,132 @@
+---
+// Structure the sections with their respective items
+const sections = [
+  {
+    title: "Design",
+    items: [
+      {
+        stackLogo: "/stacklogos/penpot.svg",
+        name: "Penpot",
+        about: "Design Tool",
+        description:
+          "Penpot is the web-based open-source design tool that bridges the gap between designers and developers.",
+      },
+      {
+        stackLogo: "/stacklogos/tabler.svg",
+        name: "Tabler Icons",
+        about: "Icon Library",
+        description:
+          "Free and open source icons designed to make your website or app attractive, visually consistent and simply beautiful.",
+      },
+      // Add more items as necessary
+    ],
+  },
+  {
+    title: "Developer Tools",
+    items: [
+      {
+        stackLogo: "/stacklogos/arc.svg",
+        name: "Arc",
+        about: "Browser",
+        description:
+        "The Arc Browser is a new web browser developed by The Browser Company, aiming to revolutionize the way users interact with the internet.",
+      },
+      {
+        stackLogo: "/stacklogos/tailwind.svg",
+        name: "Tailwind CSS",
+        about: "CSS Framework",
+        description:
+        "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+      },
+      {
+        stackLogo: "/stacklogos/astro.svg",
+        name: "Astrojs",
+        about: "Static Site Generator",
+        description:
+        "Astro powers the world's fastest websites, client-side web apps, dynamic API endpoints, and everything in-between..",
+      },
+      {
+        stackLogo: "/stacklogos/vscode.svg",
+        name: "VS Code",
+        about: "Code Editor",
+        description:
+          "Visual Studio Code (VS Code) is a source-code editor developed by Microsoft for Windows, Linux, and macOS",
+      },
+      // Add more items as necessary
+    ],
+  },
+  {
+    title: "Productivity",
+    items: [
+      {
+        stackLogo: "/stacklogos/lexingtonthemes.svg",
+        name: "Lexingont Themes",
+        about: "Website Themes",
+        description:
+          "Free and premium multipage themes and UI Kits for freelancers, developers, businesses, and personal use. Beautifully crafted with Astro.js, and Tailwind CSS.",
+      },
+      {
+        stackLogo: "/stacklogos/notes.svg",
+        name: "Apple notes",
+        about: "Notes",
+        description:
+          "Apple Notes is a notetaking app developed by Apple Inc. It is provided on the company's iOS, iPadOS, visionOS, and macOS operating systems.",
+      },
+      // Add more items as necessary
+    ],
+  },
+];
+---
+
+<section>
+  <div class="mx-auto max-w-3xl px-8 py-16">
+    <h1
+      class="text-2xl font-medium text-balance tracking-tight text-base-900      sm:text-4xl">
+      My favorite software programs, gadgets, and other recommendations.
+  </h1>
+    <p class="mt-4 text-base-500   ">
+      I'm a software engineer and I use a lot of different tools and products to
+      develop software, stay productive, or distract myself from
+      procrastinating. So, I've compiled a comprehensive list of all my favorite
+      things.
+    </p>
+    <div class="mt-12 lg:mt-24 divide-y">
+      {
+        sections.map((section) => (
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start py-12  border-t        ">
+            <p class="text-lg font-semibold leading-6 text-base-900      group-hover:text-accent-400">
+              {section.title}
+            </p>
+
+            <ul
+              role="list"
+              class="flex flex-col gap-12           lg:col-span-2">
+              {section.items.map((item) => (
+                <li class="flow-root">
+                  <div class=" flex items-center gap-x-4">
+                    <img
+                      src={item.stackLogo}
+                      alt={item.name}
+                      class="size-10 rounded-xl           "
+                    />
+                    <div class="text-sm leading-6">
+                      <p class="font-semibold text-black     ">
+                        {item.name}
+                      </p>
+                      <p class="text-base-500 text-sm   ">
+                        {item.about}
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-base-500 mt-4   ">
+                    {item.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,43 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-:root {
-  --astro-code-color-text: theme('colors.black');
-  --astro-code-color-background: theme('colors.gray.200');
-  --astro-code-token-constant: theme('colors.red.500');
-  --astro-code-token-string: theme('colors.teal.500');
-  --astro-code-token-comment: theme('colors.gray.400');
-  --astro-code-token-keyword: theme('colors.lime.700');
-  --astro-code-token-parameter: theme('colors.red.900');
-  --astro-code-token-function: theme('colors.yellow.600');
-  --astro-code-token-string-expression: theme('colors.indigo.500');
-  --astro-code-token-punctuation: theme('colors.orange.500');
-  --astro-code-token-link: theme('colors.blue.800');
-}
-
-.prose-styles {
-  @apply max-w-3xl prose prose-p:text-zinc-500 ;
-}
-/* CSS */
-:root {
-  font-family: Inter, sans-serif;
-  font-feature-settings:
-  "liga" 1,
-  "calt" 1, /* Contextual Alternates */
-  "dlig" 1, /* Discretionary Ligatures */
-  "ss07" 1, /* fSquare punctuation */
-  "ss08" 1, /* Square quotes */
-  "zero" 1, /* Slashed zero */
-  "tnum" 1, /* Tabular numbers */
-    "cv03" 1, /* Open six */
-    "cv04" 1, /* Open nine */
-    "cv01" 1, /* Alternate one */
-    "cv09", /* Flat-top three */
-    "cv02" 1; /* Open 4 */
+/*  Import Tailwind CSS */
+@import "tailwindcss";
+/*  Import Tailwind CSS Forms and Typography plugins */
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+/*  Define your custom theme variables */
+@theme {
+  /* Typography */
+  --font-family-mono: "Geist Mono", sans-serif;
+  --font-family-sans: "Geist", sans-serif;
+  
+  /* Color palette*/
+  --color-*: initial;
+  --color-white: oklch(99% 0 0);
+  --color-black: oklch(0 0 0);
+  --color-transparent: oklch(99% 0 0 / 0);
+  --color-current: currentColor;
+  --color-accent-50: oklch(94.43% 0.024 272.82);
+  --color-accent-100: oklch(89.12% 0.047 272.1);
+  --color-accent-200: oklch(79.42% 0.092 271.23);
+  --color-accent-300: oklch(68.65% 0.146 269.22);
+  --color-accent-400: oklch(58.54% 0.199 267.01);
+  --color-accent-500: oklch(49.99% 0.246 264.86);
+  --color-accent-600: oklch(42.6% 0.214 264.65);
+  --color-accent-700: oklch(35.11% 0.171 264.83);
+  --color-accent-800: oklch(27.23% 0.126 265.19);
+  --color-accent-900: oklch(17.97% 0.068 265.24);
+  --color-accent-950: oklch(13.36% 0.04 262.7);
+  /* Base palette */
+  --color-base-50: oklch(0.985 0 0);
+  --color-base-100: oklch(0.97 0 0);
+  --color-base-200: oklch(0.922 0 0);
+  --color-base-300: oklch(0.87 0 0);
+  --color-base-400: oklch(0.708 0 0);
+  --color-base-500: oklch(0.556 0 0);
+  --color-base-600: oklch(0.439 0 0);
+  --color-base-700: oklch(0.371 0 0);
+  --color-base-800: oklch(0.269 0 0);
+  --color-base-900: oklch(0.205 0 0);
+  --color-base-950: oklch(0.145 0 0);
+  /* Shadows */
+  --shadow-1: 0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a,
+    0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a,
+    0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;
+  --shadow-2: 0 0 0 1px #0e3f7e0f, 0 1px 1px -0.5px #2a334608,
+    0 2px 2px -1px #2a33460a, 0 3px 3px -1.5px #2a33460a,
+    0 5px 5px -2.5px #2a334608, 0 10px 10px -5px #2a334608,
+    0 24px 24px -8px #2a334608;
 }
 @supports (font-variation-settings: normal) {
-  /* Use variable font if supported */
   :root {
     font-family: InterVariable, sans-serif;
   }
+}
+:root {
+
+  /* Variables to style Shiki code snippets */
+  --astro-code-color-text: theme("colors.black");
+  --astro-code-color-background: theme("colors.base.200");
+  --astro-code-token-constant: theme("colors.accent.500");
+  --astro-code-token-string: theme("colors.accent.500");
+  --astro-code-token-comment: theme("colors.base.400");
+  --astro-code-token-keyword: theme("colors.accent.700");
+  --astro-code-token-parameter: theme("colors.accent.900");
+  --astro-code-token-function: theme("colors.accent.600");
+  --astro-code-token-string-expression: theme("colors.accent.500");
+  --astro-code-token-punctuation: theme("colors.accent.500");
+  --astro-code-token-link: theme("colors.accent.800");
+}
+/* Define custom styles for prose sections*/
+.prose-styles {
+  @apply prose text-base-500    prose-headings:text-base-900  prose-blockquote:text-accent-400    prose-a:text-accent-400 hover:prose-a:text-accent-500 prose-a:duration-200  max-w-none prose-pre:border;
 }

@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AllTools from "@/components/tools/AllTools.astro";
+import Link from "@/components/fundations/components/Link.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const allTools = await getCollection("tools");
+  const uniqueTags = [
+    ...new Set(allTools.map((post) => post.data.tags).flat()),
+  ];
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allTools.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { tools: filteredPosts },
+    };
+  });
+}
+const { tag } = Astro.params;
+const { tools } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+  <section>
+    <Wrapper variant="hero">
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="text-base-900 tracking-tighter      2xl:text-5xl">
+        All our blogs tagged with {tag}
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="mt-4 text-base-500 text-balance    2xl:text-xl">
+        Find all resources about {tag} here.
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="wide">
+      <div
+        class="flex flex-col gap-4 md:flex-row justify-between lg:items-center">
+        <Text
+          tag="h2"
+          variant="textLG"
+          class="font-medium text-base-900     "
+          >All tools</Text
+        >
+        <Link
+          variant="default"
+          size="sm"
+          href="/tools/home">
+          See all tools</Link
+        >
+      </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8">
+        {
+          tools.map((tools) => (
+            <AllTools
+              url={"/tools/category/" + tools.slug}
+              alt={tools.data.title}
+              title={tools.data.title}
+              image={tools.data.image.url}
+              tagline={tools.data.tagline}
+            />
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

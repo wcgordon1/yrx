@@ -1,0 +1,37 @@
+---
+import Text from "../fundations/elements/Text.astro";
+import Link from "../fundations/components/Link.astro";
+const { title, url, description, pubDate, image } = Astro.props;
+---
+
+<Link
+  href={url}
+  title={title}
+  variant="link"
+  class="group-hover:opacity-30 hover:opacity-100 peer hover:peer-hover:opacity-30 duration-300">
+  <img
+    src={image}
+    alt={title}
+    class="object-cover aspect-[16/9] rounded-2xl"
+  />
+  <div class="px-4">
+    <Text
+      tag="p"
+      variant="textXS"
+      class="mt-4 text-base-400             "
+      ><time datetime="2020-03-16"> {pubDate}</time></Text
+    >
+    <Text
+      tag="h3"
+      variant="textMD"
+      class="font-medium text-base-900      font-mono uppercase text-balance"
+      >{title}</Text
+    >
+    <Text
+      tag="p"
+      variant="textSM"
+      class="text-base-500    mt-2 line-clamp-2"
+      >{description}</Text
+    >
+  </div>
+</Link>

@@ -1,8 +1,125 @@
 ---
+import Hero from "@/components/landing/Hero.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Landing from "@/components/landing/Landing.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Retrieve all posts from the "store" collection, which returns an unsorted array of post objects
+import StoreEntries from "@/components/store/StoreEntries.astro";
+const allProducts = await getCollection("store");
+// Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
+import AllTools from "@/components/tools/AllTools.astro";
+import LatestTools from "@/components/tools/LatestTools.astro";
+import { getCollection } from "astro:content";
+const alltoolsUnsorted = await getCollection("tools");
+// Sort the posts in descending order by publication date (newest to oldest)
+const alltools = alltoolsUnsorted.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+);
 ---
+
 <BaseLayout>
-  <Landing />
-  
+  <Hero />
+  <section>
+    <Wrapper
+      variant="wide"
+      class="py-6">
+      <Text
+        tag="h2"
+        variant="textLG"
+        class="font-medium text-base-900 font-mono uppercase tracking-tighter"
+        >Latest additions</Text
+      >
+
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2 mt-8 group">
+        {
+          alltools.slice(10, 12).map((post) => (
+            <LatestTools
+              alt={post.data.title}
+              title={post.data.title}
+              image={post.data.image.url}
+              tagline={post.data.tagline}
+              images={post.data.images}
+              url={"/tools/category/" + post.slug}
+            />
+          ))
+        }
+
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="wide"
+      class="py-6">
+      <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
+        <Text
+          tag="h2"
+          variant="textLG"
+          class="font-medium text-base-900"
+          >All tools</Text
+        >
+        <Link
+          size="sm"
+          variant="muted"
+          aria-label="All tools"
+          href="/tools/home">
+          See all tools
+        </Link>
+      </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8">
+        {
+          alltools.slice(0,3).map((post) => (
+            <AllTools
+              alt={post.data.title}
+              title={post.data.title}
+              image={post.data.image.url}
+              tagline={post.data.tagline}
+              images={post.data.images}
+              url={"/tools/category/" + post.slug}
+            />
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="wide"
+      class="py-6">
+      <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
+        <Text
+          tag="h2"
+          variant="textLG"
+          class="font-medium text-base-900"
+          >Latest products</Text
+        >
+        <Link
+          size="sm"
+          variant="muted"
+          aria-label="All tools"
+          href="/tools/home">
+          Store
+        </Link>
+      </div>
+      <div
+            class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group"
+          >
+            {
+              allProducts.map((post) => (
+                <StoreEntries
+                url={"/store/" + post.slug}
+                  alt={post.data.title}
+                  price={post.data.price}
+                  title={post.data.title}
+                  image={post.data.image.url}
+                  description={post.data.description}
+                />
+              ))
+            }
+          </div>
+        </Wrapper>
+    </Wrapper>
+  </section>
 </BaseLayout>

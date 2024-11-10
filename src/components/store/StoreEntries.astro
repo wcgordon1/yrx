@@ -1,0 +1,35 @@
+---
+const { title, url, description, image, price } = Astro.props;
+import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
+---
+
+<Link
+  tag="a"
+  variant="link"
+  href={url}
+  title={title}
+  class="group-hover:opacity-30 hover:opacity-100 peer hover:peer-hover:opacity-30 duration-300"
+>
+  <div>
+    <img
+      src={image}
+      alt={title}
+      class="object-cover aspect-[16/9] rounded-2xl"
+    />
+  </div>
+  <div class="p-4">
+    <Text
+      tag="h3"
+      variant="textMD"
+      class="font-medium text-base-900 font-mono uppercase justify-between flex flex-row w-full"
+    >
+      <span>{title}</span>
+
+      <span>${price}</span>
+    </Text>
+    <Text tag="p" variant="textSM" class="text-base-500 mt-2 line-clamp-2">
+      {description}</Text
+    >
+  </div>
+</Link>

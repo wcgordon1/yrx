@@ -1,0 +1,79 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import EntriesOne from "@/components/blog/EntriesOne.astro";
+import Insights from "@/components/blog/Insights.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+  <section>
+    <Wrapper variant="hero">
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="text-base-900 tracking-tighter      2xl:text-5xl">
+        All our blogs tagged with {tag}
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="mt-4 text-base-500 text-balance    2xl:text-xl">
+        Read all about {tag} here.
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="wide">
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group">
+        {
+          posts.slice(0, 3).map((post) => (
+            <Insights
+              url={"/blog/posts/" + post.slug}
+              alt={post.data.title}
+              title={post.data.title}
+              image={post.data.image.url}
+              description={post.data.description}
+              pubDate={post.data.pubDate.toString().slice(0, 10)}
+            />
+          ))
+        }
+      </div>
+      <div class="flex flex-col group mt-12">
+        {
+          posts.map((post) => (
+            <EntriesOne
+              url={"/blog/posts/" + post.slug}
+              alt={post.data.title}
+              title={post.data.title}
+              author={post.data.author}
+              image={post.data.image.url}
+              avatar={post.data.avatar.url}
+              description={post.data.description}
+              pubDate={post.data.pubDate.toString().slice(0, 10)}
+            />
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

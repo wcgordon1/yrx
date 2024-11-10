@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AllTools from "@/components/tools/AllTools.astro";
+import LatestTools from "@/components/tools/LatestTools.astro";
+import SponsorCard from "@/components/tools/SponsorCard.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
+import { getCollection } from "astro:content";
+const alltoolsUnsorted = await getCollection("tools");
+// Sort the posts in descending order by publication date (newest to oldest)
+const alltools = alltoolsUnsorted.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+);
+// Collect all unique tags
+const allTags = [...new Set(alltools.flatMap((post) => post.data.tags || []))];
+const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="hero">
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="text-base-900 font-mono uppercase font-medium tracking-tighter 2xl:text-5xl">
+        Explore all our tools
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="mt-4 text-base-500 text-balance 2xl:text-xl">
+        Here you will find all the tools we have hoarded for you.
+      </Text>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="wide"
+      class="py-6">
+      <Text
+        tag="h2"
+        variant="textLG"
+        class="font-medium text-base-900 font-mono uppercase tracking-tighter"
+        >Latest additions</Text
+      >
+
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group">
+        {
+          alltools.slice(10, 12).map((post) => (
+            <LatestTools
+              alt={post.data.title}
+              title={post.data.title}
+              image={post.data.image.url}
+              tagline={post.data.tagline}
+              images={post.data.images}
+              url={"/tools/category/" + post.slug}
+            />
+          ))
+        }
+        <SponsorCard />
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper
+      variant="wide"
+      class="py-6">
+      <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
+        <Text
+          tag="h2"
+          variant="textLG"
+          class="font-medium text-base-900"
+          >All tools</Text
+        >
+        <div class="flex flex-wrap gap-2">
+          {
+            sortedTags.map((tag) => (
+              <>
+                <Link
+                  size="sm"
+                  title={tag}
+                  variant="muted"
+                  aria-label={tag}
+                  href={`/tools/tags/${tag}`}
+                  class="capitalize">
+                  {tag}
+                </Link>
+              </>
+            ))
+          }
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8">
+        {
+          alltools.map((post) => (
+            <AllTools
+              alt={post.data.title}
+              title={post.data.title}
+              image={post.data.image.url}
+              tagline={post.data.tagline}
+              images={post.data.images}
+              url={"/tools/category/" + post.slug}
+            />
+          ))
+        }
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import Text from "../fundations/elements/Text.astro";
+import Link from "../fundations/components/Link.astro";
+import Wrapper from "../fundations/containers/Wrapper.astro";
+import SubscribeModal from "../forms/SubscribeModal.astro";
+---
+
+<section>
+  <Wrapper variant="hero">
+    <Text
+      tag="h1"
+      variant="displaySM"
+      class="text-base-900 font-mono uppercase font-medium tracking-tighter      2xl:text-5xl">
+      Welcome to trendspotter
+    </Text>
+    <Text
+      tag="p"
+      variant="textMD"
+      class="mt-4 text-base-500 text-balance    2xl:text-xl">
+      Your essential directory for tools and resources — streamline your
+      workflow, boost creativity
+    </Text>
+    
+    <div class="mt-8 flex flex-wrap gap-4">
+      <Link
+        size="sm"
+        variant="muted"
+        title="#_"
+        href="/submit"
+        class="justify-center flex items-center gap-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          ></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
+        >
+        Submit a tool
+      </Link>
+      <SubscribeModal />
+    </div>
+  </Wrapper>
+</section>

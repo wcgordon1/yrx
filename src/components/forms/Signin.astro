@@ -1,0 +1,92 @@
+<section>
+  <div class="mx-auto max-w-3xl px-8 py-24 sm:py-32">
+    <div>
+      <p
+        class="text-2xl font-medium tracking-tight text-base-900      sm:text-4xl">
+        Sign in to your dashboard
+      </p>
+    </div>
+    <p class="mt-4 text-base-500   ">
+      Sign in and manage all your to-do lists and tasks in one place from our
+      beautiful dashboard.
+    </p>
+    <form class="mt-12 lg:mt-24 border-y         py-12">
+      <div class="grid grid-cols-1 gap-2">
+        <!-- Email Field -->
+        <div>
+          <label
+            for="email"
+            class="sr-only"
+            >Email</label
+          >
+          <div>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              class="block w-full rounded-lg border-0 py-3 px-3.5 text-sm leading-6 text-base-900 bg-base-100       placeholder:text-base-400 focus:ring-2 focus:ring-inset focus:ring-accent-400        "
+            />
+          </div>
+        </div>
+        <!-- Password Field -->
+        <div>
+          <label
+            for="password"
+            class="sr-only"
+            >Password</label
+          >
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              class="block w-full rounded-lg border-0 py-3 px-3.5 text-sm leading-6 text-base-900 bg-base-100       placeholder:text-base-400 focus:ring-2 focus:ring-inset focus:ring-accent-400        "
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mt-4 flex flex-wrap gap-4 justify-end items-center">
+        <a
+          href="/forms/reset"
+          class="inline-flex items-center gap-2 justify-center rounded-lg py-3 px-6 text-sm outline-offset-2 transition bg-white text-black font-medium hover:bg-base-50                                  group w-full lg:w-auto border           h-10">
+          Forgot Password?
+      </a>
+        <button
+          type="submit"
+          class="inline-flex items-center gap-2 justify-center rounded-lg py-3 px-6 text-sm outline-offset-2 transition bg-black text-white font-medium hover:bg-base-800           group w-full lg:w-auto border border-white/20"
+          >Sign In</button
+        >
+      </div>
+    </form>
+    <div class="flex flex-wrap gap-4 justify-between items-center">
+      <!-- Reminind me checkbox -->
+      <div class="mt-4 flex items-start">
+        <input
+          type="checkbox"
+          name="terms"
+          id="terms"
+          class="rounded border-base-200 text-accent-400 shadow-sm focus:border-accent-300 focus:ring focus:ring-accent-200 focus:ring-opacity-50           "
+        />
+        <label
+          for="terms"
+          class="ml-2 block text-sm leading-5 text-base-500   ">
+          Remind me for the next 30 days
+        </label>
+      </div>
+      <p class="text-sm mt-4 text-base-500   ">
+        Don't have an account?
+        <a
+          class="text-accent-400 hover:text-base-400"
+          href="/forms/signup"
+          >Sign up instead</a
+        >
+      </p>
+    </div>
+  </div>
+</section>

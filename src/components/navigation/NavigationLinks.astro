@@ -1,0 +1,92 @@
+---
+import Text from "../fundations/elements/Text.astro";
+import Link from "../fundations/components/Link.astro";
+import { getCollection } from "astro:content";
+const allTools = await getCollection("tools");
+const tags = [...new Set(allTools.map((post) => post.data.tags).flat())];
+
+// Define navigation data
+const navigationItems = [
+  {
+    title: "Navigation",
+    items: [
+      {
+        href: "/tools/home",
+        text: "Tools",
+      },
+      {
+        href: "/blog/home",
+        text: "Blog",
+      },
+      {
+        href: "/store/home",
+        text: "Store",
+      },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      {
+        href: "/system/overview",
+        text: "Overview",
+      },
+      {
+        href: "/system/style-guide",
+        text: "Typography",
+      },
+      {
+        href: "/sign-in",
+        text: "Sign in",
+      },
+       {
+        href: "/sign-in",
+        text: "sign-up",
+      },
+    ],
+  },
+];
+---
+
+<div class="flex flex-col gap-12">
+  <div class="px-8 py-4 space-y-4">
+    <Text
+      tag="p"
+      variant="textMD"
+      class="font-semibold font-mono uppercase text-black">
+      Categories
+    </Text>
+    {
+      tags.map((tag) => (
+        <Link
+          title={tag}
+          variant="link"
+          aria-label={tag}
+          href={`/tools/tags/${tag}`}
+          class="flex items-center font-mono uppercase text-sm font-medium text-base-500 hover:text-accent-400      group duration-200 gap-3">
+          {tag}
+        </Link>
+      ))
+    }
+  </div>
+  {
+    navigationItems.map((section) => (
+      <div class="px-8 py-4 space-y-4 ">
+        <Text
+          tag="p"
+          variant="textMD"
+          class=" font-semibold font-mono uppercase text-black     ">
+          {section.title}
+        </Text>
+        {section.items.map((item) => (
+          <Link
+            variant="link"
+            href={item.href}
+            class="flex items-center font-mono uppercase text-sm font-medium text-base-500 hover:text-accent-400      group duration-200  gap-3">
+            {item.text}
+          </Link>
+        ))}
+      </div>
+    ))
+  }
+</div>

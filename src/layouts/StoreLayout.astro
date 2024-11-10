@@ -1,0 +1,122 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { frontmatter } = Astro.props;
+import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<BaseLayout>
+  <section>
+    <Wrapper variant="hero">
+      <div
+        class="lg:gap-x-8 lg:gap-y-10 lg:grid lg:grid-cols-7 lg:grid-rows-1 xl:gap-x-16"
+      >
+      <div
+      class="mx-auto lg:col-span-3 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 max-w-2xl mt-14 sm:mt-16"
+    >
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="text-base-900 tracking-tighter 2xl:text-5xl font-mono uppercase font-medium"
+        >{frontmatter.title}</Text
+      >
+      <Text
+        tag="p"
+        variant="textMD"
+        class="text-base-500 text-balance 2xl:text-xl mt-4"
+      >
+        {frontmatter.description}</Text
+      >
+      <div class="mt-10 gap-2 grid grid-cols-1 sm:grid-cols-2">
+        <Link
+          href={frontmatter.checkout}
+          size="sm"
+          variant="default"
+          class="w-full md:w-auto justify-center"
+        >
+          Buy {frontmatter.title} for ${frontmatter.price}
+        </Link>
+        <Link
+          href={frontmatter.preview}
+          size="sm"
+          variant="muted"
+          class="w-full justify-center md:w-auto"
+        >
+          Preview demo
+        </Link>
+      </div>
+    </div>
+        <div class="lg:col-span-4 lg:row-end-1 space-y-3">
+          <div class="aspect-h-3 aspect-w-4 overflow-hidden">
+            <img
+              src={frontmatter.image.url}
+              alt={frontmatter.image.alt ??
+                "Fallback alt text if none provided"}
+              class="object-center object-cover rounded-xl"
+            />
+          </div>
+        </div>
+       
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+        <div class="rounded-2xl bg-white p-8">
+          <Text tag="h2" variant="textLG" class="font-medium text-base-900"
+            >Highlights</Text
+          ><div class="text-gray-600 mt-4 prose prose-sm">
+            <ul role="list">
+              {
+                frontmatter.highlights.map((highlight) => (
+                  <li>
+                    <Text
+                      tag="p"
+                      variant="textSM"
+                      class="text-base-500 text-balance  font-medium"
+                    >
+                      {highlight}
+                    </Text>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        <dl class="flex flex-col gap-1 md:col-span-2 lg:col-span-1">
+          {
+            frontmatter.features.map((feature) => (
+              <div class="rounded-2xl bg-white p-8 text-center ">
+                <dt>
+                  <Text
+                    tag="span"
+                    variant="textSM"
+                    class=" font-semibold text-base-900 "
+                  >
+                    {feature.title}
+                  </Text>
+                </dt>
+                <dd class="mt-1 text-base-500  text-balance">
+                  <Text tag="span" variant="textSM">
+                    {feature.description}
+                  </Text>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="rounded-2xl bg-white p-8">
+          <Text tag="h2" variant="textLG" class="font-medium text-base-900"
+            >License</Text
+          >
+
+          <Text
+            tag="p"
+            variant="textSM"
+            class="text-base-500 text-balance mt-4"
+          >
+            {frontmatter.license}
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

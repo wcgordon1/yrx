@@ -1,0 +1,129 @@
+---
+// Define the data for each section and its pages
+const sections = [
+  {
+    title: "Overview",
+    categories: [
+      {
+        name: "Main pages",
+        links: [
+          { href: "/", text: "Home" },
+          { href: "/studio/home", text: "Studio" },
+          { href: "/404", text: "Error 404" },
+        ],
+      },
+      {
+        name: "About",
+        links: [
+          { href: "/about/now", text: "Now" },
+          { href: "/about/stack", text: "Stack" },
+          { href: "/about/socials", text: "Socials" },
+        ],
+      },
+      {
+        name: "Forms",
+        links: [
+          { href: "/forms/reset", text: "Reset" },
+          { href: "/forms/signin", text: "Sign in" },
+          { href: "/forms/signup", text: "Sign up" },
+          { href: "/forms/contact", text: "Contact" },
+        ],
+      },
+      {
+        name: "System",
+        links: [
+          { href: "/system/styleguide", text: "Style Guide" },
+          {
+            href: "https://lexingtonthemes.com/legal/license",
+            text: "License",
+          },
+          {
+            href: "https://lexingtonthemes.com/legal/support/",
+            text: "Support",
+          },
+          {
+            href: "https://lexingtonthemes.com/documentation/quick-start",
+            text: "Documentation",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Content collections",
+    categories: [
+      {
+        name: "Blog",
+        links: [
+          { href: "/blog/blog", text: "Blog home" },
+          { href: "/blog/blog-two", text: "Blog home two" },
+          { href: "/blog/blog-three", text: "Blog home three" },
+          { href: "/posts/1", text: "Blog post" },
+          { href: "/tags", text: "Tag index" },
+          { href: "/tags/astro", text: "Tag category" },
+          { href: "/rss.xml", text: "RSS" },
+        ],
+      },
+      {
+        name: "Projects",
+        links: [
+          { href: "/projects/home", text: "Home" },
+          { href: "/projects/1", text: "Details" },
+        ],
+      },
+      {
+        name: "Store",
+        links: [
+          { href: "/store/home", text: "Store" },
+          { href: "/store/1", text: "Product Page" },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<section>
+  <div class="mx-auto max-w-3xl px-8 py-16">
+    <p
+      class="text-2xl font-medium tracking-tight text-base-900      sm:text-4xl">
+      Overview
+    </p>
+    <p class="mt-4 text-base-500   ">
+      Checkout all pages included on ProFolioX
+    </p>
+    <div class="border-y         py-12 mt-24 space-y-24">
+      {
+        sections.map((section) => (
+          <div>
+            <p class="text-lg font-semibold leading-6 text-base-900     ">
+              {section.title}
+            </p>
+            <div class="mt-12 gap-y-12 gap-x-6 grid md:grid-cols-2 xl:grid-cols-4 ">
+              {section.categories.map((category) => (
+                <div class="flex flex-col gap-4">
+                  <h3 class="text-lg font-semibold leading-6 text-base-900      group-hover:text-accent-500">
+                    {category.name}
+                  </h3>
+                  <ul
+                    role="list"
+                    class="grid grid-cols-1 gap-2          lg:col-span-2">
+                    {category.links.map((link) => (
+                      <li>
+                        <a
+                          href={link.href}
+                          class="flex items-center text-sm text-base-500 hover:text-accent-500      group duration-200">
+                          {link.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

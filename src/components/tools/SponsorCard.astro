@@ -1,0 +1,36 @@
+---
+const { title, tagline, url, images } = Astro.props;
+import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
+---
+
+<Link
+  tag="a"
+  variant="link"
+  href="#_"
+  title="#_"
+  class="group-hover:opacity-30 hover:opacity-100 text-center peer hover:peer-hover:opacity-30 duration-300 relative">
+  <div class="relative">
+    <img
+      class="object-cover aspect-[16/9] rounded-2xl relative"
+      src="/images/tools/bilboard.jpeg"
+      alt="#_"
+    />
+    <div class="absolute inset-0 bg-base-100/70 /80 rounded-2xl"></div>
+    <div
+      class="p-4 absolute inset-0 flex flex-col items-center justify-center text-balance">
+      <Text
+        tag="h3"
+        variant="textXL"
+        class="font-medium text-base-900 font-mono uppercase">
+        Sponsor
+      </Text>
+      <Text
+        tag="p"
+        variant="textLG"
+        class="text-black font-medium mt-2 line-clamp-2 text-center">
+        Availabe slot for sponsors
+      </Text>
+    </div>
+  </div>
+</Link>

@@ -1,0 +1,49 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "../fundations/components/Button.astro";
+import Wrapper from "../fundations/containers/Wrapper.astro";
+---
+
+<section>
+  <Wrapper
+    variant="narrow"
+    class="py-24 flex flex-col">
+    <div class="text-center">
+      <Text
+        tag="h2"
+        variant="displayLG"
+        class="     font-medium tracking-tighter text-base-900 font-mono uppercase">
+        Join our newsletter
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="mt-4 text-base-500   ">
+        Stay up to date with our latest news and updates.
+      </Text>
+    </div>
+    <form class="w-full mt-8 sm:flex sm:max-w-md mx-auto">
+      <label class="text-md leading-normal sr-only"> Email address </label>
+      <input
+        id="email-address"
+        type="email"
+        name="email-address"
+        autocomplete="email"
+        placeholder="Enter your email"
+        aria-placeholder="Enter your email"
+        required=""
+        class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+      />
+      <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
+        <Button
+          size="sm"
+          type="submit"
+          variant="accent"
+          class="w-full sm:w-auto">
+          Subscribe
+        </Button>
+      </div>
+    </form>
+
+  </Wrapper>
+</section>

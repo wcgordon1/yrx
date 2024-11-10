@@ -1,0 +1,41 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import { getCollection } from "astro:content";
+const allTools = await getCollection("tools");
+const tags = [...new Set(allTools.map((post) => post.data.tags).flat())];
+---
+<BaseLayout>
+  <section>
+    <Wrapper variant="hero">
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="text-base-900 tracking-tighter      2xl:text-5xl">
+        Explore, and discover new resources.
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="mt-4 text-base-500 text-balance    2xl:text-xl">
+        Here you will find all the tags for our resources.
+      </Text>
+      <ul role="list" class="flex flex-col prose-styles mt-12">
+        {
+          tags.map((tag) => (
+            <Link
+              title={tag}
+              variant="link"
+              aria-label={tag}
+              href={`/tools/tags/category/${tag}`}
+              class="text-accent-500      font-medium">
+              {tag}
+            </Link>
+          ))
+        }
+      </ul>
+    </Wrapper>
+  </section>
+</BaseLayout>
