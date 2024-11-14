@@ -32,6 +32,8 @@ const mutedClass = [
 ];
 const ghostClass = [
   "text-base-600",
+  "ring",
+  "ring-base-300",
   "hover:text-black",
   "focus:ring-base-500",
 ];
@@ -90,7 +92,8 @@ const additionalClasses = className ? className.split(" ") : [];
           ...additionalClasses,
         ]),
   ]}
-  {...rest}>
+  {...rest}
+>
   <slot name="left-icon" />
   <slot />
   <slot name="right-icon" />

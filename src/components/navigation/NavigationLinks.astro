@@ -25,6 +25,11 @@ const navigationItems = [
         href: "/about",
         text: "About",
       },
+
+      {
+        href: "/pricing",
+        text: "Advertise",
+      },
       {
         href: "/forms/signin",
         text: "Sign in",
@@ -32,10 +37,6 @@ const navigationItems = [
       {
         href: "/forms/signup",
         text: "sign up",
-      },
-      {
-        href: "/pricing",
-        text: "Advertise",
       },
     ],
   },
@@ -48,10 +49,18 @@ const navigationItems = [
       },
       {
         href: "/system/buttons",
+        text: "Links",
+      },
+      {
+        href: "/system/buttons",
+        text: "Colors",
+      },
+      {
+        href: "/system/buttons",
         text: "Buttons",
       },
       {
-        href: "/system/style-guide",
+        href: "/system/typography",
         text: "Typography",
       },
     ],
@@ -76,7 +85,7 @@ const navigationItems = [
           title={tag}
           aria-label={tag}
           href={`/tools/tags/${tag}`}
-          class="flex font-mono uppercase font-medium text-base-500 hover:text-accent-400 "
+          class="flex font-mono uppercase font-medium  "
         >
           {tag}
         </Link>
@@ -89,7 +98,7 @@ const navigationItems = [
         <Text
           tag="p"
           variant="textMD"
-          class=" font-semibold font-mono uppercase text-black     "
+          class=" font-semibold font-mono uppercase text-black"
         >
           {section.title}
         </Text>
@@ -97,7 +106,7 @@ const navigationItems = [
           <Link
             variant="link"
             href={item.href}
-            class="flex items-center font-mono uppercase text-sm font-medium text-base-500 hover:text-accent-400      group duration-200  gap-3"
+            class="flex items-center font-mono uppercase text-sm font-medium"
           >
             {item.text}
           </Link>

@@ -1,0 +1,89 @@
+---
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+const accentColor = [
+  "50",
+  "100",
+  "200",
+  "300",
+  "400",
+  "500",
+  "600",
+  "700",
+  "800",
+  "900",
+  "950",
+];
+const baseColor = [
+  "50",
+  "100",
+  "200",
+  "300",
+  "400",
+  "500",
+  "600",
+  "700",
+  "800",
+  "900",
+  "950",
+];
+---
+
+<section>
+  <Wrapper variant="hero">
+    <Text
+      tag="h1"
+      variant="displaySM"
+      class="text-base-900 font-mono uppercase font-medium tracking-tighter 2xl:text-5xl"
+      >Colors
+    </Text>
+    <Text
+      tag="p"
+      variant="textMD"
+      class="mt-4 text-base-500 text-balance 2xl:text-xl"
+    >
+      Colors system
+    </Text>
+  </Wrapper>
+</section>
+<section>
+  <Wrapper variant="wide">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <!-- Accent Color Column -->
+      <div>
+        <h3 class="text-base font-semibold leading-6 text-base-500">accent</h3>
+
+        <div class="mt-6 flex flex-col gap-2">
+          {
+            accentColor.map((shade) => (
+              <div class="inline-flex items-center gap-2">
+                <div class={`p-6 rounded-lg bg-accent-${shade}`} />
+                <Text tag="span" variant="textSM" class="text-base-500 text-sm">
+                  bg-accent-{shade}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Base Color Column -->
+      <div>
+        <h3 class="text-base font-semibold leading-6 text-base-500">base</h3>
+
+        <div class="mt-6 flex flex-col gap-2">
+          {
+            baseColor.map((shade) => (
+              <div class="inline-flex items-center gap-2">
+                <div class={`p-6 rounded-lg bg-base-${shade}`} />
+                <Text tag="span" variant="textSM" class="text-base-500 text-sm">
+                  bg-base-{shade}
+                </Text>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>

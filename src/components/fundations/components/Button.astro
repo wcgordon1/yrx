@@ -48,6 +48,7 @@ const additionalClasses = className ? className.split(" ") : [];
 <button
   class:list={[
     "rounded-full",
+    "cursor-pointer",
     "flex",
     "items-center",
     "transition-all",
@@ -61,7 +62,7 @@ const additionalClasses = className ? className.split(" ") : [];
     variant === "muted" && mutedClass,
     size === "xs" && xs,
     size === "sm" && sm,
-    size === "neutral" && gapneutral,
+    size === "base" && base,
     size === "md" && md,
     size === "lg" && lg,
     size === "xl" && xl,
@@ -72,7 +73,8 @@ const additionalClasses = className ? className.split(" ") : [];
     gap === "lg" && gapLG,
     ...additionalClasses,
   ]}
-  {...rest}>
+  {...rest}
+>
   <slot name="left-icon" />
   <slot />
   <slot name="right-icon" />

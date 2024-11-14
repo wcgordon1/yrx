@@ -1,6 +1,6 @@
 /*  Import Tailwind CSS */
 @import "tailwindcss";
-/*  Import Tailwind CSS Forms and Typography plugins */ 
+/*  Import Tailwind CSS Forms and Typography plugins */
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 /*  Define your custom theme variables */
@@ -8,7 +8,7 @@
   /* Typography */
   --font-family-mono: "Geist Mono", sans-serif;
   --font-family-sans: "Geist", sans-serif;
-  
+
   /* Color palette*/
   --color-*: initial;
   --color-white: oklch(99% 0 0);
@@ -37,16 +37,7 @@
   --color-base-700: oklch(0.371 0 0);
   --color-base-800: oklch(0.269 0 0);
   --color-base-900: oklch(0.205 0 0);
-  
   --color-base-950: oklch(0.145 0 0);
-  /* Shadows */
-  --shadow-1: 0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a,
-    0 3px 3px -1.5px #2a33460a, 0 6px 6px -3px #2a33460a,
-    0 12px 12px -6px #0e3f7e0a, 0 24px 24px -12px #0e3f7e0a;
-  --shadow-2: 0 0 0 1px #0e3f7e0f, 0 1px 1px -0.5px #2a334608,
-    0 2px 2px -1px #2a33460a, 0 3px 3px -1.5px #2a33460a,
-    0 5px 5px -2.5px #2a334608, 0 10px 10px -5px #2a334608,
-    0 24px 24px -8px #2a334608;
 }
 @supports (font-variation-settings: normal) {
   :root {
@@ -54,7 +45,6 @@
   }
 }
 :root {
-
   /* Variables to style Shiki code snippets */
   --astro-code-color-text: theme("colors.black");
   --astro-code-color-background: theme("colors.base.200");
