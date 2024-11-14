@@ -1,34 +1,37 @@
 ---
 import Logo from "@/components/global/Logo.astro";
+import Button from "@/components/fundations/components/Button.astro";
 ---
 
 <div
-  class="bg-white                      text-right justify-between items-center inline-flex w-full z-10 py-2 px-8 lg:hidden ">
+  class="bg-base-50 text-right justify-between items-center inline-flex w-full z-10 py-2 px-8 lg:hidden"
+>
   <div class="flex flex-row items-center justify-between w-full">
-    <a
-      href="/"
-      class="text-base-900      text-left">
+    <a href="/" class="text-base-900 text-left">
       <Logo />
     </a>
-    <button
+    <Button
       type="button"
-      class="ml-auto h-12 w-12 inline-flex items-center justify-center rounded-md      hover:text-accent-400 focus:outline-none focus:text-white focus:ring-inset"
-      @click="open = true">
+      variant="muted"
+      size="sm"
+      class="ml-auto w-9 inline-flex items-center justify-center rounded-md hover:text-accent-400 focus:outline-none focus:text-black focus:ring-inset"
+      @click="open = true"
+    >
       <span class="sr-only">Open sidebar</span>
       <svg
-        class="size-8"
+        class="size-6 shrink-0"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        ></path>
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
-    </button>
+    </Button>
   </div>
 </div>
