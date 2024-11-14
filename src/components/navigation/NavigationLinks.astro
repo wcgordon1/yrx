@@ -1,9 +1,7 @@
 ---
 import Text from "../fundations/elements/Text.astro";
 import Link from "../fundations/components/Link.astro";
-import { getCollection } from "astro:content";
-const allTools = await getCollection("tools");
-const tags = [...new Set(allTools.map((post) => post.data.tags).flat())];
+
 // Define navigation data
 const navigationItems = [
   {
@@ -64,34 +62,7 @@ const navigationItems = [
 ];
 ---
 
-<div class="flex flex-col gap-6 lg:gap-12 2xl:py-12">
-  <div class="px-8 space-y-2">
-    <Text
-      tag="p"
-      variant="textMD"
-      class="font-semibold font-mono uppercase text-black"
-    >
-      Categories
-    </Text>
-    <ul class="space-y-1" role="navigation">
-      {
-        tags.map((tag) => (
-          <li>
-            <Link
-              size="sm"
-              variant="link"
-              title={tag}
-              aria-label={tag}
-              href={`/tools/tags/${tag}`}
-              class="text-sm font-mono uppercase font-medium  text-base-500 hover:text-accent-500"
-            >
-              {tag}
-            </Link>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+<div class="flex flex-col gap-6 lg:gap-12 py-6 2xl:py-12">
   {
     navigationItems.map((section) => (
       <div class="px-8 space-y-2 ">
