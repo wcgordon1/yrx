@@ -1,109 +1,130 @@
+---
+import Link from "@/components/fundations/components/Link.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/components/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
 <section>
-  <div class="mx-auto max-w-3xl px-8 py-24 sm:py-32">
-    <div>
-      <p
-        class="text-2xl font-medium tracking-tight text-base-900      sm:text-4xl">
-        Sign up t
-      </p>
+  <Wrapper
+    variant="heroNarrow"
+    class="relative flex flex-col items-center justify-center h-svh"
+  >
+    <div class="text-center">
+      <Text
+        tag="h1"
+        variant="textXL"
+        class="text-base-900 font-mono uppercase font-medium tracking-tighter 2xl:text-3xl"
+      >
+        Welcome to trendspotter
+      </Text>
+      <Text
+        tag="p"
+        variant="textMD"
+        class="mt-4 text-base-500 text-balance 2xl:text-lg"
+      >
+        Your essential directory for tools and resources — streamline your
+        workflow, boost creativity
+      </Text>
     </div>
-    <p class="mt-4 text-base-500   ">
-      Create your account and manage all your to-do lists and tasks in one place from the dashboard.
-    </p>
-    <form class="mt-12 lg:mt-24 border-y         py-12">
-      <div class="grid grid-cols-1 gap-2">
-        <!-- Email Field -->
+    <form
+      action="#"
+      method="POST"
+      class="relative w-full max-w-sm mx-auto mt-4 overflow-y-auto bg-white ring-1 ring-base-200 rounded-2xl p-8 lg:p-12"
+    >
+      <div class="space-y-4">
         <div>
-          <label
-            for="email"
-            class="sr-only"
-            >Email</label
-          >
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter your email"
-            autocomplete="email"
-            class="block w-full rounded-lg border-0 py-3 px-3.5 text-sm leading-6 text-base-900 bg-base-100       placeholder:text-base-400 focus:ring-2 focus:ring-inset focus:ring-accent-400        "
-          />
-        </div>
-        <!-- Password Field -->
-        <div>
-          <label
-            for="password"
-            class="sr-only"
-            >Password</label
-          >
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Choose a password"
-            autocomplete="new-password"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-            title="Use at least 8 characters, including 1 uppercase, 1 lowercase, 1 digit, and 1 special character."
-            class="block w-full rounded-lg border-0 py-3 px-3.5 text-sm leading-6 text-base-900 bg-base-100       placeholder:text-base-400 focus:ring-2 focus:ring-inset focus:ring-accent-400        "
-          />
-          <p class="mt-2 text-xs text-base-500">
-            Use at least 8 characters, 1 uppercase, 1 lowercase, 1 digit, and 1
-            special character for your password.
-          </p>
+          <label class="sr-only"> Name </label>
+          <div class="mt-2.5">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              autocomplete="name"
+              required
+              aria-required="true"
+              aria-describedby="name-error"
+              placeholder="Your name"
+              class="block w-full h-9 px-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            />
+            <span id="name-error" class="text-red-600 text-sm hidden">
+              Please enter your name.
+            </span>
+          </div>
         </div>
 
-        <!-- Confirm Password Field -->
-        <div class="mt-4">
-          <label
-            for="confirm-password"
-            class="sr-only"
-            >Confirm Password</label
-          >
-          <input
-            type="password"
-            name="confirm-password"
-            id="confirm-password"
-            placeholder="Confirm your password"
-            autocomplete="new-password"
-            class="block w-full rounded-lg border-0 py-3 px-3.5 text-sm leading-6 text-base-900 bg-base-100       placeholder:text-base-400 focus:ring-2 focus:ring-inset focus:ring-accent-400        "
-          />
+        <div>
+          <label class="sr-only"> Email </label>
+          <div class="mt-2.5">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              autocomplete="email"
+              required
+              aria-required="true"
+              aria-describedby="email-error"
+              placeholder="Your email"
+              class="block w-full h-9 px-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            />
+            <span id="email-error" class="text-red-600 text-sm hidden">
+              Please enter a valid email address.
+            </span>
+          </div>
         </div>
       </div>
-
-      <!-- Submit Button -->
-      <div class="mt-4 flex justify-end">
-        <button
-          type="submit"
-          class="inline-flex items-center gap-2 justify-center rounded-lg py-3 px-6 text-sm outline-offset-2 transition bg-black text-white font-medium hover:bg-base-800           group w-full lg:w-auto border border-white/20"
-          >Sign Up</button
-        >
-      </div>
-    </form>
-    <div class="flex flex-wrap gap-4 justify-between items-center">
-      <!-- Terms and Conditions -->
-      <div class="mt-4 flex items-start">
+      <div class="flex items-center mt-4 gap-3">
         <input
+          id="agreement"
+          name="agreement"
           type="checkbox"
-          name="terms"
-          id="terms"
-          class="rounded border-base-200 text-accent-400 shadow-sm focus:border-accent-300 focus:ring focus:ring-accent-200 focus:ring-opacity-50           "
+          class="size-4 rounded border-base-300 text-accent-600 focus:ring-accent-600 shadow"
         />
         <label
-          for="terms"
-          class="ml-2 block text-sm leading-5 text-base-500   ">
-          I agree to the <a
-            href="#"
-            class="font-medium text-accent-400 hover:text-accent-500"
-            >Terms of Service</a
+          class="text-md leading-normal block text-sm text-base-500 font-medium"
+        >
+          Agree
+          <Link
+            variant="link"
+            href="#_"
+            class="text-accent-500 hover:text-base-500 font-semibold"
           >
+            Terms
+          </Link>
+          and
+          <Link
+            variant="link"
+            href="#_"
+            class="text-accent-500 hover:text-base-500 font-semibold"
+          >
+            Privacy Policy
+          </Link>
         </label>
       </div>
-      <p class="text-sm mt-4 text-base-500   ">
-        Already have an account?
-        <a
-          class="text-accent-400 hover:text-base-400"
-          href="/forms/signup"
-          >Sign in instead</a
+      <div class="mt-4">
+        <Button
+          size="sm"
+          submit="true"
+          variant="default"
+          class="w-full justify-center"
         >
-      </p>
-    </div>
-  </div>
+          Sign in
+        </Button>
+      </div>
+      <div class="flex items-center justify-between mt-4 w-full">
+        <Text tag="p" variant="textSM" class="text-base-500 font-semibold">
+          Don't have an account?
+        </Text>
+        <Text tag="p" variant="textSM">
+          <Link
+            variant="link"
+            href="#_"
+            class="text-accent-500 hover:text-base-500 font-semibold"
+          >
+            Sign up
+          </Link>
+        </Text>
+      </div>
+    </form>
+  </Wrapper>
 </section>

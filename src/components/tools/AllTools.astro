@@ -9,33 +9,22 @@ import Link from "@/components/fundations/components/Link.astro";
   variant="link"
   href={url}
   title={title}
-  class="relative flex items-center gap-x-3 rounded-2xl bg-white  p-4 focus-outline-none">
+  class="relative flex items-center gap-x-3 rounded-2xl bg-white p-4 focus-outline-none"
+>
   <div
-    class="flex-shrink-0 p-1 size-16 bg-base-100 rounded-xl items-center flex justify-center">
-    <img
-      alt={title}
-      src={image}
-      class="size-10"
-    />
+    class="flex-shrink-0 p-1 size-16 bg-base-100 rounded-xl items-center flex justify-center"
+  >
+    <img alt={title} src={image} class="size-10" />
   </div>
   <div class="min-w-0 flex-1">
-    <span
-      class="absolute inset-0"
-      aria-hidden="true"
-    ></span>
+    <span class="absolute inset-0" aria-hidden="true"></span>
     <div>
       <Text
         tag="h3"
-        variant="textMD"
-        class="font-medium text-base-900 font-mono uppercase"
-        >{title}</Text
+        variant="textSM"
+        class="font-medium text-base-900 font-mono uppercase">{title}</Text
       >
-      <Text
-        tag="p"
-        variant="textXS"
-        class="text-base-500 mt-1"
-        >{tagline}</Text
-      >
+      <Text tag="p" variant="textXS" class="text-base-500 mt-1">{tagline}</Text>
     </div>
   </div>
 </Link>

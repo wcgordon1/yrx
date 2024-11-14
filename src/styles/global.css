@@ -1,6 +1,6 @@
 /*  Import Tailwind CSS */
 @import "tailwindcss";
-/*  Import Tailwind CSS Forms and Typography plugins */
+/*  Import Tailwind CSS Forms and Typography plugins */ 
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 /*  Define your custom theme variables */
@@ -37,6 +37,7 @@
   --color-base-700: oklch(0.371 0 0);
   --color-base-800: oklch(0.269 0 0);
   --color-base-900: oklch(0.205 0 0);
+  
   --color-base-950: oklch(0.145 0 0);
   /* Shadows */
   --shadow-1: 0 0 0 1px #0e3f7e0a, 0 1px 1px -0.5px #2a33450a,

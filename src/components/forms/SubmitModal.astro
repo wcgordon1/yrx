@@ -8,7 +8,7 @@ import Button from "@/components/fundations/components/Button.astro";
   <span x-on:click="open = true">
     <Button
       size="sm"
-      variant="muted"
+      variant="default"
       title="#_"
       href="/submit"
       class="justify-center flex items-center gap-1"
@@ -23,12 +23,11 @@ import Button from "@/components/fundations/components/Button.astro";
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4"
         ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-          d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-        ></path><path d="M3 7l9 6l9 -6"></path></svg
+          d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
       >
-      Subscribe
+      Submit a tool
     </Button>
   </span>
   <!-- Modal -->
@@ -75,35 +74,47 @@ import Button from "@/components/fundations/components/Button.astro";
             variant="textLG"
             class="font-medium text-base-900 text-center"
           >
-            Get updates
+            Submit a tool
           </Text>
           <Text
             tag="p"
             variant="textSM"
             class="font-medium text-base-500 text-center mt-2 text-balance"
           >
-            Subscribe to our newsletter and be the first to discover the hotest
-            and lates tools on the design and development market.
+            Submit a tool to to the collection
           </Text>
           <form class="mt-4 flex flex-col gap-2">
             <div>
-              <label for="name" class="sr-only"> First name </label>
+              <label for="name" class="sr-only"> The tool </label>
               <input
-                id="name"
+                id="tool"
                 name="text"
                 type="text"
-                placeholder="Your name"
-                aria-placeholder="Your name"
-                class="block w-full h-9 px-4 mt-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+                placeholder="Tool name"
+                aria-placeholder="Tool name"
+                class="block w-full h-9 px-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
               />
             </div>
+            <div>
+              <label for="tool-url" class="sr-only"> Tool URL </label>
+              <input
+                id="tool-url"
+                name="url"
+                type="url"
+                placeholder="Enter tool URL"
+                aria-placeholder="Enter tool URL"
+                pattern="https?://.+"
+                class="block w-full h-9 px-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              />
+            </div>
+
             <Button
               size="sm"
               submit="true"
               variant="default"
               class="w-full justify-center"
             >
-              Subscribe
+              Submit
             </Button>
           </form>
         </div>

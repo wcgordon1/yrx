@@ -30,13 +30,15 @@ const { tools } = Astro.props;
       <Text
         tag="h1"
         variant="displaySM"
-        class="text-base-900 tracking-tighter      2xl:text-5xl">
+        class="text-base-900 font-mono uppercase font-medium tracking-tighter 2xl:text-5xl"
+      >
         All our blogs tagged with {tag}
       </Text>
       <Text
         tag="p"
         variant="textMD"
-        class="mt-4 text-base-500 text-balance    2xl:text-xl">
+        class="mt-4 text-base-500 text-balance 2xl:text-xl"
+      >
         Find all resources about {tag} here.
       </Text>
     </Wrapper>
@@ -44,17 +46,12 @@ const { tools } = Astro.props;
   <section>
     <Wrapper variant="wide">
       <div
-        class="flex flex-col gap-4 md:flex-row justify-between lg:items-center">
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-medium text-base-900     "
+        class="flex flex-col gap-4 md:flex-row justify-between lg:items-center"
+      >
+        <Text tag="h2" variant="textLG" class="font-medium text-base-900"
           >All tools</Text
         >
-        <Link
-          variant="default"
-          size="sm"
-          href="/tools/home">
+        <Link variant="default" size="sm" href="/tools/home">
           See all tools</Link
         >
       </div>
@@ -62,7 +59,7 @@ const { tools } = Astro.props;
         {
           tools.map((tools) => (
             <AllTools
-              url={"/tools/category/" + tools.slug}
+              url={"/tools/tool/" + tools.slug}
               alt={tools.data.title}
               title={tools.data.title}
               image={tools.data.image.url}

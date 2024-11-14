@@ -24,21 +24,21 @@ const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
       <Text
         tag="h1"
         variant="displaySM"
-        class="text-base-900 font-mono uppercase font-medium tracking-tighter 2xl:text-5xl">
+        class="text-base-900 font-mono uppercase font-medium tracking-tighter 2xl:text-5xl"
+      >
         Explore all our tools
       </Text>
       <Text
         tag="p"
         variant="textMD"
-        class="mt-4 text-base-500 text-balance 2xl:text-xl">
+        class="mt-4 text-base-500 text-balance 2xl:text-xl"
+      >
         Here you will find all the tools we have hoarded for you.
       </Text>
     </Wrapper>
   </section>
   <section>
-    <Wrapper
-      variant="wide"
-      class="py-6">
+    <Wrapper variant="wide" class="py-6">
       <Text
         tag="h2"
         variant="textLG"
@@ -47,32 +47,30 @@ const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
       >
 
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group">
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group"
+      >
         {
-          alltools.slice(10, 12).map((post) => (
-            <LatestTools
-              alt={post.data.title}
-              title={post.data.title}
-              image={post.data.image.url}
-              tagline={post.data.tagline}
-              images={post.data.images}
-              url={"/tools/category/" + post.slug}
-            />
-          ))
+          alltools
+            .slice(10, 12)
+            .map((post) => (
+              <LatestTools
+                alt={post.data.title}
+                title={post.data.title}
+                image={post.data.image.url}
+                tagline={post.data.tagline}
+                images={post.data.images}
+                url={"/tools/tool/" + post.slug}
+              />
+            ))
         }
         <SponsorCard />
       </div>
     </Wrapper>
   </section>
   <section>
-    <Wrapper
-      variant="wide"
-      class="py-6">
+    <Wrapper variant="wide" class="py-6">
       <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-medium text-base-900"
+        <Text tag="h2" variant="textLG" class="font-medium text-base-900"
           >All tools</Text
         >
         <div class="flex flex-wrap gap-2">
@@ -85,7 +83,8 @@ const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
                   variant="muted"
                   aria-label={tag}
                   href={`/tools/tags/${tag}`}
-                  class="capitalize">
+                  class="capitalize"
+                >
                   {tag}
                 </Link>
               </>
@@ -102,7 +101,7 @@ const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
               image={post.data.image.url}
               tagline={post.data.tagline}
               images={post.data.images}
-              url={"/tools/category/" + post.slug}
+              url={"/tools/tool/" + post.slug}
             />
           ))
         }

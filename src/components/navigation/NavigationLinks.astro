@@ -4,7 +4,6 @@ import Link from "../fundations/components/Link.astro";
 import { getCollection } from "astro:content";
 const allTools = await getCollection("tools");
 const tags = [...new Set(allTools.map((post) => post.data.tags).flat())];
-
 // Define navigation data
 const navigationItems = [
   {
@@ -22,48 +21,63 @@ const navigationItems = [
         href: "/store/home",
         text: "Store",
       },
+      {
+        href: "/about",
+        text: "About",
+      },
+      {
+        href: "/forms/signin",
+        text: "Sign in",
+      },
+      {
+        href: "/forms/signup",
+        text: "sign up",
+      },
+      {
+        href: "/pricing",
+        text: "Advertise",
+      },
     ],
   },
   {
-    title: "Resources",
+    title: "System",
     items: [
       {
         href: "/system/overview",
         text: "Overview",
       },
       {
-        href: "/system/style-guide",
-        text: "Typography",
+        href: "/system/buttons",
+        text: "Buttons",
       },
       {
-        href: "/sign-in",
-        text: "Sign in",
-      },
-       {
-        href: "/sign-in",
-        text: "sign-up",
+        href: "/system/style-guide",
+        text: "Typography",
       },
     ],
   },
 ];
 ---
 
-<div class="flex flex-col gap-12">
-  <div class="px-8 py-4 space-y-4">
+<div class="flex flex-col gap-12 2xl:py-12">
+  <div class="px-8 space-y-2">
     <Text
       tag="p"
       variant="textMD"
-      class="font-semibold font-mono uppercase text-black">
+      class="font-semibold font-mono uppercase text-black"
+    >
       Categories
     </Text>
     {
       tags.map((tag) => (
         <Link
-          title={tag}
+          size="sm"
           variant="link"
+          title={tag}
           aria-label={tag}
           href={`/tools/tags/${tag}`}
-          class="flex items-center font-mono uppercase text-sm font-medium text-base-500 hover:text-accent-400      group duration-200 gap-3">
+          class="flex font-mono uppercase font-medium text-base-500 hover:text-accent-400 "
+        >
           {tag}
         </Link>
       ))
@@ -71,18 +85,20 @@ const navigationItems = [
   </div>
   {
     navigationItems.map((section) => (
-      <div class="px-8 py-4 space-y-4 ">
+      <div class="px-8 space-y-2 ">
         <Text
           tag="p"
           variant="textMD"
-          class=" font-semibold font-mono uppercase text-black     ">
+          class=" font-semibold font-mono uppercase text-black     "
+        >
           {section.title}
         </Text>
         {section.items.map((item) => (
           <Link
             variant="link"
             href={item.href}
-            class="flex items-center font-mono uppercase text-sm font-medium text-base-500 hover:text-accent-400      group duration-200  gap-3">
+            class="flex items-center font-mono uppercase text-sm font-medium text-base-500 hover:text-accent-400      group duration-200  gap-3"
+          >
             {item.text}
           </Link>
         ))}

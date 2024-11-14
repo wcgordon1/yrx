@@ -21,9 +21,7 @@ const alltools = alltoolsUnsorted.sort(
 <BaseLayout>
   <Hero />
   <section>
-    <Wrapper
-      variant="wide"
-      class="py-6">
+    <Wrapper variant="wide" class="py-6">
       <Text
         tag="h2"
         variant="textLG"
@@ -32,94 +30,89 @@ const alltools = alltoolsUnsorted.sort(
       >
 
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2 mt-8 group">
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2 mt-8 group"
+      >
         {
-          alltools.slice(10, 12).map((post) => (
-            <LatestTools
-              alt={post.data.title}
-              title={post.data.title}
-              image={post.data.image.url}
-              tagline={post.data.tagline}
-              images={post.data.images}
-              url={"/tools/category/" + post.slug}
-            />
-          ))
+          alltools
+            .slice(10, 12)
+            .map((post) => (
+              <LatestTools
+                alt={post.data.title}
+                title={post.data.title}
+                image={post.data.image.url}
+                tagline={post.data.tagline}
+                images={post.data.images}
+                url={"/tools/tool/" + post.slug}
+              />
+            ))
         }
-
       </div>
     </Wrapper>
   </section>
   <section>
-    <Wrapper
-      variant="wide"
-      class="py-6">
+    <Wrapper variant="wide" class="py-6">
       <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-medium text-base-900"
+        <Text tag="h2" variant="textLG" class="font-medium text-base-900"
           >All tools</Text
         >
         <Link
           size="sm"
           variant="muted"
           aria-label="All tools"
-          href="/tools/home">
+          href="/tools/home"
+        >
           See all tools
         </Link>
       </div>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8">
         {
-          alltools.slice(0,3).map((post) => (
-            <AllTools
-              alt={post.data.title}
-              title={post.data.title}
-              image={post.data.image.url}
-              tagline={post.data.tagline}
-              images={post.data.images}
-              url={"/tools/category/" + post.slug}
-            />
-          ))
+          alltools
+            .slice(0, 3)
+            .map((post) => (
+              <AllTools
+                alt={post.data.title}
+                title={post.data.title}
+                image={post.data.image.url}
+                tagline={post.data.tagline}
+                images={post.data.images}
+                url={"/tools/tool/" + post.slug}
+              />
+            ))
         }
       </div>
     </Wrapper>
   </section>
   <section>
-    <Wrapper
-      variant="wide"
-      class="py-6">
+    <Wrapper variant="wide" class="py-6">
       <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-medium text-base-900"
+        <Text tag="h2" variant="textLG" class="font-medium text-base-900"
           >Latest products</Text
         >
         <Link
           size="sm"
           variant="muted"
           aria-label="All tools"
-          href="/tools/home">
+          href="/tools/home"
+        >
           Store
         </Link>
       </div>
       <div
-            class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group"
-          >
-            {
-              allProducts.map((post) => (
-                <StoreEntries
-                url={"/store/" + post.slug}
-                  alt={post.data.title}
-                  price={post.data.price}
-                  title={post.data.title}
-                  image={post.data.image.url}
-                  description={post.data.description}
-                />
-              ))
-            }
-          </div>
-        </Wrapper>
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group"
+      >
+        {
+          allProducts.map((post) => (
+            <StoreEntries
+              url={"/store/" + post.slug}
+              alt={post.data.title}
+              price={post.data.price}
+              title={post.data.title}
+              image={post.data.image.url}
+              description={post.data.description}
+            />
+          ))
+        }
+      </div>
     </Wrapper>
   </section>
 </BaseLayout>

@@ -1,0 +1,68 @@
+---
+import Link from "../fundations/components/Link.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "../fundations/containers/Wrapper.astro";
+const faqs = [
+  {
+    question: "How does end-to-end encryption work?",
+    answer:
+      "End-to-end encryption ensures that only the sender and recipient can access the content of a message.    ",
+  },
+  {
+    question: "Can I access my encrypted data?",
+    answer:
+      "No, forgetting or losing your encryption key means that your encrypted data cannot be accessed.       ",
+  },
+  {
+    question: "Are there any limitations ?",
+    answer:
+      "Self-destructing messages are designed to automatically delete themselves after a specific period or upon being read by the recipient.          ",
+  },
+];
+---
+
+<section>
+  <Wrapper variant="wide">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div>
+        <Text
+          tag="h2"
+          variant="textLG"
+          class="font-medium text-base-900 font-mono uppercase tracking-tighter"
+        >
+          FAQ
+        </Text>
+        <Text
+          tag="p"
+          variant="textSM"
+          class="mt-4 text-base-500 text-balance 2xl:text-lg"
+        >
+          Everything you need to know about our platform.
+        </Text>
+      </div>
+      <div class="flex flex-col gap-12 lg:col-span-2">
+        {
+          faqs.map((faq) => (
+            <div>
+              <Text
+                tag="h3"
+                variant="textMD"
+                class="text-base-900 font-mono uppercase font-medium hover:opacity-60 2xl:text-base transition-opacity duration-200"
+              >
+                {faq.question}
+              </Text>
+              <Text
+                tag="p"
+                variant="textMD"
+                class="text-base-500 mt-2 "
+              >
+                {faq.answer}
+              </Text>
+             
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Wrapper>
+</section>
