@@ -29,6 +29,7 @@ const mutedClass = [
   "hover:text-accent-500",
   "focus:ring-base-500",
 ];
+
 // Size
 const xs = ["h-8", "px-4", "py-2", "text-xs", "font-medium"];
 const sm = ["h-9", "px-4", "py-2", "text-sm", "font-medium"];
@@ -60,6 +61,7 @@ const additionalClasses = className ? className.split(" ") : [];
     variant === "default" && defaultClass,
     variant === "accent" && accentClass,
     variant === "muted" && mutedClass,
+    variant === "none" && [], // No additional classes for "none" variant
     size === "xs" && xs,
     size === "sm" && sm,
     size === "base" && base,
