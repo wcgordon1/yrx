@@ -10,14 +10,12 @@ import "@/styles/global.css";
   <head>
     <BaseHead />
   </head>
-  <body class="bg-base-50">
+  <body class="bg-white">
     <div class="min-h-[640px] flex flex-col">
       <div x-data="{ open: false }" @keydown.window.escape="open = false">
         <!-- Static sidebar for desktop -->
         <DesktopNav />
-        <div
-          class="relative z-0 flex flex-1 overflow-hidden "
-        >
+        <div class="relative z-0 flex flex-1 overflow-hidden">
           <div
             class="relative z-0 flex-1 overflow-y-auto focus:outline-none lg:pl-64 2xl:pl-0"
           >

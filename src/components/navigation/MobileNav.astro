@@ -1,8 +1,9 @@
 ---
-import NavigationLinks from "@/components/navigation/NavigationLinks.astro";
+import Logo from "@/components/global/Logo.astro";
 import MobileTopBar from "@/components/navigation/MobileTopBar.astro";
 import SidebarButton from "@/components/navigation/SidebarButton.astro";
-import Logo from "@/components/global/Logo.astro"
+import NavigationLinks from "@/components/navigation/NavigationLinks.astro";
+import Button from "../fundations/components/Button.astro";
 ---
 
 <div
@@ -11,7 +12,8 @@ import Logo from "@/components/global/Logo.astro"
   x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state."
   x-ref="dialog"
   aria-modal="true"
-  style="display: none">
+  style="display: none"
+>
   <div
     x-show="open"
     x-transition:enter="transition-opacity ease-linear duration-300"
@@ -21,10 +23,11 @@ import Logo from "@/components/global/Logo.astro"
     x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0"
     x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state."
-    class="fixed inset-0 bg-base-600 bg-opacity-75"
+    class="fixed inset-0 bg-base-600/50"
     @click="open = false"
     aria-hidden="true"
-    style="display: none">
+    style="display: none"
+  >
   </div>
   <div
     x-show="open"
@@ -35,8 +38,9 @@ import Logo from "@/components/global/Logo.astro"
     x-transition:leave-start="translate-x-0"
     x-transition:leave-end="-translate-x-full"
     x-description="Off-canvas menu, show/hide based on off-canvas menu state."
-    class="relative flex flex-col flex-1 w-full max-w-xs bg-white   "
-    style="display: none">
+    class="relative flex flex-col flex-1 w-full max-w-xs bg-white"
+    style="display: none"
+  >
     <div
       x-show="open"
       x-transition:enter="ease-in-out duration-300"
@@ -47,37 +51,40 @@ import Logo from "@/components/global/Logo.astro"
       x-transition:leave-end="opacity-0"
       x-description="Close button, show/hide based on off-canvas menu state."
       class="absolute top-0 right-0 pt-2 -mr-12"
-      style="display: none">
-      <button
+      style="display: none"
+    >
+      <Button
+        size="xs"
+        variant="muted"
         type="button"
-        class="flex items-center justify-center size-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-        @click="open = false">
+        class="flex items-center justify-center w-8 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        @click="open = false"
+      >
         <span class="sr-only">Close sidebar</span>
         <svg
-          class="size-6 text-base-900"
+          class="size-4 text-base-900 shrink-0"
           x-description="Heroicon name: outline/x"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          aria-hidden="true">
+          aria-hidden="true"
+        >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          ></path>
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
-      </button>
+      </Button>
     </div>
-    <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-      <div class="flex items-center flex-shrink-0 pl-10">
+    <div class="flex-1 h-0 pt-5 overflow-y-auto">
+      <div class="flex items-center flex-shrink-0 pl-10 pt-0">
         <Logo />
       </div>
       <nav class="px-2 mt-5 space-y-1"><NavigationLinks /></nav>
     </div>
     <SidebarButton />
-
   </div>
   <div class="flex-shrink-0 w-14">
     <!-- Force sidebar to shrink to fit close icon -->

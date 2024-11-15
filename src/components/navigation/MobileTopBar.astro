@@ -4,16 +4,15 @@ import Button from "@/components/fundations/components/Button.astro";
 ---
 
 <div
-  class="bg-base-50 text-right justify-between items-center inline-flex w-full z-10 py-2 px-8 lg:hidden"
+  class="bg-white text-right justify-between items-center inline-flex w-full z-10 py-2 px-8 lg:hidden"
 >
   <div class="flex flex-row items-center justify-between w-full">
-    <a href="/" class="text-base-900 text-left">
-      <Logo />
-    </a>
+    <Logo />
+
     <Button
-      type="button"
-      variant="muted"
       size="sm"
+      variant="muted"
+      type="button"
       class="ml-auto w-9 inline-flex items-center justify-center rounded-md hover:text-accent-400 focus:outline-none focus:text-black focus:ring-inset"
       @click="open = true"
     >

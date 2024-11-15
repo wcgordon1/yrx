@@ -5,12 +5,12 @@ import Logo from "@/components/global/Logo.astro";
 ---
 
 <div
-  class="z-50 hidden lg:flex md:w-64 2xl:w-72 md:flex-col md:fixed md:inset-y-0 m-2"
+  class="z-50 hidden lg:flex md:w-64 2xl:w-72 md:flex-col md:fixed md:inset-y-1 p-2"
   @click="open = !open"
 >
-  <div class="flex flex-col flex-1 relative min-h-0 bg-base-100 rounded-3xl">
-    <div class="flex flex-col flex-1 pt-8 overflow-y-auto">
-      <div class="flex items-center flex-shrink-0 pl-8 text-black">
+  <div class="flex flex-col flex-1 relative min-h-0 bg-base-100 rounded-xl">
+    <div class="flex flex-col flex-1 pt-6 overflow-y-auto">
+      <div class="flex items-center flex-shrink-0 pl-6 text-black">
         <Logo />
       </div>
       <nav class="flex-1 mt-4"><NavigationLinks /></nav>
