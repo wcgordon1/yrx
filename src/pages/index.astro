@@ -11,26 +11,20 @@ const allProducts = await getCollection("store");
 import AllTools from "@/components/tools/AllTools.astro";
 import LatestTools from "@/components/tools/LatestTools.astro";
 import { getCollection } from "astro:content";
-const alltoolsUnsorted = await getCollection("tools");
-// Sort the posts in descending order by publication date (newest to oldest)
-const alltools = alltoolsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
-);
+const alltools = await getCollection("tools");
+
 ---
 
 <BaseLayout>
   <Hero />
   <section>
     <Wrapper variant="wide" class="py-6">
-      <Text
-        tag="h2"
-        variant="textLG"
-        class="font-medium text-base-900 font-mono uppercase tracking-tighter"
+      <Text tag="h2" variant="textLG" class="font-medium text-base-900"
         >Latest additions</Text
       >
 
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2 mt-8 group"
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2 mt-4 group"
       >
         {
           alltools
@@ -64,7 +58,7 @@ const alltools = alltoolsUnsorted.sort(
           See all tools
         </Link>
       </div>
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
         {
           alltools
             .slice(0, 3)
@@ -98,7 +92,7 @@ const alltools = alltoolsUnsorted.sort(
         </Link>
       </div>
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group"
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4 group"
       >
         {
           allProducts.map((post) => (

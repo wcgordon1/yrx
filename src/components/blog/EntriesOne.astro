@@ -3,6 +3,7 @@ import Text from "../fundations/elements/Text.astro";
 import Link from "../fundations/components/Link.astro";
 const { title, url, avatar, tags, pubDate } = Astro.props;
 ---
+
 <Link
   href={url}
   title={title}
@@ -13,17 +14,17 @@ const { title, url, avatar, tags, pubDate } = Astro.props;
     <Text
       tag="h3"
       variant="textSM"
-      class="text-base-900 font-mono uppercase font-medium hover:opacity-60 2xl:text-base transition-opacity duration-200"
+      class="text-base-900 font-medium hover:opacity-60 2xl:text-base transition-opacity duration-200"
       >{title}</Text
     >
   </div>
-  <Text tag="p" variant="textXS" class="text-base-400 font-medium uppercase"
+  <Text tag="p" variant="textXS" class="text-base-400 font-medium"
     ><time datetime="2020-03-16">{tags}</time></Text
   >
   <Text
     tag="p"
     variant="textXS"
-    class="text-base-400 font-medium uppercase lg:mx-auto col-span-2 md:col-span-1"
+    class="text-base-400 font-medium lg:mx-auto col-span-2 md:col-span-1"
     ><time datetime="2020-03-16">{pubDate}</time></Text
   >
   <div

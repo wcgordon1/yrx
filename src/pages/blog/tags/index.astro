@@ -12,16 +12,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 <BaseLayout>
   <section>
     <Wrapper variant="hero">
-      <Text
-        tag="h1"
-        variant="displaySM"
-        class="text-base-900 tracking-tighter      2xl:text-5xl">
+      <Text tag="h1" variant="displaySM" class="text-base-900 2xl:text-5xl">
         Explore, and discover new trends.
       </Text>
       <Text
         tag="p"
         variant="textMD"
-        class="mt-4 text-base-500 text-balance    2xl:text-xl">
+        class="mt-4 text-base-500 text-balance 2xl:text-xl"
+      >
         Here you will find all the tags used in our blog.
       </Text>
       <div class="flex flex-col prose-styles mt-12">
@@ -32,7 +30,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               variant="link"
               aria-label={tag}
               href={`/blog/tags/${tag}`}
-              class="text-accent-500      font-medium">
+              class="text-accent-500      font-medium"
+            >
               {tag}
             </Link>
           ))

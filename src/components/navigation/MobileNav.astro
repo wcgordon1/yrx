@@ -8,7 +8,7 @@ import Button from "../fundations/components/Button.astro";
 
 <div
   x-show="open"
-  class="fixed inset-0 z-40 flex lg:hidden"
+  class="fixed inset-0 z-40 flex flex-col h-svh lg:hidden"
   x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state."
   x-ref="dialog"
   aria-modal="true"
@@ -30,15 +30,14 @@ import Button from "../fundations/components/Button.astro";
   >
   </div>
   <div
-    x-show="open"
-    x-transition:enter="transition ease-in-out duration-300 transform"
-    x-transition:enter-start="-translate-x-full"
-    x-transition:enter-end="translate-x-0"
-    x-transition:leave="transition ease-in-out duration-300 transform"
-    x-transition:leave-start="translate-x-0"
-    x-transition:leave-end="-translate-x-full"
-    x-description="Off-canvas menu, show/hide based on off-canvas menu state."
-    class="relative flex flex-col flex-1 w-full max-w-xs bg-white"
+  x-show="open"
+  x-transition:enter="transition ease-in-out duration-300 transform"
+  x-transition:enter-start="translate-y-full"
+  x-transition:enter-end="translate-y-0"
+  x-transition:leave="transition ease-in-out duration-300 transform"
+  x-transition:leave-start="translate-y-0"
+  x-transition:leave-end="translate-y-full"
+  class="relative flex flex-col flex-1 w-full  bg-white"
     style="display: none"
   >
     <div
@@ -50,19 +49,19 @@ import Button from "../fundations/components/Button.astro";
       x-transition:leave-start="opacity-100"
       x-transition:leave-end="opacity-0"
       x-description="Close button, show/hide based on off-canvas menu state."
-      class="absolute top-0 right-0 pt-2 -mr-12"
+      class="absolute top-0 right-0 pr-4 pt-4"
       style="display: none"
     >
       <Button
         size="xs"
-        variant="muted"
+        variant="default"
         type="button"
-        class="flex items-center justify-center w-8 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        class="flex items-center justify-center w-8 ml-1"
         @click="open = false"
       >
         <span class="sr-only">Close sidebar</span>
         <svg
-          class="size-4 text-base-900 shrink-0"
+          class="size-4 shrink-0"
           x-description="Heroicon name: outline/x"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

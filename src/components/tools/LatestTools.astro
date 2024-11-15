@@ -9,29 +9,26 @@ import Link from "@/components/fundations/components/Link.astro";
   variant="link"
   href={url}
   title={title}
-  class="group-hover:opacity-30 hover:opacity-100 peer hover:peer-hover:opacity-30 duration-300">
+  class="group-hover:opacity-30 hover:opacity-100 peer hover:peer-hover:opacity-30 duration-300"
+>
   <div>
     {
-      images.slice(0, 1).map((image) => (
-        <img
-          class="object-cover aspect-[16/9]  rounded-2xl "
-          src={image.url}
-          alt={image.alt}
-        />
-      ))
+      images
+        .slice(0, 1)
+        .map((image) => (
+          <img
+            class="object-cover aspect-[16/9]  rounded-2xl "
+            src={image.url}
+            alt={image.alt}
+          />
+        ))
     }
   </div>
   <div class="p-4">
-    <Text
-      tag="h3"
-      variant="textMD"
-      class="font-medium text-base-900 font-mono uppercase"
+    <Text tag="h3" variant="textMD" class="font-medium text-base-900"
       >{title}</Text
     >
-    <Text
-      tag="p"
-      variant="textSM"
-      class="text-base-500 mt-2 line-clamp-2"
+    <Text tag="p" variant="textSM" class="text-base-500 mt-2 line-clamp-2"
       >{tagline}</Text
     >
   </div>

@@ -25,11 +25,7 @@ const faqs = [
   <Wrapper variant="wide">
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
       <div>
-        <Text
-          tag="h2"
-          variant="textLG"
-          class="font-medium text-base-900 font-mono uppercase tracking-tighter"
-        >
+        <Text tag="h2" variant="textLG" class="font-medium text-base-900">
           FAQ
         </Text>
         <Text
@@ -47,18 +43,13 @@ const faqs = [
               <Text
                 tag="h3"
                 variant="textMD"
-                class="text-base-900 font-mono uppercase font-medium hover:opacity-60 2xl:text-base transition-opacity duration-200"
+                class="text-base-900        font-medium hover:opacity-60 2xl:text-base transition-opacity duration-200"
               >
                 {faq.question}
               </Text>
-              <Text
-                tag="p"
-                variant="textMD"
-                class="text-base-500 mt-2 "
-              >
+              <Text tag="p" variant="textMD" class="text-base-500 mt-2 ">
                 {faq.answer}
               </Text>
-             
             </div>
           ))
         }

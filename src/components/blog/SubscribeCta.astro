@@ -5,20 +5,12 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 ---
 
 <section>
-  <Wrapper
-    variant="narrow"
-    class="py-24 flex flex-col">
+  <Wrapper variant="narrow" class="py-24 flex flex-col">
     <div class="text-center">
-      <Text
-        tag="h2"
-        variant="displayLG"
-        class="     font-medium tracking-tighter text-base-900 font-mono uppercase">
+      <Text tag="h2" variant="displayLG" class="font-medium text-base-900">
         Join our newsletter
       </Text>
-      <Text
-        tag="p"
-        variant="textMD"
-        class="mt-4 text-base-500   ">
+      <Text tag="p" variant="textMD" class="mt-4 text-base-500">
         Stay up to date with our latest news and updates.
       </Text>
     </div>
@@ -39,11 +31,11 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
           size="sm"
           type="submit"
           variant="accent"
-          class="w-full sm:w-auto">
+          class="w-full sm:w-auto"
+        >
           Subscribe
         </Button>
       </div>
     </form>
-
   </Wrapper>
 </section>
