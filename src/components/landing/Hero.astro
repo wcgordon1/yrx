@@ -1,14 +1,12 @@
 ---
 import Text from "../fundations/elements/Text.astro";
-import Link from "../fundations/components/Link.astro";
 import Wrapper from "../fundations/containers/Wrapper.astro";
 import SubscribeModal from "../forms/SubscribeModal.astro";
-
 import SubmitModal from "../forms/SubmitModal.astro";
 ---
 
-<section>
-  <Wrapper variant="hero">
+<section class="relative overflow-hidden">
+  <Wrapper variant="hero" class="relative">
     <Text
       tag="h1"
       variant="displaySM"
@@ -24,7 +22,6 @@ import SubmitModal from "../forms/SubmitModal.astro";
       Your essential directory for tools and resources — streamline your
       workflow, boost creativity
     </Text>
-
     <div class="mt-8 flex flex-wrap gap-4">
       <SubmitModal />
       <SubscribeModal />
