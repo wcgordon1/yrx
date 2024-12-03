@@ -12,7 +12,6 @@ import AllTools from "@/components/tools/AllTools.astro";
 import LatestTools from "@/components/tools/LatestTools.astro";
 import { getCollection } from "astro:content";
 const alltools = await getCollection("tools");
-
 ---
 
 <BaseLayout>
@@ -47,7 +46,7 @@ const alltools = await getCollection("tools");
     <Wrapper variant="wide" class="py-6">
       <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
         <Text tag="h2" variant="textLG" class="font-medium text-base-900"
-          >All tools</Text
+          >The tools</Text
         >
         <Link
           size="sm"

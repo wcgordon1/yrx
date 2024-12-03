@@ -8,7 +8,9 @@ import Link from "@/components/fundations/components/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
 import { getCollection } from "astro:content";
+
 const allPostsUnsorted = await getCollection("posts");
+
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
   (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)

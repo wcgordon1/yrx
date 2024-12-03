@@ -1,4 +1,10 @@
 import { defineCollection, z } from "astro:content";
+const infopages = defineCollection({
+  schema: z.object({
+    page: z.string(),
+    pubDate: z.date(),
+  }),
+});
 const store = defineCollection({
   schema: z.object({
     price: z.string(),
@@ -70,4 +76,5 @@ export const collections = {
   store: store,
   tools: tools,
   posts: postsCollection,
+  info: infopages,
 };

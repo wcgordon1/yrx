@@ -1,9 +1,10 @@
 ---
+import "@/styles/global.css";
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/global/Footer.astro";
 import MobileNav from "@/components/navigation/MobileNav.astro";
 import DesktopNav from "@/components/navigation/DesktopNav.astro";
-import "@/styles/global.css";
+import DesktopTopBar from "@/components/navigation/DesktopTopBar.astro";
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -12,16 +13,21 @@ import "@/styles/global.css";
   </head>
   <body class="bg-white">
     <div class="min-h-[640px] flex flex-col">
-      <div x-data="{ open: false }" @keydown.window.escape="open = false">
+      <div
+        class="lg:grid lg:grid-cols-5 2xl:grid-cols-12"
+        x-data="{ open: false }"
+        @keydown.window.escape="open = false"
+      >
         <!-- Static sidebar for desktop -->
-        <DesktopNav />
-        <div class="relative z-0 flex flex-1 overflow-hidden">
-          <div
-            class="relative z-0 flex-1 overflow-y-auto focus:outline-none lg:pl-64 2xl:pl-0"
-          >
+        <DesktopNav class="lg:col-span-1 2xl:col-span-2" />
+        <div
+          class="relative z-0 lg:col-span-4 2xl:col-span-11 2xl:col-start-2 w-full overflow-hidden border-l border-base-200"
+        >
+          <DesktopTopBar />
+          <div class="relative z-0 overflow-y-auto">
             <MobileNav />
             <!-- Start main area-->
-            <div class="flex-1 mx-auto min-h-svh flex flex-col">
+            <div class="mx-auto min-h-svh flex flex-col">
               <main class="grow">
                 <slot />
               </main>

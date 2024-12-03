@@ -1,0 +1,131 @@
+---
+import AuthButtons from "@/components/navigation/AuthButtons.astro";
+import Link from "@/components/fundations/components/Link.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/components/Button.astro";
+// Retrieve all posts from the "store" collection, which returns an unsorted array of post objects
+import StoreEntries from "@/components/store/StoreEntries.astro";
+const allProducts = await getCollection("store");
+// Retrieve all posts from the "tools" collection, which returns an unsorted array of post objects
+import AllTools from "@/components/tools/AllTools.astro";
+import LatestTools from "@/components/tools/LatestTools.astro";
+import { getCollection } from "astro:content";
+const alltools = await getCollection("tools");
+// Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
+import EntriesOne from "@/components/blog/EntriesOne.astro";
+const allPostsUnsorted = await getCollection("posts");
+// Sort the posts in descending order by publication date (newest to oldest)
+const allPosts = allPostsUnsorted.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+);
+---
+
+<section
+  x-data="{ expanded: false }"
+  class="border-b border-base-200 hidden lg:block"
+>
+  <div class="w-full max-w-screen mx-auto pt-2">
+    <div class="relative">
+      <div class="flex items-center justify-end w-full px-8">
+        <div class="items-center flex flex-row gap-2 ml-auto">
+          <AuthButtons />
+        </div>
+        <div>
+          <button
+            id="menubutton"
+            type="button"
+            class="grow flex items-center h-14 group"
+            @click="expanded = !expanded"
+            :aria-expanded="expanded"
+            aria-controls="menu"
+          >
+            <div
+              class="p-1.5 group-focus-visible:ring group-focus-visible:ring-indigo-300 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="fill-gray-400 size-8 shrink-0 transition duration-300 ease-in-out"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-menu"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path :class="{'opacity-0': expanded}" d="M4 8l16 0"></path>
+                <path d="M4 16l16 0"></path></svg
+              >
+            </div>
+          </button>
+        </div>
+      </div>
+      <nav
+        id="menu"
+        role="navigation"
+        aria-labelledby="menubutton"
+        class="grid text-sm text-gray-600 w-0 overflow-hidden m-auto transition-all duration-500 ease-[cubic-bezier(.4,.0,.20,1)] [&[x-cloak]]:hidden mb-2"
+        :class="expanded ? 'grid-rows-[1fr] opacity-100 w-full' : 'grid-rows-[0fr] opacity-0 invisible'"
+        x-cloak
+      >
+        <div
+          :class="expanded ? 'border-t border-base-200' : 'border-none'"
+          class="overflow-hidden"
+        >
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+              <div class="md:col-span-2">
+                <Text
+                  tag="h2"
+                  variant="textLG"
+                  class="font-medium text-base-900">Latest products</Text
+                >
+                <div class="flex flex-col gap-4 mt-4 group">
+                  {
+                    alltools
+                      .slice(0, 2)
+                      .map((post) => (
+                        <AllTools
+                          alt={post.data.title}
+                          title={post.data.title}
+                          image={post.data.image.url}
+                          tagline={post.data.tagline}
+                          images={post.data.images}
+                          url={"/tools/tool/" + post.slug}
+                        />
+                      ))
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 xl:p-8">
+              <Text tag="h2" variant="textLG" class="font-medium text-base-900"
+                >Latest Blog Posts</Text
+              >
+              <div class="flex flex-col group w-full mt-4">
+                {
+                  allPosts
+                    .slice(0, 3)
+                    .map((post) => (
+                      <EntriesOne
+                        url={"/blog/posts/" + post.slug}
+                        alt={post.data.title}
+                        title={post.data.title}
+                        author={post.data.author}
+                        image={post.data.image.url}
+                        avatar={post.data.avatar.url}
+                        description={post.data.description}
+                        tags={post.data.tags}
+                        pubDate={post.data.pubDate.toString().slice(0, 10)}
+                      />
+                    ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
