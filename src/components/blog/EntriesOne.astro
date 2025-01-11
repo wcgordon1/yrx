@@ -1,7 +1,16 @@
 ---
+// Assets
+import { Image } from "astro:assets";
+// Fndation
 import Text from "../fundations/elements/Text.astro";
 import Link from "../fundations/components/Link.astro";
-const { title, url, avatar, tags, pubDate } = Astro.props;
+const { title, url, avatar, tags, pubDate } = {
+  url: "/blog/posts/" + Astro.props.post.slug,
+  tags: Astro.props.post.data.tags,
+  title: Astro.props.post.data.title,
+  avatar: Astro.props.post.data.avatar.url,
+  pubDate: Astro.props.post.data.pubDate.toString().slice(0, 10),
+};
 ---
 
 <Link
@@ -30,6 +39,8 @@ const { title, url, avatar, tags, pubDate } = Astro.props;
   <div
     class="flex items-center gap-2 text-base-500 col-span-full md:col-span-1 md:ml-auto"
   >
-    <img src={avatar} alt={title} class="size-8 rounded-full" />
+  <Image
+  width="500"
+  height="500" src={avatar} alt={title} class="size-8 rounded-full" />
   </div>
 </Link>

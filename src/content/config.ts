@@ -1,4 +1,5 @@
 import { defineCollection, z } from "astro:content";
+
 const infopages = defineCollection({
   schema: z.object({
     page: z.string(),
@@ -42,19 +43,18 @@ const tools = defineCollection({
         })
       )
       .optional(),
-    images: z.array(
-      z.object({
-        url: z.string(),
-        alt: z.string(),
-      })
-    ),
-    image: z.object({
+    logo: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }), 
+    thumbnail: z.object({
       url: z.string(),
       alt: z.string(),
     }),
     tags: z.array(z.string().optional()).optional(),
   }),
 });
+
 const postsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
@@ -76,5 +76,5 @@ export const collections = {
   store: store,
   tools: tools,
   posts: postsCollection,
-  info: infopages,
+  infopages: infopages,
 };

@@ -1,6 +1,5 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
-import Link from "@/components/fundations/components/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Define the data for each section and its pages
 const pages = [
@@ -15,15 +14,25 @@ const pages = [
         ],
       },
       {
+        name: "Dashboard",
+        links: [
+          { href: "/dashboard/settings", text: "Settings" },
+          { href: "/dashboard/collections", text: "Collections" },
+          { href: "/dashboard/collection-details", text: "Collection Details" },
+          { href: "/dashboard/submissions", text: "Submissions" },
+          { href: "/dashboard/profile", text: "Profile" },
+        ],
+      },
+      {
         name: "Advertise",
-        links: [{ href: "/pricing", text: "Pricing" }],
+        links: [{ href: "/pricing", text: "Membership" }],
       },
       {
         name: "Forms",
         links: [
           { href: "/forms/signin", text: "Sing in" },
           { href: "/forms/signup", text: "Sing up" },
-          { href: "/forms/contact", text: "Contact" },
+          { href: "/forms/reset", text: "Reset" },
         ],
       },
       {
@@ -42,7 +51,7 @@ const pages = [
             text: "Support",
           },
           {
-            href: "https://lexingtonthemes.com/documentation/quick-start",
+            href: "https://lexingtonthemes.com/documentation/",
             text: "Documentation",
           },
         ],
@@ -52,6 +61,16 @@ const pages = [
   {
     title: "Content collections",
     categories: [
+      {
+        name: "Directory",
+        links: [
+          { href: "/tools/home", text: "All tools" },
+          { href: "/tools/tool/12", text: "Tool details" },
+          { href: "/tools/tags", text: "Tag index" },
+          { href: "/tools/tags/design", text: "Tag category" },
+          { href: "/tools/submit", text: "Submit" },
+        ],
+      },
       {
         name: "Blog",
         links: [
@@ -63,12 +82,10 @@ const pages = [
         ],
       },
       {
-        name: "Tools",
+        name: "Store",
         links: [
-          { href: "/tools/home", text: "Home" },
-          { href: "/tool/1", text: "Tool" },
-          { href: "/tools/tags", text: "Tag index" },
-          { href: "/tools/tag/development", text: "Tag category" },
+          { href: "/store/home", text: "Store Home" },
+          { href: "/store/1", text: "Store details" },
         ],
       },
       {
@@ -85,42 +102,45 @@ const pages = [
 
 <section>
   <Wrapper variant="hero">
-    <div class="mt-12 space-y-16 col-span-full">
+    <div class="grid grid-col-1 lg:grid-cols-2 gap-12">
       {
         pages.map((section) => (
-          <div>
-            <Text
-              tag="h1"
-              variant="displaySM"
-              class="text-base-900        font-medium         2xl:text-3xl"
-            >
-              {section.title}
-            </Text>
-            <div class="mt-8 gap-y-12 gap-x-6 grid grid-cols-2 xl:grid-cols-4 ">
-              {section.categories.map((category) => (
-                <div class="flex flex-col gap-4 ">
-                  <Text class="text-2xl tracking-tight font-display text-green-800 ">
-                    {category.name}
-                  </Text>
-                  <ul
-                    role="list"
-                    class="grid grid-cols-1 gap-2   lg:col-span-2"
-                  >
-                    {category.links.map((link) => (
-                      <li>
-                        <Link
-                          href={link.href}
-                          size="sm"
-                          variant="link"
-                          class="flex        font-medium text-base-500 hover:text-accent-400 "
-                        >
-                          {link.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+          <div class="border-t border-base-200 pt-2 ">
+            <div>
+              <Text
+                tag="h2"
+                variant="textXS"
+                class="font-medium uppercase text-base-500"
+              >
+                {section.title}
+              </Text>
+              <div class="mt-12  grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-4">
+                {section.categories.map((category) => (
+                  <div class="flex flex-col gap-2 ">
+                    <Text
+                      tag="p"
+                      variant="textBase"
+                      class="text-base-900 hover:text-accent-500 font-medium"
+                    >
+                      {category.name}
+                    </Text>
+                    <ul role="list">
+                      {category.links.map((link) => (
+                        <li>
+                          <Text
+                            tag="a"
+                            variant="textBase"
+                            href={link.href}
+                            class="text-base-500 hover:text-accent-500"
+                          >
+                            {link.text}
+                          </Text>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))

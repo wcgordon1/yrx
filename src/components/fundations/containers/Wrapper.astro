@@ -1,16 +1,19 @@
 ---
 interface Props {
-  variant?: "hero" | "heroNarrow" | "standard" | "narrow" | "wide"; // Optional prop for the variant
+  variant?: "hero" | "heroNarrow" | "narrow" | "standard"; // Optional prop for the variant
   class?: string; // Optional prop for additional classes
 }
 const { variant = "standard", class: extraClass = "" } = Astro.props;
 // Map each variant to its specific classes
 const variantClasses = {
-  wide: "mx-auto px-8 max-w-7xl  lg:px-24 2xl:pl-9 2xl:pr-56",
-  narrow: "mx-auto px-8 max-w-xl 2xl:max-w-3xl  2xl:pl-9 2xl:pr-56 lg:px-24",
-  hero: "mx-auto px-8 max-w-7xl lg:px-24  py-8 2xl:pl-9 2xl:pr-56 ",
-  heroNarrow:
-    "mx-auto px-8 max-w-xl 2xl:max-w-3xl lg:px-24 2xl:pl-9 2xl:pr-56 py-8",
+  // Wrappers for hero sections
+  hero: "mx-auto px-4 lg:px-8 max-w-screen 2xl:max-w-[120rem] 2xl:lg:px-24 pb-8 pt-20  ",
+  heroNarrow: "mx-auto px-4 lg:px-8 max-w-xl  pb-8 pt-20",
+
+  // Wrappers for standard sections
+  standard:
+    "mx-auto px-4 lg:px-8 max-w-screen 2xl:max-w-[120rem] 2xl:lg:px-24   ",
+  narrow: "mx-auto px-4 lg:px-8 max-w-xl",
 };
 // Combine the classes for the specified variant with any extra classes
 const classes = `${variantClasses[variant]} ${extraClass}`.trim();

@@ -1,42 +1,28 @@
 ---
+// Import global styles
 import "@/styles/global.css";
+// Components
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/global/Footer.astro";
-import MobileNav from "@/components/navigation/MobileNav.astro";
-import DesktopNav from "@/components/navigation/DesktopNav.astro";
-import DesktopTopBar from "@/components/navigation/DesktopTopBar.astro";
+import Navigation from "@/components/navigation/Navigation.astro";
 ---
 
-<html lang="en" class="scroll-smooth">
+<html
+  lang="en"
+  class="scroll-smooth selection:bg-accent-50 selection:text-accent-500"
+>
   <head>
     <BaseHead />
   </head>
-  <body class="bg-white">
-    <div class="min-h-[640px] flex flex-col">
-      <div
-        class="lg:grid lg:grid-cols-5 2xl:grid-cols-12"
-        x-data="{ open: false }"
-        @keydown.window.escape="open = false"
-      >
-        <!-- Static sidebar for desktop -->
-        <DesktopNav class="lg:col-span-1 2xl:col-span-2" />
-        <div
-          class="relative z-0 lg:col-span-4 2xl:col-span-11 2xl:col-start-2 w-full overflow-hidden border-l border-base-200"
-        >
-          <DesktopTopBar />
-          <div class="relative z-0 overflow-y-auto">
-            <MobileNav />
-            <!-- Start main area-->
-            <div class="mx-auto min-h-svh flex flex-col">
-              <main class="grow">
-                <slot />
-              </main>
-              <Footer />
-              <!--- end main area  -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <body
+    x-data="{ rightDrawerOpen: false }"
+    @keydown.window.escape="rightDrawerOpen = false"
+    class="bg-white flex flex-col lg:min-h-svh"
+  >
+    <Navigation />
+    <main class="grow">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

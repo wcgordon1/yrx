@@ -1,11 +1,17 @@
 ---
-const { frontmatter } = Astro.props;
+//  Assets
+import { Image } from "astro:assets";
+// Layout
 import BaseLayout from "./BaseLayout.astro";
-import SubscribeCta from "@/components/blog/SubscribeCta.astro";
+// Fundation
 import Text from "@/components/fundations/elements/Text.astro";
 import Link from "@/components/fundations/components/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import SubscribeCta from "@/components/blog/SubscribeCta.astro";
 import Insights from "@/components/blog/Insights.astro";
+// Frontmatter
+const { frontmatter } = Astro.props;
 // Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
 import { getCollection } from "astro:content";
 const allPostsUnsorted = await getCollection("posts");
@@ -21,7 +27,7 @@ const allPosts = allPostsUnsorted.sort(
       <Text
         tag="h1"
         variant="textXL"
-        class="text-base-900 mt-4 lg:text-balance text-center 2xl:text-3xl"
+        class="text-base-900 font-medium 2xl:text-5xl tracking-tight"
       >
         {frontmatter.title}
       </Text>
@@ -29,10 +35,12 @@ const allPosts = allPostsUnsorted.sort(
         class="flex gap-4 flex-col md:flex-row mt-4 items-center justify-between"
       >
         <div class="flex items-center gap-x-3">
-          <img
-            class="object-cover size-10 rounded-full"
+          <Image
+            width="500"
+            height="500"
             src={frontmatter.avatar.url}
             alt={frontmatter.avatar.url}
+            class="object-cover size-10 rounded-full"
           />
           <div class="flex flex-col text-base-500">
             <time datetime={frontmatter.pubDate.toString().slice(0, 10)}>
@@ -64,13 +72,19 @@ const allPosts = allPostsUnsorted.sort(
           }
         </div>
       </div>
-      <img
-        class="object-cover aspect-[16/9] rounded-2xl mt-8"
+      <Image
+        width="500"
+        height="500"
         src={frontmatter.image.url}
         alt={frontmatter.image.url}
+        class="object-cover aspect-16/9 mt-8 w-full"
       />
       <div class="text-center">
-        <Text tag="p" variant="textMD" class="mt-4 text-base-500 text-balance">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 text-balance"
+        >
           {frontmatter.description}
         </Text>
       </div>
@@ -83,24 +97,11 @@ const allPosts = allPostsUnsorted.sort(
   </section>
   <SubscribeCta />
   <section>
-    <Wrapper variant="wide" class="py-12">
+    <Wrapper variant="standard" class="py-12">
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-8 group"
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 mt-8 group"
       >
-        {
-          allPosts
-            .slice(0, 3)
-            .map((post) => (
-              <Insights
-                url={"/blog/posts/" + post.slug}
-                alt={post.data.title}
-                title={post.data.title}
-                image={post.data.image.url}
-                description={post.data.description}
-                pubDate={post.data.pubDate.toString().slice(0, 10)}
-              />
-            ))
-        }
+        {allPosts.slice(0, 4).map((post) => <Insights post={post} />)}
       </div>
     </Wrapper>
   </section>

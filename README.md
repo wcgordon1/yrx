@@ -1,8 +1,7 @@
-![image](https://lexingtonthemes.com/_astro/primapersona.Batqd7JQ_ZB9k9u.avif)
-# Prima Persona
+# Trendspotter
 
 ## Template Integrations
-- Tailwind CSS v4 (Alpha) - Currently using the alpha version; will switch to v4 upon official release.
+- Tailwind CSS v4  
 - Astro SEO - Powered by [@astrolib/seo](https://github.com/onwidget/astrolib/tree/main/packages/seo)
 - Astro Sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
 
@@ -40,25 +39,52 @@ All commands are run from the root of the project, from a terminal:
 Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
 
 ------
-Updated on 21st October 2024
-
-## This update includes:
-- Added Tailwind CSS v4 (Alpha)
-
-On this version, Tailwind CSS is now using the alpha version from Tailwind CSS V4, this means that there's no `tailwind.config.mjs` file anymore. From now on, all style will be added on the `css` file. You can find the styles on the `src/styles/global.css` file.
 
 
-- Astro SEO by @astrolib/seo
+## Components
 
-This update includes the integration of the Astro SEO package by @astrolib/seo, is an integration that makes managing your SEO easier in Astro projects. It is fully based on the excellent Next SEO library
+- Text Component  
+A versatile and reusable component for handling text across your project, ensuring consistency and easy customization.  
 
-- Refactored classes
+- **HTML Tags:** Easily change the HTML element (like `p`, `h1`, `span`, `a`) using the `tag` prop, with `p` being the default.  
+- **Variants:** Pick from preset text styles (such as `displayXL` or `textBase`) for a consistent look.  
+- **Custom Classes:** Add or adjust styles with the `class` prop.  
+- **Accessibility:** Customize with additional props like `id`, `href`, `title`, and `style`.  
+- **Content Slot:** Add any content inside the component, including optional left and right icons. 
+Example usage:
+```astro
+<Text tag="h1" variant="displayXL" class="text-center">
+  Welcome to the new version!
+</Text>
+``` 
 
-Unecessary classes were removed from the code, and the classes were refactored to make the code more readable and maintainable. We move to use a Tailwind CSS color class, for example `-zinc-950` instead of `-primary-950`. The only custom classes are added on the `src/styles/global.css` file.
+- Button Component  
+A customizable button component with options to fit your design needs:  
 
-On this case, only `border-radius-XXX` classes were added.
+- **Variants:** Choose from predefined styles like `primary` (dark background) and `secondary` (lighter background), with support for dark mode.  
+- **Sizes:** Select `small` or `medium` for different button heights and padding.  
+- **Gaps:** Control the spacing between content with the `gapSize` prop (either `small` or `medium`).  
+- **Custom Classes:** Apply additional styles using the `class` prop.  
+- **Slots:** Include icons or extra content with optional `left-icon` and `right-icon` slots.  
+Example usage:
+```astro
+<Button size="small" variant="primary">Primary small</Button>
+```
 
-- Added Image component from Astro
-The Astro Image component is coming back to the themes.
+-  Wrapper Component  
+A flexible layout component that helps with consistent spacing and alignment.  
 
+- **Variants:** The default `standard` variant includes responsive widths, centered content, and padding.  
+- **Custom Classes:** Add or change styles with the `class` prop.  
+- **Content Slot:** Easily add any child components or content inside.
+
+```astro
+<Wrapper variant="standard">
+Your content goes here
+</Wrapper>
+```
 -----
+
+### [Support](https://lexingtonthemes.com/legal/support/)
+### [Documentation](https://lexingtonthemes.com/documentation/)
+### [Get your bundle](https://lexingtonthemes.com)

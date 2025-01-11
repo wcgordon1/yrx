@@ -1,15 +1,18 @@
 ---
-import Hero from "@/components/landing/Hero.astro";
+// Layout
 import BaseLayout from "@/layouts/BaseLayout.astro";
+// Fundation
+import Hero from "@/components/landing/Hero.astro";
 import Text from "@/components/fundations/elements/Text.astro";
-import Link from "@/components/fundations/components/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import SponsorCard from "@/components/tools/SponsorCard.astro";
 // Retrieve all posts from the "store" collection, which returns an unsorted array of post objects
 import StoreEntries from "@/components/store/StoreEntries.astro";
 const allProducts = await getCollection("store");
 // Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
-import AllTools from "@/components/tools/AllTools.astro";
-import LatestTools from "@/components/tools/LatestTools.astro";
+import SmallCards from "@/components/tools/SmallCards.astro";
+import BigCard from "@/components/tools/BigCard.astro";
 import { getCollection } from "astro:content";
 const alltools = await getCollection("tools");
 ---
@@ -17,94 +20,141 @@ const alltools = await getCollection("tools");
 <BaseLayout>
   <Hero />
   <section>
-    <Wrapper variant="wide" class="py-6">
-      <Text tag="h2" variant="textLG" class="font-medium text-base-900"
-        >Latest additions</Text
-      >
-
+    <Wrapper variant="standard" class="pt-6 pb-24">
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2 mt-4 group"
+        class="flex flex-col gap-4 lg:flex-row lg:justify-between border-t border-base-200 pt-2"
       >
-        {
-          alltools
-            .slice(10, 12)
-            .map((post) => (
-              <LatestTools
-                alt={post.data.title}
-                title={post.data.title}
-                image={post.data.image.url}
-                tagline={post.data.tagline}
-                images={post.data.images}
-                url={"/tools/tool/" + post.slug}
-              />
-            ))
-        }
-      </div>
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper variant="wide" class="py-6">
-      <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
-        <Text tag="h2" variant="textLG" class="font-medium text-base-900"
-          >The tools</Text
+        <Text
+          tag="h2"
+          variant="textXS"
+          class="font-medium uppercase text-base-500">Featured tools</Text
         >
-        <Link
-          size="sm"
-          variant="muted"
-          aria-label="All tools"
+        <Text
+          tag="a"
+          variant="textXS"
           href="/tools/home"
+          aria-label="#_"
+          class="text-base-500  uppercase hover:text-accent-500 flex items-center gap-1 transition-all duration-200"
         >
           See all tools
-        </Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M5 12l14 0"></path><path d="M15 16l4 -4"></path><path
+              d="M15 8l4 4"></path></svg
+          >
+        </Text>
       </div>
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-        {
-          alltools
-            .slice(0, 3)
-            .map((post) => (
-              <AllTools
-                alt={post.data.title}
-                title={post.data.title}
-                image={post.data.image.url}
-                tagline={post.data.tagline}
-                images={post.data.images}
-                url={"/tools/tool/" + post.slug}
-              />
-            ))
-        }
+      <div
+        class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 mt-8 group"
+      >
+        {alltools.slice(0, 3).map((post) => <BigCard post={post} />)}
+        <SponsorCard />
       </div>
     </Wrapper>
   </section>
   <section>
-    <Wrapper variant="wide" class="py-6">
-      <div class="flex flex-col gap-4 lg:flex-row lg:justify-between">
-        <Text tag="h2" variant="textLG" class="font-medium text-base-900"
-          >Latest products</Text
+    <Wrapper variant="standard" class="pt-6 pb-24">
+      <div class="border-t border-base-200 pt-2">
+        <Text
+          tag="h2"
+          variant="textXS"
+          class="font-medium uppercase text-base-500">Latest additions</Text
         >
-        <Link
-          size="sm"
-          variant="muted"
-          aria-label="All tools"
+      </div>
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 mt-8">
+        {alltools.slice(8, 12).map((post) => <SmallCards post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="pt-6 pb-24">
+      <div
+        class="flex flex-col gap-4 lg:flex-row lg:justify-between border-t border-base-200 pt-2"
+      >
+        <Text
+          tag="h2"
+          variant="textXS"
+          class="font-medium uppercase text-base-500">The tools</Text
+        >
+        <Text
+          tag="a"
+          variant="textXS"
           href="/tools/home"
+          aria-label="#_"
+          class="text-base-500  uppercase hover:text-accent-500 flex items-center gap-1 transition-all duration-200"
         >
-          Store
-        </Link>
+          See all tools
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M5 12l14 0"></path><path d="M15 16l4 -4"></path><path
+              d="M15 8l4 4"></path></svg
+          >
+        </Text>
       </div>
       <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4 group"
+        class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-4 mt-8 group"
       >
-        {
-          allProducts.map((post) => (
-            <StoreEntries
-              url={"/store/" + post.slug}
-              alt={post.data.title}
-              price={post.data.price}
-              title={post.data.title}
-              image={post.data.image.url}
-              description={post.data.description}
-            />
-          ))
-        }
+        {alltools.slice(8, 12).map((post) => <BigCard post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="pt-6 pb-24">
+      <div
+        class="flex flex-col gap-4 lg:flex-row lg:justify-between border-t border-base-200 pt-2"
+      >
+        <Text
+          tag="h2"
+          variant="textXS"
+          class="font-medium uppercase text-base-500">Shopping</Text
+        >
+        <Text
+          tag="a"
+          variant="textXS"
+          href="/store/home"
+          aria-label="#_"
+          class="text-base-500  uppercase hover:text-accent-500 flex items-center gap-1 transition-all duration-200"
+        >
+          Marketplace
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M5 12l14 0"></path><path d="M15 16l4 -4"></path><path
+              d="M15 8l4 4"></path></svg
+          >
+        </Text>
+      </div>
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-3  mt-8 group">
+        {allProducts.slice(0,3).map((post) => <StoreEntries post={post} />)}
       </div>
     </Wrapper>
   </section>

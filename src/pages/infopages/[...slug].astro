@@ -1,6 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
+// Layout
 import InfoPagesLayout from '../../layouts/InfoPagesLayout.astro';
+// Get all posts from the "infopages" collection
+import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const infoPages = await getCollection('infopages');
   const paths = infoPages.map(page => {

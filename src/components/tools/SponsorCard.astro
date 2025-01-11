@@ -1,36 +1,32 @@
 ---
-const { title, tagline, url, images } = Astro.props;
+// Assets
+import { Image } from "astro:assets";
+import Lex from "@/images/lex.png";
+// Fundation
 import Text from "@/components/fundations/elements/Text.astro";
-import Link from "@/components/fundations/components/Link.astro";
 ---
 
-<Link
-  tag="a"
-  variant="link"
-  href="#_"
-  title="#_"
-  class="group-hover:opacity-30 hover:opacity-100 text-center peer hover:peer-hover:opacity-30 duration-300 relative"
+<div
+  class="group-hover:opacity-30 hover:opacity-100 peer hover:peer-hover:opacity-30 duration-300 group"
 >
-  <div class="relative">
-    <img
-      class="object-cover aspect-[16/9] rounded-2xl relative"
-      src="/images/tools/bilboard.jpeg"
+  <div class="overflow-hidden relative">
+    <Image
+      width="500"
+      height="500"
+      src={Lex}
       alt="#_"
+      class="object-cover aspect-16/10 w-full"
     />
-    <div class="absolute inset-0 bg-base-100/70 /80 rounded-2xl"></div>
-    <div
-      class="p-4 absolute inset-0 flex flex-col items-center justify-center text-balance"
-    >
-      <Text tag="h3" variant="textXL" class="font-medium text-base-900">
-        Sponsor
-      </Text>
-      <Text
-        tag="p"
-        variant="textLG"
-        class="text-black font-medium mt-2 line-clamp-2 text-center"
-      >
-        Availabe slot for sponsors
-      </Text>
-    </div>
+    <a href="/pricing" title="#_">
+      <span class="absolute inset-0"></span>
+    </a>
   </div>
-</Link>
+  <div class="pt-2">
+    <Text tag="h3" variant="textBase" class="font-medium text-base-900"
+      >Your sponsor card
+    </Text>
+    <Text tag="p" variant="textSM" class="font-medium text-base-500"
+      >Become a sponsor
+    </Text>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
+// Layout
 import StoreLayout from '../../layouts/StoreLayout.astro';
+// Get all posts from the "store" collection
+import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const store = await getCollection('store');
   const paths = store.map(page => {
