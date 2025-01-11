@@ -15,10 +15,12 @@
 @theme {
   /* Typography */
   --font-sans: "Inter", sans-serif;
-  --font-display: "Zodiak", serif;
 
-  /* Color palette*/
-
+  /* Color palette */
+  /* 
+  // Uncomment this variable if you want to us only the custom colors  
+  // --color-*: initial; 
+  */
   --color-white: oklch(99% 0 0);
   --color-black: oklch(0 0 0);
   --color-transparent: oklch(99% 0 0 / 0);
@@ -34,17 +36,7 @@
   --color-accent-800: oklch(31.05% 0.052 151.99);
   --color-accent-900: oklch(20.92% 0.029 154.01);
   --color-accent-950: oklch(15.3% 0.017 157.97);
-  --color-red-50: oklch(96.01% 0.015 17.42);
-  --color-red-100: oklch(92.05% 0.031 17.73);
-  --color-red-200: oklch(83.01% 0.069 18.64);
-  --color-red-300: oklch(75.53% 0.105 19.82);
-  --color-red-400: oklch(67.61% 0.149 21.82);
-  --color-red-500: oklch(61.42% 0.184 24.3);
-  --color-red-600: oklch(53.62% 0.196 26.99);
-  --color-red-700: oklch(43.88% 0.158 26.7);
-  --color-red-800: oklch(32.99% 0.113 25.99);
-  --color-red-900: oklch(22.13% 0.067 24.52);
-  --color-red-950: oklch(15.5% 0.039 22.84);
+
   /* Base palette */
   --color-base-50: oklch(0.98 0 0); /* Very light gray */
   --color-base-100: oklch(0.96 0 0); /* Light gray */

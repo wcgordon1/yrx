@@ -14,7 +14,7 @@ const links = [
   { href: "/store/home", text: "Store" },
   { href: "/system/overview", text: "Overview" },
 ];
-const isIndexPage = Astro.url.pathname === "/";
+
 // Define navigation data
 const navigation = [
   {
@@ -62,6 +62,7 @@ const system = [
     ],
   },
 ];
+const isIndexPage = Astro.url.pathname === "/";
 ---
 
 <section>

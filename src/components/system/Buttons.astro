@@ -50,6 +50,33 @@ import Button from "../fundations/components/Button.astro";
         <Button size="lg" variant="muted">Muted LG</Button>
         <Button size="xl" variant="muted">Muted XL</Button>
       </div>
+      <div class="py-4 flex flex-col  gap-12">
+        <Text
+          tag="p"
+          variant="textBase"
+          class="mt-4 text-base-500 text-balance 2xl:text-xl"
+        >
+          Alternative
+        </Text>
+        <button
+          class="size-15 bg-accent-500 flex items-center justify-center text-white rounded-full hover:rotate-45 duration-300 cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
+          >
+        </button>
+      </div>
     </div>
   </Wrapper>
 </section>
