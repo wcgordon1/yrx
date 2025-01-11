@@ -1,20 +1,29 @@
 ---
+// Fundation
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Define the data for each section and its pages
+// Widget components
+import SubmitModal from "../tools/SubmitModal.astro";
+import BookmarksModal from "../tools/BookmarksModal.astro";
+import SubscribeModal from "../forms/SubscribeModal.astro";
+import DeleteAccountModal from "../tools/dashboard/DeleteAccountModal.astro";
+import EditCollectionModal from "../tools/dashboard/EditCollectionModal.astro";
+import CreateCollectionModal from "../tools/dashboard/CreateCollectionModal.astro";
+import RemoveCollectionModal from "../tools/dashboard/RemoveCollectionModal.astro";
+// Array with links to all pages
 const pages = [
   {
     title: "Overview",
     categories: [
       {
-        name: "Pages",
+        title: "Pages",
         links: [
           { href: "/", text: "Home" },
           { href: "/about", text: "About" },
         ],
       },
       {
-        name: "Dashboard",
+        title: "Dashboard",
         links: [
           { href: "/dashboard/settings", text: "Settings" },
           { href: "/dashboard/collections", text: "Collections" },
@@ -24,11 +33,14 @@ const pages = [
         ],
       },
       {
-        name: "Advertise",
-        links: [{ href: "/pricing", text: "Membership" }],
+        title: "Advertise",
+        links: [
+          { href: "/pricing", text: "Membership" },
+          { href: "/advertise", text: "Advertise" },
+        ],
       },
       {
-        name: "Forms",
+        title: "Forms",
         links: [
           { href: "/forms/signin", text: "Sing in" },
           { href: "/forms/signup", text: "Sing up" },
@@ -36,7 +48,7 @@ const pages = [
         ],
       },
       {
-        name: "System",
+        title: "System",
         links: [
           { href: "/system/links", text: "Links" },
           { href: "/system/buttons", text: "Buttons" },
@@ -62,7 +74,7 @@ const pages = [
     title: "Content collections",
     categories: [
       {
-        name: "Directory",
+        title: "Directory",
         links: [
           { href: "/tools/home", text: "All tools" },
           { href: "/tools/tool/12", text: "Tool details" },
@@ -72,7 +84,7 @@ const pages = [
         ],
       },
       {
-        name: "Blog",
+        title: "Blog",
         links: [
           { href: "/blog/home", text: "Blog home" },
           { href: "/blog/posts/1", text: "Blog post" },
@@ -82,14 +94,14 @@ const pages = [
         ],
       },
       {
-        name: "Store",
+        title: "Store",
         links: [
           { href: "/store/home", text: "Store Home" },
           { href: "/store/1", text: "Store details" },
         ],
       },
       {
-        name: "Utility pages",
+        title: "Utility pages",
         links: [
           { href: "/infopages/terms", text: "Terms" },
           { href: "/infopages/privacy", text: "Privacy" },
@@ -114,15 +126,15 @@ const pages = [
               >
                 {section.title}
               </Text>
-              <div class="mt-12  grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-4">
+              <div class="mt-12  grid grid-cols-2 md:grid-cols-2 gap-8 gap-y-4">
                 {section.categories.map((category) => (
                   <div class="flex flex-col gap-2 ">
                     <Text
                       tag="p"
                       variant="textBase"
-                      class="text-base-900 hover:text-accent-500 font-medium"
+                      class="text-base-900 font-medium"
                     >
-                      {category.name}
+                      {category.title}
                     </Text>
                     <ul role="list">
                       {category.links.map((link) => (
@@ -145,6 +157,89 @@ const pages = [
           </div>
         ))
       }
+      <div class="border-t border-base-200 pt-2 col-span-full">
+        <Text
+          tag="h2"
+          variant="textXS"
+          class="font-medium uppercase text-base-500"
+        >
+          Widegets
+        </Text>
+        <div class="mt-12">
+          <Text
+            tag="p"
+            variant="textBase"
+            class="text-base-900  font-medium"
+          >
+            Modals
+          </Text>
+          <div class="flex flex-wrap gap-4 mt-4">
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Submit
+              </button>
+              <SubmitModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Bookmarks
+              </button>
+              <BookmarksModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Subscribe
+              </button>
+              <SubscribeModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Delete account
+              </button>
+              <DeleteAccountModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Edit account
+              </button>
+              <EditCollectionModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Create account
+              </button>
+              <CreateCollectionModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Remove collection
+              </button>
+              <RemoveCollectionModal />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </Wrapper>
 </section>

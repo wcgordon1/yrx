@@ -5,7 +5,6 @@ import Logo from "@/images/logo.svg";
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Link from "../fundations/components/Link.astro";
-
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 // Quick access links
@@ -13,6 +12,7 @@ const links = [
   { href: "/tools/home", text: "Tools" },
   { href: "/blog/home", text: "Blog" },
   { href: "/store/home", text: "Store" },
+  { href: "/system/overview", text: "Overview" },
 ];
 const isIndexPage = Astro.url.pathname === "/";
 // Define navigation data
@@ -20,10 +20,6 @@ const navigation = [
   {
     title: "Navigation",
     items: [
-      {
-        href: "/system/overview",
-        text: "Overview",
-      },
       {
         href: "/tools/home",
         text: "Tools",
@@ -36,7 +32,10 @@ const navigation = [
         href: "/store/home",
         text: "Store",
       },
-
+      {
+        href: "/system/overview",
+        text: "Overview",
+      },
       {
         href: "https://buy.polar.sh/polar_cl_qA3TQpjAlNypYhyG8xrP-Zd5QfivKRd00udeUBvE_HE",
         text: "Buy Trendspotter",
@@ -70,7 +69,8 @@ const system = [
     <div
       class="grid grid-cols-2 md:grid-cols-3 items-center w-full gap-3 pt-2 lg:pt-8"
     >
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 lg:gap-4">
+        <!-- Small not sowing on Index page, it already has a big logo -->
         {
           !isIndexPage && (
             <a href="/" class="shrink-0">
@@ -79,7 +79,7 @@ const system = [
                 height="100"
                 src={Logo}
                 alt="#_"
-                class="object-cover w-28 "
+                class="object-cover w-24  lg:w-28 "
               />
             </a>
           )
@@ -89,14 +89,13 @@ const system = [
             <Text
               tag="a"
               href={link.href}
-              class="text-base-900 hover:text-accent-500 font-medium"
+              class="text-base-900 text-xs lg:text-base hover:text-accent-500 font-medium"
             >
               {link.text}
             </Text>
           ))
         }
       </div>
-
       <div class="hidden md:block mx-auto justify-center w-full">
         <div class="relative">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -122,7 +121,6 @@ const system = [
           />
         </div>
       </div>
-
       <button
         type="button"
         class="size-9 inline-flex items-center justify-center group ml-auto"
@@ -151,7 +149,6 @@ const system = [
     </div>
   </Wrapper>
 </section>
-
 <div
   x-show="rightDrawerOpen"
   x-ref="dialog"
@@ -174,7 +171,6 @@ const system = [
     aria-hidden="true"
   >
   </div>
-
   <!-- Menu (Right Side) -->
   <div
     x-show="rightDrawerOpen"
@@ -219,7 +215,6 @@ const system = [
         </svg>
       </button>
     </div>
-
     <!-- Menu Content -->
     <div class="flex-1 overflow-y-auto">
       <div class="flex items-center flex-shrink-0 p-2 py-3 px-6">
@@ -279,7 +274,6 @@ const system = [
         </div>
       </nav>
     </div>
-
     <!-- Footer -->
     <div class="flex-shrink-0 px-6 py-3 border-t border-base-200">
       <div class="flex items-center gap-2">

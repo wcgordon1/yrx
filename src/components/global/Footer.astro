@@ -1,0 +1,139 @@
+---
+// Assets
+import { Image } from "astro:assets";
+import Logo from "@/images/logoWhite.svg";
+// Fundation
+import Text from "../fundations/elements/Text.astro";
+import Wrapper from "../fundations/containers/Wrapper.astro";
+
+const legalLinks = [
+  { href: "/infopages/terms", text: "Terms & policies" },
+  { href: "/infopages/", text: "Privacy policy" },
+];
+const socialLinks = [
+  { text: "Twitter", href: "#" },
+  { text: "YouTube", href: "#" },
+  { text: "GitHub", href: "#" },
+  { text: "SoundCloud", href: "#" },
+  { text: "LinkedIn", href: "#" },
+];
+---
+
+<style>
+  #waveContainer {
+    overflow: hidden;
+    height: 200px; /* Adjust as needed */
+  }
+  .wave-segment {
+    background-color: #ffffff;
+    transition: all 0.1s ease;
+  }
+</style>
+<footer
+  x-data="{ year: new Date().getFullYear() }"
+  class="bg-black text-white relative lg:h-svh flex flex-col w-full h-full justify-between"
+>
+  <Wrapper
+    class="flex flex-col md:flex-row justify-between w-full gap-4 pb-24 pt-8"
+  >
+    <!-- Left Column -->
+    <div class="space-y-2">
+      <ul class="flex flex-wrap gap-4">
+        {
+          legalLinks.map((link) => (
+            <li>
+              <Text
+                tag="a"
+                variant="textSM"
+                href={link.href}
+                class="hover:text-accent-400"
+              >
+                {link.text}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+      <Text
+        tag="p"
+        variant="textSM"
+        x-text="'Copyright © 2023 — ' + year + ' Lexington Themes.'"
+        class="mt-4"
+      />
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-4">
+      <ul class="flex flex-wrap gap-4">
+        {
+          socialLinks.map((link) => (
+            <li>
+              <Text
+                tag="a"
+                variant="textSM"
+                href={link.href}
+                class="hover:text-accent-400"
+              >
+                {link.text}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="text-right mt-4">
+        <a href="#top" class="text-sm hover:underline inline-flex items-center">
+          Back to top
+        </a>
+      </div>
+    </div>
+  </Wrapper>
+
+  <div id="waveContainer" aria-hidden="true">
+    <div style="margin-top:0px">
+      <div class="wave-segment" style="margin-top:0px;height:1px"></div>
+      <div class="wave-segment" style="margin-top:1px;height:2px"></div>
+      <div class="wave-segment" style="margin-top:2px;height:3px"></div>
+      <div class="wave-segment" style="margin-top:3px;height:4px"></div>
+      <div class="wave-segment" style="margin-top:4px;height:5px"></div>
+      <div class="wave-segment" style="margin-top:5px;height:6px"></div>
+      <div class="wave-segment" style="margin-top:6px;height:7px"></div>
+      <div class="wave-segment" style="margin-top:7px;height:8px"></div>
+      <div class="wave-segment" style="margin-top:8px;height:9px"></div>
+      <div class="wave-segment" style="margin-top:9px;height:10px"></div>
+      <div class="wave-segment" style="margin-top:10px;height:11px"></div>
+      <div class="wave-segment" style="margin-top:11px;height:12px"></div>
+      <div class="wave-segment" style="margin-top:12px;height:13px"></div>
+      <div class="wave-segment" style="margin-top:13px;height:14px"></div>
+      <div class="wave-segment" style="margin-top:14px;height:15px"></div>
+      <div class="wave-segment" style="margin-top:15px;height:16px"></div>
+      <div class="wave-segment" style="margin-top:16px;height:17px"></div>
+      <div class="wave-segment" style="margin-top:17px;height:18px"></div>
+      <div class="wave-segment" style="margin-top:18px;height:19px"></div>
+      <div class="wave-segment" style="margin-top:19px;height:20px"></div>
+      <div class="wave-segment" style="margin-top:20px;height:21px"></div>
+      <div class="wave-segment" style="margin-top:21px;height:22px"></div>
+      <div class="wave-segment" style="margin-top:22px;height:23px"></div>
+      <!--]-->
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const waveSegments = document.querySelectorAll(".wave-segment");
+    let wavePhase = 0;
+
+    function animateWave() {
+      waveSegments.forEach((segment, index) => {
+        // Calculate a wave offset using sine
+        const offset = Math.sin((wavePhase + index) * 0.3) * 20; // Adjust amplitude
+        segment.style.marginTop = `${Math.max(0, offset)}px`; // Ensure positive values
+      });
+
+      wavePhase += 0.1; // Controls wave speed
+      requestAnimationFrame(animateWave); // Continue animation
+    }
+
+    animateWave();
+  });
+</script>

@@ -3,9 +3,7 @@
 import Text from "@/components/fundations/elements/Text.astro";
 ---
 
-<div
-  class="flex flex-col h-full justify-between bg-base-50  border-base-200"
->
+<div class="flex flex-col h-full justify-between bg-base-50 border-base-200">
   <div class="p-8">
     <Text
       tag="p"
@@ -21,18 +19,7 @@ import Text from "@/components/fundations/elements/Text.astro";
         Get limited access to everything.
       </Text>
       <span>
-        <span class="text-lg tracking-tighter">
-          <span x-show="duration === 'monthly'">
-            <span x-show="duration === 'monthly'">/m</span>
-          </span><span x-show="duration === 'annual'" style="display: none">
-            /a</span
-          >
-        </span>
-        <span
-         class="text-4xl tracking-tighter font-semibold"
-          data-monthly="$229"
-          data-annual="$100"
-          x-text="$el.dataset[duration]"></span>
+        <span class="text-4xl tracking-tighter font-semibold">$0</span>
       </span>
     </div>
     <button
