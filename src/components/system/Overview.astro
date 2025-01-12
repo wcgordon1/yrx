@@ -20,6 +20,7 @@ const pages = [
         links: [
           { href: "/", text: "Home" },
           { href: "/about", text: "About" },
+          { href: "/404", text: "404" },
         ],
       },
       {
@@ -163,14 +164,10 @@ const pages = [
           variant="textXS"
           class="font-medium uppercase text-base-500"
         >
-          Widegets
+          Widgets
         </Text>
         <div class="mt-12">
-          <Text
-            tag="p"
-            variant="textBase"
-            class="text-base-900  font-medium"
-          >
+          <Text tag="p" variant="textBase" class="text-base-900 font-medium">
             Modals
           </Text>
           <div class="flex flex-wrap gap-4 mt-4">
@@ -191,6 +188,33 @@ const pages = [
                 Bookmarks
               </button>
               <BookmarksModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                New Collection
+              </button>
+              <CreateCollectionModal />
+            </div>
+             <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Edit Collection
+              </button>
+              <EditCollectionModal />
+            </div>
+            <div x-data="{ open: false }">
+              <button
+                class="text-base text-base-500 hover:text-accent-500"
+                x-on:click="open = true"
+              >
+                Remove collection
+              </button>
+              <RemoveCollectionModal />
             </div>
             <div x-data="{ open: false }">
               <button
@@ -227,15 +251,6 @@ const pages = [
                 Create account
               </button>
               <CreateCollectionModal />
-            </div>
-            <div x-data="{ open: false }">
-              <button
-                class="text-base text-base-500 hover:text-accent-500"
-                x-on:click="open = true"
-              >
-                Remove collection
-              </button>
-              <RemoveCollectionModal />
             </div>
           </div>
         </div>
