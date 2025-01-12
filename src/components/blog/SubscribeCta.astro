@@ -2,40 +2,50 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "../fundations/components/Button.astro";
 import Wrapper from "../fundations/containers/Wrapper.astro";
+// Components
+import SubscribeModal from "../forms/SubscribeModal.astro";
 ---
 
 <section>
   <Wrapper variant="narrow" class="py-24 flex flex-col">
     <div class="text-center">
-      <Text tag="h2" variant="displayLG" class="font-medium text-base-900">
-        Join our newsletter
+      <Text variant="displaySM"
+      class="text-base-900 font-medium 2xl:text-5xl tracking-tight">
+         Join our newsletter
       </Text>
-      <Text tag="p" variant="textBase" class="mt-4 text-base-500">
+      <Text tag="p"
+      variant="textBase"
+      class="mt-4 text-base-500 text-balance 2xl:text-xl">
         Stay up to date with our latest news and updates.
       </Text>
     </div>
-    <form class="w-full mt-8 sm:flex sm:max-w-md mx-auto">
-      <label class="text-md leading-normal sr-only"> Email address </label>
-      <input
-        id="email-address"
-        type="email"
-        name="email-address"
-        autocomplete="email"
-        placeholder="Enter your email"
-        aria-placeholder="Enter your email"
-        required=""
-        class="block w-full h-10 px-4 py-2 text-sm text-accent-700 duration-300 bg-white border border-transparent rounded-lg appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-      />
-      <div class="mt-2 sm:ml-2 sm:mt-0 sm:flex-shrink-0">
-        <Button
-          size="sm"
-          type="submit"
-          variant="accent"
-          class="w-full sm:w-auto"
+    <div x-data="{ open: false }" class="mt-8 justify-center flex">
+      <Button
+        x-on:click="open = true"
+        size="sm"
+        variant="default"
+        title="#_"
+        href="/submit"
+        class="justify-center flex items-center gap-1"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+          ></path><path d="M3 7l9 6l9 -6"></path></svg
         >
-          Subscribe
-        </Button>
-      </div>
-    </form>
+        Subscribe
+      </Button>
+      <SubscribeModal />
+    </div>
   </Wrapper>
 </section>
