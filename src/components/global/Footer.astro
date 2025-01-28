@@ -72,9 +72,10 @@ const socialLinks = [
       <Text
         tag="p"
         variant="textSM"
-        x-text="'Copyright © 2023 — ' + year + ' Lexington Themes.'"
-        class="mt-4"
-      />
+        x-data="{ year: new Date().getFullYear() }"
+        class="mt-4">
+        © <span x-text="year"></span> Lexington Themes
+      </Text>
     </div>
     <!-- Right Column -->
     <div class="space-y-4">
