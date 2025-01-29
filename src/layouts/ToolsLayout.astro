@@ -142,9 +142,9 @@ const { frontmatter } = Astro.props;
         <Text tag="p" variant="textBase" class="text-base-500 text-balance">
           {frontmatter.description}
         </Text>
-        <div class="prose-styles">
+        <Wrapper variant="prose">
           <slot />
-        </div>
+        </Wrapper>
       </div>
     </Wrapper>
   </section>

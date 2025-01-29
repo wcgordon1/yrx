@@ -4,12 +4,7 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 @plugin "tailwind-scrollbar-hide";
-/* Define custom styles for prose sections*/
-@layer components {
-  .prose-styles {
-    @apply prose text-base-500    prose-headings:text-base-900 prose-pre:border-0  prose-blockquote:text-accent-400    prose-a:text-accent-400 hover:prose-a:text-accent-500 prose-a:duration-200  max-w-none prose-pre:text-sm;
-  }
-}
+
 
 /*  Define your custom theme variables */
 @theme {

@@ -29,7 +29,7 @@ const { frontmatter } = Astro.props;
   </section>
   <section>
     <Wrapper variant="narrow">
-      <div class="prose-styles"><slot /></div>
+      <Wrapper variant="prose"><slot /></Wrapper>
     </Wrapper>
   </section>
 </BaseLayout>
