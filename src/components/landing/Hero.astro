@@ -7,15 +7,13 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 import SubmitModal from "../tools/SubmitModal.astro";
 import SubscribeModal from "../forms/SubscribeModal.astro";
 import BigLogo from "@/components/assets/BigLogo.astro";
+import ToolSearch from "../tools/ToolSearch.astro";
 ---
+
 <section class="relative overflow-hidden">
   <Wrapper variant="hero" class="relative">
     <BigLogo />
-    <Text
-      tag="p"
-      variant="textLG"
-      class="mt-4 text-base-700 text-balance"
-    >
+    <Text tag="p" variant="textLG" class="mt-4 text-base-700 text-balance">
       Your last spot to find new tools every day
     </Text>
     <div class="mt-8 flex flex-wrap gap-4">
@@ -72,6 +70,8 @@ import BigLogo from "@/components/assets/BigLogo.astro";
         </Button>
         <SubscribeModal />
       </div>
+      <ToolSearch />
+    
     </div>
   </Wrapper>
 </section>

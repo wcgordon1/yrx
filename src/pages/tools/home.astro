@@ -8,6 +8,8 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 import SponsorCard from "@/components/tools/SponsorCard.astro";
 import FiltersSidebar from "@/components/tools/FiltersSidebar.astro";
+import ToolSearch from "@/components/tools/ToolSearch.astro";
+
 // Retrieve all posts from the "posts" collection
 import { getCollection } from "astro:content";
 const alltools = await getCollection("tools");
@@ -34,6 +36,7 @@ const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
       >
         Here you will find all the tools we have hoarded for you.
       </Text>
+      <div class="max-w-sm mt-4"><ToolSearch /></div>
     </Wrapper>
   </section>
   <section
