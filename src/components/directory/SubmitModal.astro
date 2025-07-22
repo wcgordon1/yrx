@@ -1,15 +1,12 @@
 ---
 // Assets
 import { Image } from "astro:assets";
-import Lex from "@/images/carousel.gif";
+import Gif from "@/images/white.gif";
 // Fundation
 import Text from "@/components/fundations/elements/Text.astro";
-import Button from "@/components/fundations/components/Button.astro";
+import Link from "@/components/fundations/components/Link.astro";
 ---
 
-
-
-<!-- Modal -->
 <div
   x-show="open"
   role="dialog"
@@ -51,7 +48,7 @@ import Button from "@/components/fundations/components/Button.astro";
         class="object-cover w-full aspect-16/10"
         width="1000"
         height="1000"
-        src={Lex}
+        src={Gif}
         alt="#_"
       />
       <div class="relative p-8">
@@ -60,43 +57,50 @@ import Button from "@/components/fundations/components/Button.astro";
           variant="textLG"
           class="font-medium text-base-900 text-center"
         >
-          Weekly Highlights
+          Submit a resource
         </Text>
         <Text
           tag="p"
           variant="textSM"
-          class=" text-base-500 text-center mt-2 text-balance"
+          class="font-medium text-base-500 text-center mt-2 text-balance"
         >
-          Stay informed on the latest trends with a weekly roundup of the best
-          websites delivered straight to your inbox every Monday.
+          Submit a resource to our collection, wait for approval or <a class="text-black hover:text-accent underline"
+            href="/directory/submit">skip the line</a
+          >.
         </Text>
         <form class="mt-4 flex flex-col gap-2">
           <div>
-            <label for="name" class="sr-only"> First name </label>
+            <label for="name" class="sr-only"> The resource </label>
             <input
-              id="name"
+              id="resource"
               name="text"
               type="text"
-              placeholder="Your name"
-              aria-placeholder="Your name"
-              class="block w-full h-9 px-4 mt-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-full appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+              placeholder="Resource name"
+              aria-placeholder="Resource name"
+              class="block w-full h-9 px-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-full appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
             />
           </div>
-          <Button
+          <div>
+            <label for="resource-url" class="sr-only"> Resource URL </label>
+            <input
+              id="resource-url"
+              name="url"
+              type="url"
+              placeholder="Enter resource URL"
+              aria-placeholder="Enter resource URL"
+              pattern="https?://.+"
+              class="block w-full h-9 px-4 py-2 text-sm text-base-700 duration-300 bg-white border border-transparent rounded-full appearance-none ring-1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
+            />
+          </div>
+
+          <Link
             size="base"
-            submit="true"
             variant="default"
+            href="/forms/signup"
             class="w-full justify-center"
           >
-            Subscribe
-          </Button>
-          <Text
-            tag="p"
-            variant="textXS"
-            class=" text-base-500 text-center"
-          >
-            Mostly spam, zero resources.
-          </Text>
+           Submit resource
+          </Link>
         </form>
       </div>
     </div>

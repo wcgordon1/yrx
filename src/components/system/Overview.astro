@@ -3,13 +3,13 @@
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Widget components
-import SubmitModal from "../tools/SubmitModal.astro";
-import BookmarksModal from "../tools/BookmarksModal.astro";
+import SubmitModal from "../directory/SubmitModal.astro";
+import BookmarksModal from "../directory/BookmarksModal.astro";
 import SubscribeModal from "../forms/SubscribeModal.astro";
-import DeleteAccountModal from "../tools/dashboard/DeleteAccountModal.astro";
-import EditCollectionModal from "../tools/dashboard/EditCollectionModal.astro";
-import CreateCollectionModal from "../tools/dashboard/CreateCollectionModal.astro";
-import RemoveCollectionModal from "../tools/dashboard/RemoveCollectionModal.astro";
+import DeleteAccountModal from "../directory/dashboard/DeleteAccountModal.astro";
+import EditCollectionModal from "../directory/dashboard/EditCollectionModal.astro";
+import CreateCollectionModal from "../directory/dashboard/CreateCollectionModal.astro";
+import RemoveCollectionModal from "../directory/dashboard/RemoveCollectionModal.astro";
 // Array with links to all pages
 const pages = [
   {
@@ -77,11 +77,11 @@ const pages = [
       {
         title: "Directory",
         links: [
-          { href: "/tools/home", text: "All tools" },
-          { href: "/tools/tool/12", text: "Tool details" },
-          { href: "/tools/tags", text: "Tag index" },
-          { href: "/tools/tags/design", text: "Tag category" },
-          { href: "/tools/submit", text: "Submit" },
+          { href: "/directory/home", text: "All resources" },
+          { href: "/directory/12", text: "Resource details" },
+          { href: "/directory/tags", text: "Tag index" },
+          { href: "/directory/tags/design", text: "Tag category" },
+          { href: "/directory/submit", text: "Submit" },
         ],
       },
       {

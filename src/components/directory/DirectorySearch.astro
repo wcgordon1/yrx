@@ -1,10 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 const posts = await Promise.all(
-  (await getCollection("posts")).map(async (post) => ({
-    pubDate: post.data.pubDate,
+  (await getCollection("directory")).map(async (post) => ({
     title: post.data.title,
-    description: post.data.description,
+    tagline: post.data.tagline,
     slug: post.slug,
   }))
 );
@@ -14,7 +13,7 @@ const posts = await Promise.all(
     type="button"
     id="searchButton"
     class="w-full flex items-center gap-2 py-2 pl-2 pr-4  h-9 px-4 text-sm text-base-700 duration-300 bg-base-100 border border-transparent rounded-full appearance-none ring1 ring-base-200 placeholder-base-400 focus:border-base-300 focus:bg-transparent focus:outline-none focus:ring-base-500 focus:ring-offset-2 focus:ring-2 sm:text-sm"
-    aria-label="Search for posts"
+    aria-label="Search for directories"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +93,7 @@ const posts = await Promise.all(
     const closeSearch = document.getElementById("closeSearch"); // Button to close search modal
     // Initialize Fuse.js for fuzzy searching with posts data
     const fuse = new Fuse(posts, {
-      keys: ["title", "description","pubDate"], // Fields to search within
+      keys: ["title", "tagline"], // Fields to search within
       threshold: 0.3, // Controls search sensitivity (lower = more strict)
       includeMatches: true, // Includes matching results for highlighting
     });
@@ -144,19 +143,12 @@ const posts = await Promise.all(
       searchResults.innerHTML = results
         .map(
           (result) => `
-            <a href="/blog/posts/${result.item.slug}" class="block p-8 hover:bg-base-100 duration-300 ">
-               <p class="text-sm text-base-500 text-xs block">
-  ${new Date(result.item.pubDate).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-  })}
-            </p>
-              <h3  class="font-medium text-sm text-base-900 mt-2">
+            <a href="/directory/${result.item.slug}" class="block p-8 hover:bg-base-100 duration-300 ">
+              <h3  class="font-medium text-sm text-base-900 ">
                 ${result.item.title}
               </h3>
               <p  class="text-base-500 text-xs block">
-                ${result.item.description}
+                ${result.item.tagline}
               </p>
             </a>
           `

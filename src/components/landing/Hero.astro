@@ -4,10 +4,10 @@ import Text from "../fundations/elements/Text.astro";
 import Button from "../fundations/components/Button.astro";
 import Wrapper from "../fundations/containers/Wrapper.astro";
 // Components
-import SubmitModal from "../tools/SubmitModal.astro";
+import SubmitModal from "../directory/SubmitModal.astro";
 import SubscribeModal from "../forms/SubscribeModal.astro";
 import Yrx from "@/components/assets/yrxLogo.astro";
-import ToolSearch from "../tools/ToolSearch.astro";
+import DirectorySearch from "../directory/DirectorySearch.astro";
 // The import is wrong because the variable 'yrxLogo' is declared but its value is never read.
 ---
 
@@ -42,7 +42,7 @@ import ToolSearch from "../tools/ToolSearch.astro";
             ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
               d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
           >
-          Submit a tool
+          Submit a resource
         </Button>
         <SubmitModal />
       </div>
@@ -73,7 +73,7 @@ import ToolSearch from "../tools/ToolSearch.astro";
         </Button>
         <SubscribeModal />
       </div>
-      <ToolSearch />
+      <DirectorySearch />
     
     </div>
   </Wrapper>

@@ -1,0 +1,23 @@
+---
+// Layout
+import DirectoryLayout from "@/layouts/DirectoryLayout.astro";
+// Get  all posts from the "directory"  collection, which returns an unsorted array of post objects
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const directory = await getCollection("directory");
+  const paths = directory.map((page) => {
+    return {
+      params: { slug: page.slug },
+      props: { page },
+      trailingSlash: false,
+    };
+  });
+  return paths;
+}
+const { page } = Astro.props;
+const { Content } = await page.render();
+---
+
+<DirectoryLayout frontmatter={page.data}>
+  <Content />
+</DirectoryLayout>

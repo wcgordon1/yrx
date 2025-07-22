@@ -29,7 +29,7 @@ const store = defineCollection({
   }),
 });
 
-const tools = defineCollection({
+const directory = defineCollection({
   schema: z.object({
     live: z.string(),
     title: z.string(),
@@ -74,7 +74,7 @@ const postsCollection = defineCollection({
 });
 export const collections = {
   store: store,
-  tools: tools,
+  directory: directory,
   posts: postsCollection,
   infopages: infopages,
 };
