@@ -2,7 +2,6 @@
 // Assets
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
-import Link from "../fundations/components/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 // Quick access links
@@ -19,21 +18,26 @@ const navigation = [
   {
     title: "Navigation",
     items: [
+    {
+        href: "/",
+        text: "Home",
+      },
       {
         href: "/tools/home",
         text: "Tools",
-      },
-      {
-        href: "/blog/home",
-        text: "Blog",
       },
       {
         href: "/about",
         text: "About",
       },
       {
-        href: "https://buy.polar.sh/polar_cl_qA3TQpjAlNypYhyG8xrP-Zd5QfivKRd00udeUBvE_HE",
-        text: "Buy Trendspotter",
+        href: "/blog/home",
+        text: "Blog",
+      },
+      {
+        href: "https://cal.com/yrx",
+        text: "Work with us",
+        external: true,
       },
     ],
   },
@@ -43,12 +47,12 @@ const system = [
     title: "Navigation",
     items: [
       {
-        href: "/system/typography",
-        text: "Typography",
+        href: "https://www.linkedin.com/company/yrx",
+        text: "LinkedIn",
       },
       {
-        href: "/system/buttons",
-        text: "Buttons",
+        href: "https://x.com/YRXmarketing",
+        text: "Twitter/X",
       },
       {
         href: "/system/links",
@@ -81,13 +85,13 @@ const system = [
 
       <button
         type="button"
-        class="size-9 inline-flex items-center justify-center group ml-auto"
+        class="size-9 inline-flex items-center justify-center group ml-auto hover:cursor-pointer"
         @click="rightDrawerOpen = true"
       >
         <div class="p-1.5 group-focus-visible:bg-base-50">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="fill-base-400 size-6 shrink-0 transition duration-300 ease-in-out"
+            class="fill-base-400 size-6 shrink-0 transition duration-300 ease-in-out cursor-pointer"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -158,7 +162,7 @@ const system = [
       >
         <span class="sr-only">Close sidebar</span>
         <svg
-          class="size-4"
+          class="size-4 cursor-pointer"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -235,18 +239,14 @@ const system = [
     <!-- Footer -->
     <div class="flex-shrink-0 px-6 py-3 border-t border-base-200">
       <div class="flex items-center gap-2">
-        <Link
-          size="sm"
-          variant="muted"
-          class="w-auto justify-center"
-          href="/forms/signin">Sign in</Link
+        <a
+          href="https://cal.com/yrx"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full flex justify-center items-center px-4 py-2 rounded-3xl bg-accent-500 text-white font-semibold hover:bg-accent-600 transition-colors duration-200 cursor-pointer"
         >
-        <Link
-          size="sm"
-          variant="accent"
-          class="w-auto justify-center"
-          href="/forms/signup">Sign up</Link
-        >
+          Grow your business faster
+        </a>
       </div>
     </div>
   </div>
