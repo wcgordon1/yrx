@@ -6,13 +6,16 @@ import Wrapper from "../fundations/containers/Wrapper.astro";
 // Components
 import SubmitModal from "../tools/SubmitModal.astro";
 import SubscribeModal from "../forms/SubscribeModal.astro";
-import BigLogo from "@/components/assets/BigLogo.astro";
+import Yrx from "@/components/assets/yrxLogo.astro";
 import ToolSearch from "../tools/ToolSearch.astro";
+// The import is wrong because the variable 'yrxLogo' is declared but its value is never read.
 ---
 
 <section class="relative overflow-hidden">
   <Wrapper variant="hero" class="relative">
-    <BigLogo />
+    <div class="mb-2 pl-0">
+      <Yrx />
+    </div>
     <Text tag="p" variant="textLG" class="mt-4 text-base-700 text-balance">
       Your last spot to find new tools every day
     </Text>

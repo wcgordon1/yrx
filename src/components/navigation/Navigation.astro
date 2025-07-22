@@ -1,19 +1,17 @@
 ---
 // Assets
-import { Image } from "astro:assets";
-import Logo from "@/images/logo.svg";
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Link from "../fundations/components/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
-import ToolSearch from "@/components/tools/ToolSearch.astro";
 // Quick access links
 const links = [
+  { href: "/", text: "Home" },
   { href: "/tools/home", text: "Tools" },
+  { href: "/about", text: "About" },
   { href: "/blog/home", text: "Blog" },
-  { href: "/store/home", text: "Store" },
-  { href: "/system/overview", text: "Overview" },
+  { href: "https://cal.com/yrx", text: "Work with us", external: true },
 ];
 
 // Define navigation data
@@ -30,12 +28,8 @@ const navigation = [
         text: "Blog",
       },
       {
-        href: "/store/home",
-        text: "Store",
-      },
-      {
-        href: "/system/overview",
-        text: "Overview",
+        href: "/about",
+        text: "About",
       },
       {
         href: "https://buy.polar.sh/polar_cl_qA3TQpjAlNypYhyG8xrP-Zd5QfivKRd00udeUBvE_HE",
@@ -63,7 +57,6 @@ const system = [
     ],
   },
 ];
-const isIndexPage = Astro.url.pathname === "/";
 ---
 
 <section>
@@ -71,29 +64,16 @@ const isIndexPage = Astro.url.pathname === "/";
     <div
       class="grid grid-cols-2 md:grid-cols-2 items-center w-full gap-3 pt-2 lg:pt-8"
     >
-      <div class="flex items-center gap-2 lg:gap-4">
-        <!-- Small not sowing on Index page, it already has a big logo -->
-        {
-          !isIndexPage && (
-            <a href="/" class="shrink-0">
-              <Image
-                width="100"
-                height="100"
-                src={Logo}
-                alt="#_"
-                class="object-cover w-24  lg:w-28 "
-              />
-            </a>
-          )
-        }
+      <div class="flex items-center gap-x-4">
         {
           links.map((link) => (
             <Text
               tag="a"
               href={link.href}
-              class="text-base-900 text-xs lg:text-base hover:text-accent-500 font-medium"
+              class={`text-base-900 text-xs lg:text-base hover:text-accent-500 font-medium${link.text === "Work with us" ? " whitespace-nowrap" : ""}`}
+              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
-              {link.text}
+              {link.text === "Work with us" ? <span class="inline-block whitespace-nowrap">Work with us</span> : link.text}
             </Text>
           ))
         }
