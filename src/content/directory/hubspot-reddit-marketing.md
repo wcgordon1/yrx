@@ -1,7 +1,7 @@
 ---
 title: Hubspot
 tagline: HubSpot | Software & Tools for your Business 
-description: Specializes in providing high-quality, customizable website themes designed to enhance the visual appeal and functionality 
+description: YXR.io can help HubSpot win high-intent moments on Reddit by creating strategic posts and comments that rank on Google. We target keywords like “best CRM for startups,” using high-karma accounts to influence threads and defend your brand in organic search. Our team manages everything from ideation to moderation outreach, driving real traffic and brand authority through Reddit's trusted user base. functionality 
 live: "https://www.hubspot.com/"
 logo:
   url: "/images/directory/hubspot2.webp"
