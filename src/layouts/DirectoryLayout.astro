@@ -151,7 +151,7 @@ type Thread = {
       <div class="py-12">
         <div class="max-w-4xl">
           <h1 class="text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-base-900 mb-6">
-            Drive traffic to {frontmatter.title} from Reddit
+            Drive Traffic to {frontmatter.title} from Reddit
           </h1>
             <Text tag="p" variant="textBase" class="text-base-500">
               {frontmatter.description}
@@ -201,11 +201,14 @@ type Thread = {
                         {thread.comments} Comments
                       </Text>
                     </div>
-                    <Text tag="p" variant="textXS" class="text-base-900 font-medium mt-3">
-                      Search Query: <span class="text-base-500 font-normal"
-                        >{thread.searchQuery}</span
-                      >
-                    </Text>
+                    <div class="flex items-center mt-3">
+                      <Text tag="p" variant="textXS" class="text-base-900 font-medium">
+                        Search Query: 
+                      </Text>
+                      <Text tag="h3" variant="textXS" class="text-base-500 font-medium ml-2">
+                        {thread.searchQuery}
+                      </Text>
+                    </div>
                     <Text tag="p" variant="textSM" class="text-base-500 mt-1">
                       {thread.description}
                     </Text>
