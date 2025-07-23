@@ -15,6 +15,14 @@ import { getCollection } from "astro:content";
 const allentries = await getCollection("directory");
 // Frontmatter
 const { frontmatter } = Astro.props;
+type Thread = {
+  title: string;
+  link: string;
+  upvotes: number;
+  comments: number;
+  description: string;
+  searchQuery: string;
+};
 ---
 
 <BaseLayout>
@@ -40,7 +48,7 @@ const { frontmatter } = Astro.props;
               class="size-8"
             />
             <Text
-              tag="h1"
+              tag="p"
               variant="displaySM"
               class="text-base-900 mt-12 font-medium 2xl:text-5xl tracking-tight"
             >
@@ -90,6 +98,7 @@ const { frontmatter } = Astro.props;
               href={frontmatter.live}
               title={frontmatter.title}
               class="justify-center flex items-center gap-1 w-auto"
+              target="_blank"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +113,8 @@ const { frontmatter } = Astro.props;
                   d="M9 15l6 -6"></path><path
                   d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"
                 ></path><path
-                  d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
-                ></path></svg
+                  d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972
+                  0 0 1 0 -7.071l.524 -.463"></path></svg
               >
               Visit {frontmatter.title}
             </Link>
@@ -138,13 +147,85 @@ const { frontmatter } = Astro.props;
   </section>
   <section>
     <Wrapper variant="standard">
-      <div class="max-w-2xl">
-        <Text tag="p" variant="textBase" class="text-base-500 text-balance">
-          {frontmatter.description}
-        </Text>
-        <Wrapper variant="prose">
-          <slot />
-        </Wrapper>
+      <div class="py-12">
+        <div class="max-w-4xl">
+            <Text tag="p" variant="textBase" class="text-base-500">
+              {frontmatter.description}
+            </Text>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start mt-8">
+          <aside class="lg:col-span-1 lg:sticky lg:top-0  lg:bg-white lg:py-8 lg:pb-4">
+            <div class="flex items-center gap-3 mb-6">
+              <img src="/images/directory/yxr-reddit.png" alt="Reddit icon" width="24" height="24" />
+              <h2 class="text-2xl font-bold text-base-900">
+                Reddit Threads
+              </h2>
+            </div>
+            <div class="flex flex-col gap-6">
+              {
+                frontmatter.redditThreads?.map((thread: Thread) => (
+                  <div>
+                    <Link
+                      href={thread.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-base-900 font-medium hover:text-accent-500 inline-flex items-center gap-2"
+                    >
+                      {thread.title}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-link size-4"
+                        ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path><path d="M9 15l6 -6"></path><path
+                          d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"
+                        ></path><path
+                          d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"
+                        ></path></svg
+                      >
+                    </Link>
+                    <div class="flex items-center gap-4 mt-1">
+                      <Text tag="p" variant="textXS" class="text-base-500">
+                        {thread.upvotes} Upvotes
+                      </Text>
+                      <Text tag="p" variant="textXS" class="text-base-500">
+                        {thread.comments} Comments
+                      </Text>
+                    </div>
+                    <Text tag="p" variant="textXS" class="text-base-900 font-medium mt-3">
+                      Search Query: <span class="text-base-500 font-normal"
+                        >{thread.searchQuery}</span
+                      >
+                    </Text>
+                    <Text tag="p" variant="textSM" class="text-base-500 mt-1">
+                      {thread.description}
+                    </Text>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="flex items-center gap-2 mt-12">
+              <a
+                href="https://cal.com/yrx"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full flex justify-center items-center px-4 py-2 rounded-3xl bg-accent-500 text-white font-semibold hover:bg-accent-600 transition-colors duration-200 cursor-pointer"
+              >
+                Schedule a call with us
+              </a>
+            </div>
+          </aside>
+          <div class="lg:col-span-2 max-w-4xl ml-auto w-full pt-8">
+            <Wrapper variant="prose">
+              <slot />
+            </Wrapper>
+          </div>
+        </div>
       </div>
     </Wrapper>
   </section>

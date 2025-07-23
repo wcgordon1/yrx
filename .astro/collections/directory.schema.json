@@ -80,6 +80,42 @@
             ]
           }
         },
+        "redditThreads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string",
+                "format": "uri"
+              },
+              "upvotes": {
+                "type": "number"
+              },
+              "comments": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string"
+              },
+              "searchQuery": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "link",
+              "upvotes",
+              "comments",
+              "description",
+              "searchQuery"
+            ],
+            "additionalProperties": false
+          }
+        },
         "$schema": {
           "type": "string"
         }

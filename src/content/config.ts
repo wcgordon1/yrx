@@ -52,6 +52,18 @@ const directory = defineCollection({
       alt: z.string(),
     }),
     tags: z.array(z.string().optional()).optional(),
+    redditThreads: z
+      .array(
+        z.object({
+          title: z.string(),
+          link: z.string().url(),
+          upvotes: z.number(),
+          comments: z.number(),
+          description: z.string(),
+          searchQuery: z.string(),
+        })
+      )
+      .optional(),
   }),
 });
 
