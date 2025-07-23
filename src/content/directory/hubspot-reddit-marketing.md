@@ -14,10 +14,12 @@ details:
     value: "CRM"
   - label: "Revenue"
     value: "2.98 B"
+  - label: "Opportunities"
+    value: "500 +"
   - label: "Keywords"
     value: "1,000,000 +"
-  - label: "Subject"
-    value: "Development"
+  - label: "Audience"
+    value: "SMB/RevOps/Everyone"
 tags: ["crm","marketing","saaS" ]
 redditThreads:
   - title: "Best and Inexpensive CRM"
