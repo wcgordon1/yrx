@@ -5,13 +5,28 @@ import BaseHead from "@/components/fundations/head/BaseHead.astro";
 // Components
 import Footer from "@/components/global/Footer.astro";
 import Navigation from "@/components/navigation/Navigation.astro";
+
+// Props for SEO
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const { title, description, image, canonical } = Astro.props;
 ---
 <html
   lang="en"
   class="scroll-smooth selection:bg-accent-50 selection:text-accent-500"
 >
   <head>
-    <BaseHead />
+    <BaseHead 
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+    />
   </head>
   <body
     x-data="{ rightDrawerOpen: false }"

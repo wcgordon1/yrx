@@ -1,13 +1,28 @@
+---
+// Props for Meta
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "yrx.io - Viral Reddit Marketing",
+  description = "We are a team of Reddit experts who help you grow your business faster."
+} = Astro.props;
+
+// Truncate description to 165 characters for optimal SEO
+const truncatedDescription = description.length > 165 
+  ? description.substring(0, 162) + "..." 
+  : description;
+---
+
 <!-- Meta Tags -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Your Website Title</title>
-<meta
-  name="description"
-  content="A brief description of your website content."
-/>
-<meta name="keywords" content="keyword1, keyword2, keyword3" />
-<meta name="author" content="Your Name or Company Name" />
+<title>{title}</title>
+<meta name="description" content={truncatedDescription} />
+<meta name="keywords" content="reddit marketing, viral marketing, reddit experts, business growth" />
+<meta name="author" content="yrx.io" />
 
 <!-- Theme Color for Mobile Browsers -->
 <meta name="theme-color" content="#ffffff" />

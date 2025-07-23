@@ -24,9 +24,20 @@ type Thread = {
   description: string;
   searchQuery: string;
 };
+
+// Prepare SEO data
+const seoTitle = `${frontmatter.title} - Reddit Marketing Directory | yrx.io`;
+const seoDescription = frontmatter.description || `Learn how to drive traffic to ${frontmatter.title} from Reddit. Get expert insights and proven strategies.`;
+const seoImage = frontmatter.thumbnail?.url;
+const seoCanonical = `https://yrx.io/directory/${frontmatter.slug || ''}`;
 ---
 
-<BaseLayout>
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  image={seoImage}
+  canonical={seoCanonical}
+>
   <section>
     <Wrapper variant="hero">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">

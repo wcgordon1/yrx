@@ -6,10 +6,28 @@ import Favicons from "@/components/fundations/head/Favicons.astro";
 // Scripts
 import FuseJS from "@/components/fundations/scripts/FuseJS.astro";
 import AlpineJs from "@/components/fundations/scripts/AlpineJS.astro";
+
+// Props for SEO
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const { title, description, image, canonical } = Astro.props;
 ---
 
-<Seo />
-<Meta />
+<Seo 
+  title={title}
+  description={description}
+  image={image}
+  canonical={canonical}
+/>
+<Meta 
+  title={title}
+  description={description}
+/>
 <Fonts />
 <Favicons />
 <!-- Scripts -->

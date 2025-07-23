@@ -17,11 +17,22 @@ import { getCollection } from "astro:content";
 const allPostsUnsorted = await getCollection("posts");
 // Sort the posts in descending order by publication date (newest to oldest)
 const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
+
+// Prepare SEO data
+const seoTitle = `${frontmatter.title} | yrx.io Blog`;
+const seoDescription = frontmatter.description || "Expert insights on Reddit marketing and viral growth strategies.";
+const seoImage = frontmatter.image?.url;
+const seoCanonical = `https://yrx.io/blog/posts/${frontmatter.slug || ''}`;
 ---
 
-<BaseLayout>
+<BaseLayout 
+  title={seoTitle}
+  description={seoDescription}
+  image={seoImage}
+  canonical={seoCanonical}
+>
   <section>
     <Wrapper variant="heroNarrow">
       <Text
@@ -55,7 +66,7 @@ const allPosts = allPostsUnsorted.sort(
         </div>
         <div class="flex flex-wrap items-center gap-1">
           {
-            frontmatter.tags.map((tag) => (
+            frontmatter.tags.map((tag: string) => (
               <>
                 <Link
                   title={tag}

@@ -1,63 +1,46 @@
 ---
-import { AstroSeo } from "@astrolib/seo";
----
+// Props for SEO
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
 
-<AstroSeo
-  title="yrx.io - Viral Reddit Marketing"
-  description="We are a team of Reddit experts who help you grow your business faster."
-  canonical="https://yrx.io"
-  openGraph={{
-    url: "https://yrx.io",
-    title: "yrx.io - Viral Reddit Marketing",
-    description: "We are a team of Reddit experts who help you grow your business faster.",
-    images: [
-      {
-        url: "https://yoursite.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Open Graph Image Alt",
-        type: "image/jpeg",
-      },
-    ],
-    site_name: "Your Site Name",
-    type: "website",
-    locale: "en_US",
-  }}
-  twitter={{
-    handle: "@yourhandle",
-    site: "@yoursite",
-    cardType: "summary_large_image",
-  }}
-/>
+const { 
+  title = "yrx.io - Viral Reddit Marketing",
+  description = "We are a team of Reddit experts who help you grow your business faster.",
+  image = "https://yoursite.com/og-image.jpg",
+  canonical = "https://yrx.io"
+} = Astro.props;
+
+// Truncate description to 165 characters for optimal SEO
+const truncatedDescription = description.length > 165 
+  ? description.substring(0, 162) + "..." 
+  : description;
+
+const currentUrl = canonical || Astro.url.href;
+---
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.yourwebsite.com/" />
-<meta property="og:title" content="Your Website Title" />
-<meta
-  property="og:description"
-  content="A brief description of your website content."
-/>
-<meta
-  property="og:image"
-  content="https://www.yourwebsite.com/path/to/image.jpg"
-/>
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={truncatedDescription} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content="yrx.io" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://www.yourwebsite.com/" />
-<meta property="twitter:title" content="Your Website Title" />
-<meta
-  property="twitter:description"
-  content="A brief description of your website content."
-/>
-<meta
-  property="twitter:image"
-  content="https://www.yourwebsite.com/path/to/image.jpg"
-/>
+<meta property="twitter:url" content={currentUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={truncatedDescription} />
+<meta property="twitter:image" content={image} />
+<meta property="twitter:site" content="@yrx" />
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://www.yourwebsite.com/" />
+<link rel="canonical" href={currentUrl} />
 
 <!-- Additional SEO -->
 <meta name="robots" content="index, follow" />
