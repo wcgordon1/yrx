@@ -11,7 +11,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import SubscribeCta from "@/components/blog/SubscribeCta.astro";
 import Insights from "@/components/blog/Insights.astro";
 // Frontmatter
-const { frontmatter } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 // Retrieve all posts from the "posts" collection, which returns an unsorted array of post objects
 import { getCollection } from "astro:content";
 const allPostsUnsorted = await getCollection("posts");
@@ -25,6 +25,13 @@ const seoTitle = `${frontmatter.title} | yrx.io Blog`;
 const seoDescription = frontmatter.description || "Expert insights on Reddit marketing and viral growth strategies.";
 const seoImage = frontmatter.image?.url;
 const seoCanonical = `https://yrx.io/blog/posts/${frontmatter.slug || ''}`;
+
+// Filter headings to only include h2 and h3
+const tocHeadings = headings?.filter((heading: any) => heading.depth === 2 || heading.depth === 3) || [];
+
+// Debug: log the headings to see what we're getting
+console.log('All headings:', headings);
+console.log('Filtered TOC headings:', tocHeadings);
 ---
 
 <BaseLayout 
@@ -99,6 +106,29 @@ const seoCanonical = `https://yrx.io/blog/posts/${frontmatter.slug || ''}`;
           {frontmatter.description}
         </Text>
       </div>
+
+      <!-- Table of Contents -->
+      {tocHeadings.length > 0 && (
+        <div class="mt-8 p-6 bg-base-50 rounded-xl border border-base-200">
+          <Text tag="h2" variant="textBase" class="font-bold text-base-900 mb-4">
+            Table of Contents (TLDR)
+          </Text>
+          <nav class="space-y-3">
+            {tocHeadings.map((heading: any) => (
+              <a
+                href={`#${heading.slug}`}
+                class={`block text-sm hover:text-accent-500 transition-colors duration-200 ${
+                  heading.depth === 2 
+                    ? 'text-base-700 font-semibold' 
+                    : 'text-base-600 ml-6 font-medium'
+                }`}
+              >
+                {heading.text}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </Wrapper>
   </section>
   <section>
