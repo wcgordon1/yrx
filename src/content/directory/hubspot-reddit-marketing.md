@@ -38,6 +38,19 @@ redditThreads:
     comments: 65
     description: "Also ranks on page 1, position 1 in Google Search Results. Even easier to rank as the first comment of this thread - 15 upvotes."
     searchQuery: "'CRM for Sales'"
+faqs:
+  - question: "Why Reddit instead of more ads?"
+    answer: "Reddit threads frequently outrank brand blogs for comparison & pricing queries, letting HubSpot control the narrative during the “research” stage."
+  - question: "Will this hurt our brand voice?"
+    answer: "No—content is pre-approved, posted from aged accounts, and follows subreddit rules to avoid looking spammy."
+  - question: "How fast will we see results?"
+    answer: "Page-one Reddit rankings often appear within **7–14 days**; measurable referral traffic inside 30 days."
+  - question: "How do you measure success?"
+    answer: "Reddit impressions, up-votes, SERP positions, referral sessions, and demo conversions—rolled into a weekly Looker Studio dashboard."
+  - question: "Is this compliant with Reddit policies?"
+    answer: "Yes. We disclose affiliations when required, avoid vote manipulation, and maintain healthy mod relationships."
+  - question: "What’s the investment?"
+    answer: "Starter (2 posts / wk), Scale (5 posts / wk + AMA), or Enterprise (competitive monitoring, dedicated karma farm)."
 ---
 
 
@@ -111,18 +124,5 @@ redditThreads:
 5. **Mini-Case Study Carousel** – “+440 % Reddit traffic in 8 weeks” style snippets  
 6. **Process Timeline Graphic** – Plan → Seed → Engage → Measure  
 7. **Trust Badges** – screenshots of high-karma accounts & mod approvals  
-
----
-
-## ❓ Quick FAQ
-
-| Question | Answer |
-|----------|--------|
-| **Why Reddit instead of more ads?** | Reddit threads frequently outrank brand blogs for comparison & pricing queries, letting HubSpot control the narrative during the “research” stage. |
-| **Will this hurt our brand voice?** | No—content is pre-approved, posted from aged accounts, and follows subreddit rules to avoid looking spammy. |
-| **How fast will we see results?** | Page-one Reddit rankings often appear within **7–14 days**; measurable referral traffic inside 30 days. |
-| **How do you measure success?** | Reddit impressions, up-votes, SERP positions, referral sessions, and demo conversions—rolled into a weekly Looker Studio dashboard. |
-| **Is this compliant with Reddit policies?** | Yes. We disclose affiliations when required, avoid vote manipulation, and maintain healthy mod relationships. |
-| **What’s the investment?** | Starter (2 posts / wk), Scale (5 posts / wk + AMA), or Enterprise (competitive monitoring, dedicated karma farm). |
 
 ---

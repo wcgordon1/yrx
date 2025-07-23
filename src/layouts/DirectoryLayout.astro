@@ -10,6 +10,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 import BookmarksModal from "@/components/directory/BookmarksModal.astro";
 import SmallCards from "@/components/directory/SmallCards.astro";
+import FaqDirectory from "@/components/infopages/FaqDirectory.astro";
 // Retrieve all posts from the "posts" collection
 import { getCollection } from "astro:content";
 const allentries = await getCollection("directory");
@@ -224,6 +225,7 @@ type Thread = {
             <Wrapper variant="prose">
               <slot />
             </Wrapper>
+            <FaqDirectory faqs={frontmatter.faqs} />
           </div>
         </div>
       </div>
