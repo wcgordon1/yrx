@@ -1,80 +1,51 @@
 ---
 // Fundation
 import Text from "../fundations/elements/Text.astro";
-import Button from "../fundations/components/Button.astro";
 import Wrapper from "../fundations/containers/Wrapper.astro";
 // Components
-import SubmitModal from "../directory/SubmitModal.astro";
-import SubscribeModal from "../forms/SubscribeModal.astro";
 import Yrx from "@/components/assets/yrxLogo.astro";
 import DirectorySearch from "../directory/DirectorySearch.astro";
-// The import is wrong because the variable 'yrxLogo' is declared but its value is never read.
 ---
 
 <section class="relative overflow-hidden">
   <Wrapper variant="hero" class="relative">
-    <div class="mb-2 pl-0">
+    <div class="w-34 h-8 mb-6">
       <Yrx />
     </div>
-    <Text tag="p" variant="textLG" class="mt-4 text-base-700 text-balance">
-      Grow faster with Reddit and yrx.
-    </Text>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <div x-data="{ open: false }">
-        <Button
-          x-on:click="open = true"
-          size="sm"
-          variant="default"
-          title="#_"
-          class="justify-center flex items-center gap-1"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
-          >
-          Submit a resource
-        </Button>
-        <SubmitModal />
-      </div>
-      <div x-data="{ open: false }">
-        <Button
-          x-on:click="open = true"
-          size="sm"
-          variant="muted"
-          title="#_"
-          class="justify-center flex items-center gap-1"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-mail size-4"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-            ></path><path d="M3 7l9 6l9 -6"></path></svg
-          >
-          Subscribe
-        </Button>
-        <SubscribeModal />
-      </div>
-      <DirectorySearch />
     
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-base-1000 mb-6 leading-tight">
+        Grow Faster with Reddit
+      </h1>
+    
+    <Text tag="p" variant="textLG" class="text-base-700 text-balance mb-8">
+      Discover proven Reddit marketing strategies and examples from top brands.
+    </Text>
+    
+    <div class="flex flex-wrap gap-4 mb-8">
+      <a 
+        href="https://cal.com/yxr.io" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="flex cursor-pointer rounded-full items-center duration-300 focus:ring-2 focus:ring-offset-2 transition focus:outline-none text-white bg-black hover:bg-base-800 focus:ring-black h-9 px-4 py-2 text-sm font-medium justify-center gap-1"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg
+        >
+        Work with us
+      </a>
     </div>
+    
+    <DirectorySearch />
   </Wrapper>
 </section>
