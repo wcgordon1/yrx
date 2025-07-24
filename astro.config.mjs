@@ -17,6 +17,6 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://yrx.io',
+  site: 'https://yxr.io',
   integrations: [sitemap(), mdx()]
 });

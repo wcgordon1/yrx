@@ -8,10 +8,10 @@ export interface Props {
 }
 
 const { 
-  title = "yrx.io - Viral Reddit Marketing",
+  title = "yxr.io - Viral Reddit Marketing",
   description = "We are a team of Reddit experts who help you grow your business faster.",
   image = "https://yoursite.com/og-image.jpg",
-  canonical = "https://yrx.io"
+  canonical = "https://yxr.io"
 } = Astro.props;
 
 // Truncate description to 165 characters for optimal SEO
@@ -28,7 +28,7 @@ const currentUrl = canonical || Astro.url.href;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={truncatedDescription} />
 <meta property="og:image" content={image} />
-<meta property="og:site_name" content="yrx.io" />
+<meta property="og:site_name" content="yxr.io" />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
@@ -37,7 +37,7 @@ const currentUrl = canonical || Astro.url.href;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={truncatedDescription} />
 <meta property="twitter:image" content={image} />
-<meta property="twitter:site" content="@yrx" />
+<meta property="twitter:site" content="@yxrmarketing" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={currentUrl} />

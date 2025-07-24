@@ -21,10 +21,10 @@ const allPosts = allPostsUnsorted.sort(
 );
 
 // Prepare SEO data
-const seoTitle = `${frontmatter.title} | yrx.io Blog`;
+const seoTitle = `${frontmatter.title} | yxr.io Blog`;
 const seoDescription = frontmatter.description || "Expert insights on Reddit marketing and viral growth strategies.";
 const seoImage = frontmatter.image?.url;
-const seoCanonical = `https://yrx.io/blog/posts/${frontmatter.slug || ''}`;
+const seoCanonical = `https://yxr.io/blog/posts/${frontmatter.slug || ''}`;
 
 // Filter headings to only include h2 and h3
 const tocHeadings = headings?.filter((heading: any) => heading.depth === 2 || heading.depth === 3) || [];

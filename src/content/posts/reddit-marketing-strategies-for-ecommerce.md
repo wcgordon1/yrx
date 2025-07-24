@@ -1,6 +1,6 @@
 ---
 pubDate: 2025-07-05
-author: "yrx.io"
+author: "yxr.io"
 title: "Reddit Marketing Strategies for Ecommerce"
 description: "How to successfully promote your Ecommerce brand on Reddit without looking like an ad."
 image:
