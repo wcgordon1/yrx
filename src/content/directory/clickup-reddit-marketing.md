@@ -1,7 +1,7 @@
 ---
 title: ClickUp
 tagline: ClickUp™ | The everything app for work 
-description: YXR.io can help HubSpot win high-intent moments on Reddit by creating strategic posts and comments that rank on Google. We target keywords like “best CRM for startups,” using high-karma accounts to influence threads and defend your brand in organic search. Our team manages everything from ideation to moderation outreach, driving real traffic and brand authority through Reddit's trusted user base. functionality 
+description: YXR.io can help HubSpot win high-intent moments on Reddit by creating strategic posts and comments that rank on Google. We target keywords like “best CRM for startups,” using high-karma accounts to influence threads and defend your brand in organic search. Our team manages everything from ideation to moderation outreach, driving real traffic and brand authority through Reddit's trusted user base. 
 live: "https://www.hubspot.com/"
 logo:
   url: "/images/directory/clickup2.png"
@@ -11,7 +11,7 @@ thumbnail:
   alt: "Hubspot Reddit Marketing Examples"
 details:
   - label: "Category"
-    value: "CRM"
+    value: "Project Management"
   - label: "Revenue"
     value: "278 MM"
   - label: "Opportunities"
@@ -20,7 +20,7 @@ details:
     value: "363,784 "
   - label: "Audience"
     value: "SMB/RevOps/Everyone"
-tags: ["crm","marketing","saaS" ]
+tags: ["Project Management","marketing","saaS" ]
 redditThreads:
   - title: "What's the best app for Project Management?"
     link: "https://www.reddit.com/r/productivity/comments/1au1uzj/whats_considered_the_best_app_for_taskproject/"
