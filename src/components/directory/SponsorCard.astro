@@ -1,7 +1,6 @@
 ---
 // Assets
-import { Image } from "astro:assets";
-import Lex from "@/images/lex.png";
+import Yrx from "@/components/assets/yrxLogo.astro";
 // Fundation
 import Text from "@/components/fundations/elements/Text.astro";
 ---
@@ -9,24 +8,20 @@ import Text from "@/components/fundations/elements/Text.astro";
 <div
   class="group-hover:opacity-30 hover:opacity-100 peer hover:peer-hover:opacity-30 duration-300 group"
 >
-  <div class="overflow-hidden relative">
-    <Image
-      width="500"
-      height="500"
-      src={Lex}
-      alt="#_"
-      class="object-cover aspect-16/10 w-full"
-    />
+  <div class="overflow-hidden relative aspect-16/10 w-full flex items-center justify-center bg-base-50">
+    <div class="w-50 h-20 ml-16">
+      <Yrx />
+    </div>
     <a href="/pricing" title="#_">
       <span class="absolute inset-0"></span>
     </a>
   </div>
   <div class="pt-2">
     <Text tag="h3" variant="textBase" class="font-medium text-base-900"
-      >Your sponsor card
+      >Work with YRX
     </Text>
     <Text tag="p" variant="textSM" class="font-medium text-base-500"
-      >Become a sponsor
+      >Schedule a call and let's discuss your Reddit marketing needs
     </Text>
   </div>
 </div>
