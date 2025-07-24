@@ -20,7 +20,7 @@ details:
     value: "500,000 +"
   - label: "Audience"
     value: "Executives, founders, product & sales teams, VC investors, people in back-to-back meetings"
-tags: ["AI","productivity","saaS","notes" ]
+tags: ["AI","productivity","SaaS","notes" ]
 redditThreads:
   - title: "Granola -- AI notepad for people in back-to-back meetings"
     link: "https://www.reddit.com/r/toolsforsales/comments/1hhauru/granola_ai_notepad_for_people_in_backtoback/"

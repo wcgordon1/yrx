@@ -20,7 +20,7 @@ details:
     value: "1,000,000 +"
   - label: "Audience"
     value: "SMB/RevOps/Everyone"
-tags: ["crm","marketing","saaS" ]
+tags: ["crm","marketing","SaaS" ]
 redditThreads:
   - title: "Best and Inexpensive CRM"
     link: "https://www.reddit.com/r/CRM/comments/1e5141p/best_and_inexpensive_crm_for_small_business/https://www.reddit.com/r/CRM/comments/1e5141p/best_and_inexpensive_crm_for_small_business/"

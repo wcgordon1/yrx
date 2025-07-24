@@ -20,7 +20,7 @@ details:
     value: "1,000,000 +"
   - label: "Audience"
     value: "Eco-conscious consumers, millennials & Gen Z, travelers, everyday commuters"
-tags: ["footwear", "sustainable", "apparel"]
+tags: ["Fashion", "Ecommerce", "Apparel"]
 redditThreads:
   - title: "What are the best shoes for standing all day?"
     link: "https://www.reddit.com/r/BuyItForLife/comments/1kx341t/what_are_the_best_shoes_for_standing_all_day/"
@@ -64,7 +64,7 @@ faqs:
 
 ---
 
-# Allbirds & Reddit Marketing Overview
+## Allbirds & Reddit Marketing Overview
 
 | Category        | Details |
 |----------------|---------|

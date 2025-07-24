@@ -20,7 +20,7 @@ details:
     value: "1,000,000 +"
   - label: "Audience"
     value: "Product managers, UX designers"
-tags: ["collaboration", "whiteboard", "saaS"]
+tags: ["collaboration", "whiteboard", "SaaS"]
 redditThreads:
   - title: "Miro Vs Mural as a tool for Product Managers"
     link: "https://www.reddit.com/r/ProductManagement/comments/r6mx3u/miro_vs_mural_as_a_tool_for_product_managers/"

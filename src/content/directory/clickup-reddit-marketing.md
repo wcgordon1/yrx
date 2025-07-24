@@ -20,7 +20,7 @@ details:
     value: "363,784 "
   - label: "Audience"
     value: "SMB/RevOps/Everyone"
-tags: ["Project Management","marketing","saaS" ]
+tags: ["Management","marketing","SaaS" ]
 redditThreads:
   - title: "What's the best app for Project Management?"
     link: "https://www.reddit.com/r/productivity/comments/1au1uzj/whats_considered_the_best_app_for_taskproject/"
