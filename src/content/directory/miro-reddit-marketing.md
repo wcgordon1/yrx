@@ -95,7 +95,7 @@ faqs:
 | **Growth** | r/SaaS, r/web_design, r/design, r/startups           | Pricing discussions, integration hacks, remote team workflows |
 | **Niche** | r/scrum, r/facilitation, r/educationaltechnology      | Hands‑on workshops, template recommendations, educator use cases |
 
-### 3. Engagement & Amplification
+### 3. Engagement 
 
 - Deploy 3–5 aged, high‑karma accounts (>15 K karma) to seed posts & drive early upvotes  
 - Target threads already ranking on Google ("best whiteboard tool," "Miro vs Mural") to hijack top comments  

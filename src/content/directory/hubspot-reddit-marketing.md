@@ -105,7 +105,7 @@ faqs:
 | **Growth** | r/Entrepreneur, r/SaaS, r/SEO | Competitor comparisons, growth hacks |
 | **Niche** | r/RevOps, r/EmailMarketing, r/InboundMarketing | Tactical how-tos & tool stacks |
 
-### 3. Engagement & Amplification
+### 3. Engagement 
 - Deploy **3-5 aged, high-karma accounts** (>20 K karma) for seeding & up-voting  
 - **Comment hijacking** on Google page-one threads (“HubSpot pricing”, “best CRM for agencies”)  
 - Cross-post within 24 h to allied subs to extend shelf life  

@@ -1,7 +1,7 @@
 ---
 title: ClickUp
 tagline: ClickUp™ | The everything app for work 
-description: YXR.io can help HubSpot win high-intent moments on Reddit by creating strategic posts and comments that rank on Google. We target keywords like “best CRM for startups,” using high-karma accounts to influence threads and defend your brand in organic search. Our team manages everything from ideation to moderation outreach, driving real traffic and brand authority through Reddit's trusted user base. 
+description: YXR.io can help ClickUp dominate high-intent search moments by strategically inserting SEO-optimized Reddit content into conversations that rank on Google. We create and amplify threads like “ClickUp vs Notion” and “best task management app for remote teams,” using high-karma accounts and community-driven insights to ensure ClickUp shows up where buyers are already searching. Our Reddit SEO strategy drives qualified traffic, boosts ClickUp’s authority across competitive keywords, and turns comparison threads into conversion paths.
 live: "https://www.hubspot.com/"
 logo:
   url: "/images/directory/clickup2.png"
@@ -91,7 +91,7 @@ faqs:
 | **Growth** | Startup ops, product teams, SaaS tools                | Templates, integrations, cost comparison  |
 | **Niche** | Students, freelancers, agencies                       | Productivity stacks, best apps by role    |
 
-### 3. Content Engagement & Amplification
+### 3. Content Engagement 
 
 - Seed content through high-authority distribution partners or blogs  
 - Cross-link landing pages and FAQ hubs to boost crawl depth  
