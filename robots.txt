@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/private areas
+Disallow: /dashboard/
+Disallow: /forms/
+Disallow: /api/
+
+# Allow specific important pages
+Allow: /
+Allow: /blog/
+Allow: /directory/
+Allow: /store/
+Allow: /pricing
+Allow: /about
+Allow: /advertise
+
+# Sitemap location
+Sitemap: https://yxr.io/sitemap.xml 
