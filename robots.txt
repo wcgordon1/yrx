@@ -16,4 +16,4 @@ Allow: /about
 Allow: /advertise
 
 # Sitemap location
-Sitemap: https://yxr.io/sitemap.xml 
+Sitemap: https://yxr.io/sitemap-index.xml 
