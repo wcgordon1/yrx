@@ -35,7 +35,7 @@ import EditProfile from "./EditProfile.astro";
             Kalle Nygren
           </Text>
           <div x-data="{ open: false }">
-            <button class="flex text-xs items-center" x-on:click="open = true">
+            <button class="flex text-xs items-center" x-on:click="open = true" aria-label="Edit profile">
               Edit
             </button>
             <EditProfile />

@@ -54,7 +54,7 @@ const { title, url, thumbnail, live } = {
           >
         </a>
         <div x-data="{ open: false }">
-          <button class="flex items-center" x-on:click="open = true">
+          <button class="flex items-center" x-on:click="open = true" aria-label="Add to bookmarks">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -73,7 +73,7 @@ const { title, url, thumbnail, live } = {
           </button>
           <BookmarksModal />
         </div>
-        <button class="flex items-center">
+        <button class="flex items-center" aria-label="Share">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

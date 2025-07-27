@@ -38,14 +38,14 @@ import RemoveCollectionModal from "./RemoveCollectionModal.astro";
       >
       <div class="flex items-center gap-x-2 relative ml-auto">
         <div x-data="{ open: false }">
-          <button class="flex text-xs items-center" x-on:click="open = true">
+          <button class="flex text-xs items-center" x-on:click="open = true" aria-label="Create new collection">
             New collection
           </button>
           <CreateCollectionModal />
         </div>
         <span aria-hidden="true">·</span>
         <div x-data="{ open: false }">
-          <button class="flex text-xs items-center" x-on:click="open = true">
+          <button class="flex text-xs items-center" x-on:click="open = true" aria-label="Edit collection">
             Edit
           </button>
           <EditCollectionModal />
