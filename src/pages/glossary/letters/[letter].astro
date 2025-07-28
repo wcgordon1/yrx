@@ -1,0 +1,160 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { glossaryData } from "@/data/glossary.js";
+
+export async function getStaticPaths() {
+  // Get all unique first letters
+  const letters = [...new Set(glossaryData.map(term => term.term.charAt(0).toUpperCase()))].sort();
+  
+  return letters.map((letter) => ({
+    params: { letter: letter.toLowerCase() },
+    props: { 
+      letter: letter,
+      terms: glossaryData.filter(term => term.term.charAt(0).toUpperCase() === letter)
+    }
+  }));
+}
+
+const { letter, terms } = Astro.props;
+
+// Structured Data for Collection Page
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${Astro.site}glossary/letters/${letter.toLowerCase()}`,
+      "url": `${Astro.site}glossary/letters/${letter.toLowerCase()}`,
+      "name": `SEO Terms Starting with ${letter}`,
+      "headline": `SEO Glossary - Terms Starting with "${letter}"`,
+      "description": `Browse ${terms.length} SEO and marketing terms that start with the letter "${letter}". Find definitions, examples, and detailed explanations.`,
+      "author": {
+        "@type": "Organization",
+        "name": "yxr.io"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": terms.length,
+        "itemListElement": terms.map((term, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "url": `${Astro.site}glossary/${term.slug}`,
+          "name": term.question
+        }))
+      }
+    }
+  ]
+};
+
+const pageTitle = `SEO Terms Starting with "${letter}" - Glossary`;
+const pageDescription = `Browse ${terms.length} SEO and marketing terms that start with the letter "${letter}". Find definitions, examples, and detailed explanations.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={`${Astro.site}glossary/letters/${letter.toLowerCase()}`} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <!-- Breadcrumb Navigation -->
+  <section class="py-8">
+    <div class="mx-auto px-4 lg:px-8 max-w-4xl">
+      <nav aria-label="Breadcrumb" class="text-sm">
+        <ol class="flex items-center space-x-2 text-gray-500">
+          <li>
+            <a href="/glossary" class="hover:text-accent-500 transition-colors">
+              Glossary
+            </a>
+          </li>
+          <li>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </li>
+          <li class="text-gray-700 font-medium">
+            Letter {letter}
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="pt-0 pb-8 lg:pb-16 bg-white">
+    <div class="mx-auto px-4 lg:px-8 max-w-4xl">
+      
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          Terms Starting with "{letter}"
+        </h1>
+        <p class="text-lg text-gray-600">
+          {terms.length} SEO and marketing {terms.length === 1 ? 'term' : 'terms'} beginning with the letter "{letter}"
+        </p>
+      </header>
+
+      <!-- Back to All Letters -->
+      <div class="mb-8">
+        <a 
+          href="/glossary"
+          class="inline-flex items-center gap-2 text-accent-600 hover:text-accent-700 font-medium transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Back to All Letters
+        </a>
+      </div>
+
+      <!-- Terms List -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {terms.map((term) => (
+          <article class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+            <h2 class="text-xl font-semibold text-gray-900 mb-2">
+              <a href={`/glossary/${term.slug}`} class="hover:text-accent-600 transition-colors">
+                {term.term}
+              </a>
+            </h2>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              {term.answer}
+            </p>
+            <a 
+              href={`/glossary/${term.slug}`}
+              class="inline-flex items-center gap-1 text-accent-600 hover:text-accent-700 font-medium text-sm transition-colors"
+            >
+              Read more
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Navigation to Other Letters -->
+      <section class="mt-12 pt-8 border-t border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Browse Other Letters</h3>
+        <div class="flex flex-wrap gap-2">
+          {[...new Set(glossaryData.map(term => term.term.charAt(0).toUpperCase()))].sort().map((otherLetter) => (
+            <a 
+              href={`/glossary/letters/${otherLetter.toLowerCase()}`}
+              class={`w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors ${
+                otherLetter === letter 
+                  ? 'bg-accent-500 text-white' 
+                  : 'bg-gray-100 text-gray-700 hover:bg-accent-100 hover:text-accent-700'
+              }`}
+            >
+              {otherLetter}
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  article:hover {
+    transform: translateY(-1px);
+  }
+</style> 

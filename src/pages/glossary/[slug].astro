@@ -1,0 +1,231 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { glossaryData } from "@/data/glossary.js";
+import YrxLogo from "@/components/assets/yrxLogo.astro";
+import SubscribeCta from "@/components/blog/SubscribeCta.astro";
+
+export async function getStaticPaths() {
+  return glossaryData.map((term) => ({
+    params: { slug: term.slug },
+    props: { term }
+  }));
+}
+
+const { term } = Astro.props;
+
+if (!term) {
+  return Astro.redirect("/glossary");
+}
+
+// Get related terms (previous and next alphabetically for simplicity)
+const sortedTerms = glossaryData.sort((a, b) => a.question.localeCompare(b.question));
+const currentIndex = sortedTerms.findIndex(t => t.slug === term.slug);
+const relatedTerms = [
+  sortedTerms[currentIndex - 1],
+  sortedTerms[currentIndex + 1],
+  sortedTerms[currentIndex + 2]
+].filter(Boolean).slice(0, 3);
+
+// Structured Data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${Astro.site}glossary/${term.slug}`,
+      "url": `${Astro.site}glossary/${term.slug}`,
+      "name": term.question,
+      "headline": term.question,
+      "description": term.answer,
+      "datePublished": term.updated,
+      "dateModified": term.updated,
+      "author": {
+        "@type": "Organization",
+        "name": "yxr.io"
+      },
+      "mainEntity": {
+        "@type": "DefinedTerm",
+        "name": term.question.replace("What is ", "").replace("?", ""),
+        "description": term.answer,
+        "inDefinedTermSet": {
+          "@type": "DefinedTermSet",
+          "name": "SEO Glossary",
+          "url": `${Astro.site}glossary`
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Glossary",
+          "item": `${Astro.site}glossary`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": term.question,
+          "item": `${Astro.site}glossary/${term.slug}`
+        }
+      ]
+    }
+  ]
+};
+
+const pageTitle = `${term.question} - SEO Glossary`;
+const pageDescription = term.answer;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={`${Astro.site}glossary/${term.slug}`} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <!-- Breadcrumb Navigation -->
+  <section class="py-8">
+    <div class="mx-auto px-4 lg:px-8 max-w-4xl">
+      <nav aria-label="Breadcrumb" class="text-sm">
+        <ol class="flex items-center space-x-2 text-gray-500">
+          <li>
+            <a href="/glossary" class="hover:text-accent-500 transition-colors">
+              Glossary
+            </a>
+          </li>
+          <li>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </li>
+          <li class="text-gray-700 font-medium">
+            {term.question}
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="pt-0 pb-8 lg:pb-16 bg-white">
+    <div class="mx-auto px-4 lg:px-8 max-w-4xl">
+      
+      <!-- H1 - Exact question for featured snippets -->
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-6">
+          {term.question}
+        </h1>
+        
+        <!-- Answer paragraph - 40-60 words for featured snippets -->
+        <div class="text-lg text-gray-700 leading-relaxed mb-8 p-6 bg-accent-50 rounded-lg border-l-4 border-accent-500">
+          <p class="font-medium">{term.answer}</p>
+        </div>
+      </header>
+
+      <!-- Logo -->
+      <div class="mb-8 w-64">
+        <YrxLogo />
+      </div>
+
+      <!-- Subscribe CTA -->
+      <SubscribeCta />
+
+      <!-- Supporting content from HTML field -->
+      <div class="prose prose-lg max-w-none mb-12 text-gray-800">
+        <Fragment set:html={term.html} />
+      </div>
+
+      <!-- Related Terms -->
+      {relatedTerms.length > 0 && (
+        <section class="mt-12 pt-8 border-t border-gray-200">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+            Related Terms
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {relatedTerms.map((relatedTerm) => relatedTerm && (
+              <a 
+                href={`/glossary/${relatedTerm.slug}`}
+                class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200 hover:border-blue-300"
+              >
+                <h3 class="text-lg font-medium text-gray-900 mb-2">
+                  {relatedTerm.question}
+                </h3>
+                <p class="text-sm text-gray-600 line-clamp-2">
+                  {relatedTerm.answer.slice(0, 80)}...
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Back to Glossary -->
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <a 
+          href="/glossary"
+          class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Back to Glossary
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Subscribe CTA -->
+  <SubscribeCta />
+</BaseLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #1f2937;
+  }
+  
+  .prose ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .prose li {
+    margin-bottom: 0.5rem;
+    color: #374151;
+  }
+  
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  
+  .prose th,
+  .prose td {
+    border: 1px solid #d1d5db;
+    padding: 0.75rem;
+    text-align: left;
+  }
+  
+  .prose th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .prose td {
+    color: #374151;
+  }
+</style> 
