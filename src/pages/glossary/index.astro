@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/components/Link.astro";
 import GlossarySearch from "@/components/glossary/GlossarySearch.astro";
 
 // Import glossary data safely
@@ -11,10 +12,31 @@ try {
   glossaryData = glossaryModule.glossaryData || [];
 } catch (error) {
   console.error("Failed to load glossary data:", error);
+  // Fallback data for testing
+  glossaryData = [
+    {
+      term: "SEO",
+      slug: "seo",
+      answer: "Search Engine Optimization - the practice of increasing the quantity and quality of traffic to your website through organic search engine results."
+    },
+    {
+      term: "Keyword",
+      slug: "keyword", 
+      answer: "A word or phrase that describes the content on your page or post best. It's the search term that you want to rank for with a certain page."
+    }
+  ];
+}
+
+// Ensure glossaryData is an array
+if (!Array.isArray(glossaryData)) {
+  console.error("glossaryData is not an array:", glossaryData);
+  glossaryData = [];
 }
 
 // Get all unique first letters from terms
-const availableLetters = [...new Set(glossaryData.map(term => term.term.charAt(0).toUpperCase()))].sort();
+const availableLetters = glossaryData.length > 0 
+  ? [...new Set(glossaryData.map(term => term.term?.charAt(0)?.toUpperCase()).filter(Boolean))].sort()
+  : [];
 
 // Create full alphabet for display
 const fullAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -25,8 +47,8 @@ const structuredData = {
   "@graph": [
     {
       "@type": "CollectionPage",
-      "@id": `${Astro.site}glossary`,
-      "url": `${Astro.site}glossary`,
+      "@id": `${Astro.site || 'https://example.com/'}glossary`,
+      "url": `${Astro.site || 'https://example.com/'}glossary`,
       "name": "SEO Glossary",
       "headline": "Complete SEO Glossary - Marketing & Search Engine Terms",
       "description": `Comprehensive SEO glossary with ${glossaryData.length} essential marketing and search engine optimization terms, definitions, and examples.`,
@@ -40,7 +62,7 @@ const structuredData = {
         "itemListElement": glossaryData.map((term, index) => ({
           "@type": "ListItem",
           "position": index + 1,
-          "url": `${Astro.site}glossary/${term.slug}`,
+          "url": `${Astro.site || 'https://example.com/'}glossary/${term.slug}`,
           "name": term.term
         }))
       }
@@ -53,122 +75,117 @@ const pageDescription = `Explore our comprehensive SEO glossary with ${glossaryD
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <head slot="head">
-    <link rel="canonical" href={`${Astro.site}glossary`} />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-  </head>
+  <Fragment slot="head">
+    <link rel="canonical" href={`${Astro.site || ''}glossary`} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  </Fragment>
 
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-accent-50 to-base-50 border-b border-base-200">
-      <Wrapper variant="standard" class="py-12 lg:py-20">
-        <div class="max-w-4xl mx-auto text-center">
-          <Text tag="h1" variant="displayXL" class="text-base-900 mb-6">
-            SEO Glossary
-          </Text>
-          <Text tag="p" variant="textLG" class="text-base-600 mb-8 max-w-2xl mx-auto">
-            Master SEO with our comprehensive glossary of {glossaryData.length} essential marketing and search engine optimization terms.
-          </Text>
-          
-          <!-- Search Box -->
-          <div class="max-w-md mx-auto">
-            <GlossarySearch />
-          </div>
-        </div>
-      </Wrapper>
-    </section>
+  <section>
+    <Wrapper variant="hero">
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="text-base-900 font-medium 2xl:text-5xl tracking-tight"
+      >
+        yxr.io SEO Glossary
+      </Text>
+      <Text
+        tag="p"
+        variant="textBase"
+        class="mt-4 text-base-500 text-balance 2xl:text-xl"
+      >
+        Master SEO with our comprehensive glossary of {glossaryData.length} essential marketing and search engine optimization terms.
+      </Text>
+      <div class="max-w-sm mt-4"><GlossarySearch /></div>
+    </Wrapper>
+  </section>
 
-    <!-- Alphabet Navigation -->
-    <section class="border-b border-base-200 bg-base-50">
-      <Wrapper variant="standard" class="py-6">
-        <div class="text-center mb-4">
-          <h2 class="text-lg font-semibold text-base-900 mb-2">Browse by Letter</h2>
-          <p class="text-sm text-base-500">Click a letter to see all terms that start with it</p>
-        </div>
-        <nav aria-label="Alphabet navigation" class="flex flex-wrap justify-center gap-2">
+  <!-- Alphabet Navigation -->
+  <section>
+    <Wrapper variant="standard" class="py-6">
+      <div class="flex items-center gap-2">
+        <div class="text-sm font-medium text-base-900 whitespace-nowrap">Browse by Letter:</div>
+        <div
+          class="scrollable-content relative flex snap-x snap-proximity gap-2 py-2 px-2 overflow-x-scroll scrollbar-hide"
+        >
           {fullAlphabet.map((letter) => {
             const hasTerms = availableLetters.includes(letter);
             return hasTerms ? (
-              <a 
+              <a
                 href={`/glossary/letters/${letter.toLowerCase()}`}
-                class="w-10 h-10 flex items-center justify-center text-sm font-medium text-base-700 bg-white hover:bg-accent-500 hover:text-white border border-base-200 hover:border-accent-500 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+                class="flex items-center justify-center w-8 h-8 text-sm font-medium text-base-700 bg-white hover:bg-accent-500 hover:text-white border border-base-200 hover:border-accent-500 rounded transition-all duration-200 snap-start flex-shrink-0"
               >
                 {letter}
               </a>
             ) : (
               <div 
-                class="w-10 h-10 flex items-center justify-center text-sm font-medium text-base-300 bg-base-50 border border-base-200 rounded-lg cursor-not-allowed"
+                class="flex items-center justify-center w-8 h-8 text-sm font-medium text-base-300 bg-base-50 border border-base-200 rounded cursor-not-allowed snap-start flex-shrink-0"
               >
                 {letter}
               </div>
             );
           })}
-        </nav>
-      </Wrapper>
-    </section>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
 
-    <!-- Quick Stats & Featured Terms -->
-    <section class="py-8 lg:py-16">
-      <Wrapper variant="standard">
-        <div class="max-w-4xl mx-auto text-center">
-          
-          <!-- Stats -->
-          <div class="mb-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="bg-white border border-base-200 rounded-lg p-6">
-                <div class="text-2xl font-bold text-accent-500">{glossaryData.length}</div>
-                <div class="text-sm text-base-500">Total Terms</div>
-              </div>
-              <div class="bg-white border border-base-200 rounded-lg p-6">
-                <div class="text-2xl font-bold text-accent-500">{availableLetters.length}</div>
-                <div class="text-sm text-base-500">Letters Covered</div>
-              </div>
-              <div class="bg-white border border-base-200 rounded-lg p-6">
-                <div class="text-2xl font-bold text-accent-500">100%</div>
-                <div class="text-sm text-base-500">SEO Focused</div>
-              </div>
+  <!-- Quick Stats & Featured Terms -->
+  <section class="py-8 lg:py-16">
+    <Wrapper variant="standard">
+      <div class="max-w-4xl mx-auto text-center">
+        
+        <!-- Stats -->
+        <div class="mb-12">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white border border-base-200 rounded-lg p-6">
+              <div class="text-2xl font-bold text-accent-500">{glossaryData.length}</div>
+              <div class="text-sm text-base-500">Total Terms</div>
             </div>
-          </div>
-
-          <!-- Featured Terms -->
-          <div class="mb-12">
-            <Text tag="h2" variant="displaySM" class="text-base-900 mb-8">
-              Featured Terms
-            </Text>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {glossaryData.slice(0, 4).map((term) => (
-                <a 
-                  href={`/glossary/${term.slug}`}
-                  class="block p-6 bg-white border border-base-200 rounded-lg hover:shadow-md hover:border-accent-300 transition-all duration-200 text-left"
-                >
-                  <Text tag="h3" variant="textLG" class="font-semibold text-base-900 mb-2">
-                    {term.term}
-                  </Text>
-                  <Text tag="p" variant="textSM" class="text-base-600 mb-4 line-clamp-3">
-                    {term.answer}
-                  </Text>
-                  <div class="flex items-center text-accent-600 text-sm font-medium">
-                    Learn more
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                  </div>
-                </a>
-              ))}
+            <div class="bg-white border border-base-200 rounded-lg p-6">
+              <div class="text-2xl font-bold text-accent-500">{availableLetters.length}</div>
+              <div class="text-sm text-base-500">Letters Covered</div>
             </div>
-          </div>
-
-          <!-- Call to Action -->
-          <div class="text-center">
-            <Text tag="p" variant="textLG" class="text-base-600 mb-6">
-              Can't find what you're looking for? Browse all terms by letter above.
-            </Text>
+            <div class="bg-white border border-base-200 rounded-lg p-6">
+              <div class="text-2xl font-bold text-accent-500">100%</div>
+              <div class="text-sm text-base-500">SEO Focused</div>
+            </div>
           </div>
         </div>
-      </Wrapper>
-    </section>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mt-2">
+          {glossaryData.length > 0 ? (
+            glossaryData.slice(0, 8).map((term, i) => (
+              <a 
+                href={`/glossary/${term.slug}`}
+                class="block p-4 bg-white border border-base-200 rounded-lg hover:shadow-md hover:border-accent-300 transition-all duration-200 text-left"
+              >
+                <Text tag="h3" variant="textLG" class="font-semibold text-base-900 mb-2">
+                  {term.term}
+                </Text>
+                <Text tag="p" variant="textSM" class="text-base-600 line-clamp-3">
+                  {term.answer}
+                </Text>
+              </a>
+            ))
+          ) : (
+            <div class="col-span-full text-center py-8">
+              <Text tag="h2" variant="displaySM" class="text-base-900 mb-4">
+                No Terms Available
+              </Text>
+              <Text tag="p" variant="textLG" class="text-base-600">
+                Glossary data could not be loaded. Please check your glossary data file.
+              </Text>
+            </div>
+          )}
+        </div>
+
+
+      </div>
+    </Wrapper>
+  </section>
 </BaseLayout>
-
-
 
 <style>
   .line-clamp-3 {
@@ -188,4 +205,4 @@ const pageDescription = `Explore our comprehensive SEO glossary with ${glossaryD
     outline: 2px solid #6366f1;
     outline-offset: 2px;
   }
-</style> 
+</style>
