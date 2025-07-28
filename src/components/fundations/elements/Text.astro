@@ -33,32 +33,8 @@
  */
 
 // Text.astro
-export interface Props {
-  tag?:
-    | "p"
-    | "a"
-    | "em"
-    | "span"
-    | "small"
-    | "strong"
-    | "blockquote"
-    | "h1"
-    | "h2"
-    | "h3"
-    | "h4"
-    | "h5"
-    | "h6";
-  class?: string;
-  id?: string; // Add 'id' attribute for label tags
-  for?: string; // Add 'for' attribute for label tags
-  level?: number; // Added level prop for heading levels
-  href?: string; // Add 'href' attribute for anchor tags
-  title?: string; // Add 'title' attribute for anchor tags
-  variant?: string; // Add 'variant' attribute tags
-}
-
 // Define the text styles with all specified variants
-const textStyles: { [key: string]: string } = {
+const textStyles = {
   display6XL:
     "text-5xl leading-tight tracking-tight sm:text-7xl md:text-9xl lg:text-[12rem]",
   display5XL:

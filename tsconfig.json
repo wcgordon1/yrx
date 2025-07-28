@@ -1,7 +1,6 @@
 {
-  // Extends Astro's strictest TypeScript configuration settings.
-  // This ensures strict type-checking and alignment with Astro's best practices.
-  "extends": "astro/tsconfigs/strictest",
+  // Basic TypeScript configuration for JavaScript compatibility
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     // Enable top-level await, and other modern ESM features.
     "target": "ESNext",
@@ -15,6 +14,13 @@
     // Astro will directly run your TypeScript code, no transpilation needed.
     "noEmit": true,
     "baseUrl": ".",
+    
+    // Disable strict type checking for JavaScript compatibility
+    "strict": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     
     // Set up alias paths for cleaner and easier imports.
     // For example, `@/components/MyComponent` resolves to `src/components/MyComponent`.

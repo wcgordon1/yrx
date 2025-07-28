@@ -1,8 +1,4 @@
 ---
-interface Props {
-  variant?: "hero" | "heroNarrow" | "narrow" | "standard" | "prose"; // Optional prop for the variant
-  class?: string; // Optional prop for additional classes
-}
 const { variant = "standard", class: extraClass = "" } = Astro.props;
 // Map each variant to its specific classes
 const variantClasses = {

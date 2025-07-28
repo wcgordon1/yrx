@@ -5,7 +5,7 @@ import Text from "@/components/fundations/elements/Text.astro";
 import GlossarySearch from "@/components/glossary/GlossarySearch.astro";
 
 // Import glossary data safely
-let glossaryData: any[] = [];
+let glossaryData = [];
 try {
   const glossaryModule = await import("@/data/glossary.js");
   glossaryData = glossaryModule.glossaryData || [];
