@@ -3,7 +3,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import GlossarySearch from "@/components/glossary/GlossarySearch.astro";
-import { glossaryData } from "@/data/glossary.js";
+
+// Import glossary data safely
+let glossaryData: any[] = [];
+try {
+  const glossaryModule = await import("@/data/glossary.js");
+  glossaryData = glossaryModule.glossaryData || [];
+} catch (error) {
+  console.error("Failed to load glossary data:", error);
+}
 
 // Get all unique first letters from terms
 const availableLetters = [...new Set(glossaryData.map(term => term.term.charAt(0).toUpperCase()))].sort();
@@ -50,9 +58,8 @@ const pageDescription = `Explore our comprehensive SEO glossary with ${glossaryD
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-accent-50 to-base-50 border-b border-base-200">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-accent-50 to-base-50 border-b border-base-200">
       <Wrapper variant="standard" class="py-12 lg:py-20">
         <div class="max-w-4xl mx-auto text-center">
           <Text tag="h1" variant="displayXL" class="text-base-900 mb-6">
@@ -159,7 +166,6 @@ const pageDescription = `Explore our comprehensive SEO glossary with ${glossaryD
         </div>
       </Wrapper>
     </section>
-  </main>
 </BaseLayout>
 
 

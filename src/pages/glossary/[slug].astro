@@ -26,12 +26,15 @@ const relatedTerms = [
   sortedTerms[currentIndex + 2]
 ].filter(Boolean).slice(0, 3);
 
+// Get the first letter for breadcrumbs
+const firstLetter = term.term.charAt(0).toUpperCase();
+
 // Structured Data
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebPage",
+      "@type": ["WebPage", "DefinitionPage"],
       "@id": `${Astro.site}glossary/${term.slug}`,
       "url": `${Astro.site}glossary/${term.slug}`,
       "name": term.question,
@@ -39,35 +42,70 @@ const structuredData = {
       "description": term.answer,
       "datePublished": term.updated,
       "dateModified": term.updated,
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": `${Astro.site}`,
+        "name": "yxr.io",
+        "url": `${Astro.site}`
+      },
       "author": {
         "@type": "Organization",
-        "name": "yxr.io"
+        "@id": `${Astro.site}#organization`,
+        "name": "yxr.io",
+        "url": `${Astro.site}`
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": `${Astro.site}#organization`,
+        "name": "yxr.io",
+        "url": `${Astro.site}`
       },
       "mainEntity": {
         "@type": "DefinedTerm",
-        "name": term.question.replace("What is ", "").replace("?", ""),
+        "@id": `${Astro.site}glossary/${term.slug}#term`,
+        "name": term.term,
+        "alternateName": term.question,
         "description": term.answer,
         "inDefinedTermSet": {
           "@type": "DefinedTermSet",
-          "name": "SEO Glossary",
+          "@id": `${Astro.site}glossary#termset`,
+          "name": "SEO & Marketing Glossary",
+          "description": "Comprehensive glossary of SEO and marketing terms",
           "url": `${Astro.site}glossary`
         }
       }
     },
     {
       "@type": "BreadcrumbList",
+      "@id": `${Astro.site}glossary/${term.slug}#breadcrumbs`,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Glossary",
-          "item": `${Astro.site}glossary`
+          "item": {
+            "@type": "WebPage",
+            "@id": `${Astro.site}glossary`
+          }
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": term.question,
-          "item": `${Astro.site}glossary/${term.slug}`
+          "name": `Letter ${firstLetter}`,
+          "item": {
+            "@type": "CollectionPage",
+            "@id": `${Astro.site}glossary/letters/${firstLetter.toLowerCase()}`
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": term.term,
+          "item": {
+            "@type": "DefinitionPage",
+            "@id": `${Astro.site}glossary/${term.slug}`
+          }
         }
       ]
     }
@@ -99,8 +137,18 @@ const pageDescription = term.answer;
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
           </li>
+          <li>
+            <a href={`/glossary/letters/${firstLetter.toLowerCase()}`} class="hover:text-accent-500 transition-colors">
+              {firstLetter}
+            </a>
+          </li>
+          <li>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </li>
           <li class="text-gray-700 font-medium">
-            {term.question}
+            {term.term}
           </li>
         </ol>
       </nav>
