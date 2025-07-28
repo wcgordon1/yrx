@@ -9,7 +9,7 @@ image:
 avatar:
   url: "/images/avatars/6.jpeg"
   alt: "#_"
-tags: ["3D"]
+tags: ["AISEO"]
 ---
 ## AISEO GEO Optimization Best Practices
 
