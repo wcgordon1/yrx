@@ -133,16 +133,15 @@ console.log('Structured Data:', JSON.stringify(structuredData, null, 2));
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
-    
-    <!-- Individual structured data scripts for better parsing -->
-    {structuredData.map((schema, index) => (
-      <script 
-        type="application/ld+json" 
-        set:html={JSON.stringify(schema)}
-        key={`schema-${index}`}
-      />
-    ))}
   </Fragment>
+
+  <!-- Structured Data - Moved to body as fallback -->
+  {structuredData.map((schema, index) => (
+    <script 
+      type="application/ld+json" 
+      set:html={JSON.stringify(schema)}
+    ></script>
+  ))}
 
   <!-- Breadcrumb Navigation -->
   <section class="py-8">
