@@ -1,7 +1,7 @@
 ---
 import Text from "@/components/fundations/elements/Text.astro";
 
-const { faqs } = Astro.props;
+const { faqs, skipStructuredData = false } = Astro.props;
 
 // Don't render anything if there are no FAQs
 if (!faqs || faqs.length === 0) return null;
@@ -20,7 +20,9 @@ const faqSchema = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+{!skipStructuredData && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}
 <div class="mt-12">
     <Text
         tag="h2"

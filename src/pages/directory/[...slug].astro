@@ -16,8 +16,50 @@ export async function getStaticPaths() {
 }
 const { page } = Astro.props;
 const { Content } = await page.render();
+
+// Structured data array for CreativeWork and FAQ (if exists)
+const structuredDataArray = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": `${page.data.title}: ${page.data.tagline}`,
+    "description": page.data.description,
+    "url": `https://yxr.io/directory/${page.slug}`,
+    "author": {
+      "@type": "Person",
+      "name": "YXR",
+      "url": "https://www.linkedin.com/company/yxr/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "YXR",
+      "url": "https://yxr.io"
+    },
+    "datePublished": "2025-07-29",
+    "image": {
+      "@type": "ImageObject",
+      "url": `https://yxr.io${page.data.thumbnail?.url || page.data.logo?.url}`
+    }
+  }
+];
+
+// Add FAQ structured data if FAQs exist
+if (page.data.faqs && page.data.faqs.length > 0) {
+  structuredDataArray.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": page.data.faqs.map((faq: { question: string; answer: string }) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  } as any);
+}
 ---
 
-<DirectoryLayout frontmatter={page.data}>
+<DirectoryLayout frontmatter={page.data} structuredData={structuredDataArray}>
   <Content />
 </DirectoryLayout>

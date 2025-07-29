@@ -16,7 +16,7 @@ import SubscribeCta from "@/components/blog/SubscribeCta.astro";
 import { getCollection } from "astro:content";
 const allentries = await getCollection("directory");
 // Frontmatter
-const { frontmatter } = Astro.props;
+const { frontmatter, structuredData } = Astro.props;
 type Thread = {
   title: string;
   link: string;
@@ -39,6 +39,14 @@ const seoCanonical = `https://yxr.io/directory/${frontmatter.slug || ''}`;
   image={seoImage}
   canonical={seoCanonical}
 >
+  <!-- Structured Data JSON-LD -->
+  {structuredData && structuredData.map((schema: any, index: number) => (
+    <script 
+      type="application/ld+json" 
+      set:html={JSON.stringify(schema)}
+    ></script>
+  ))}
+  
   <section>
     <Wrapper variant="hero">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -243,7 +251,7 @@ const seoCanonical = `https://yxr.io/directory/${frontmatter.slug || ''}`;
             <Wrapper variant="prose">
               <slot />
             </Wrapper>
-            <FaqDirectory faqs={frontmatter.faqs} />
+            <FaqDirectory faqs={frontmatter.faqs} skipStructuredData={true} />
           </div>
         </div>
       </div>
