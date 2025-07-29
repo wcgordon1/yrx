@@ -21,7 +21,7 @@ const { Content } = await page.render();
 const structuredDataArray = [
   {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
+    "@type": "Article",
     "name": `${page.data.title}: ${page.data.tagline}`,
     "description": page.data.description,
     "url": `https://yxr.io/directory/${page.slug}`,
