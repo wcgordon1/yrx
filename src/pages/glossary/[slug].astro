@@ -29,87 +29,102 @@ const relatedTerms = [
 // Get the first letter for breadcrumbs
 const firstLetter = term.term.charAt(0).toUpperCase();
 
-// Structured Data
+// Ensure we have a proper site URL
+const siteUrl = Astro.site?.toString() || 'https://yxr.io/';
+const currentUrl = `${siteUrl}glossary/${term.slug}`;
+
+// Structured Data - Fixed and simplified
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["WebPage", "DefinitionPage"],
-      "@id": `${Astro.site}glossary/${term.slug}`,
-      "url": `${Astro.site}glossary/${term.slug}`,
+      "@type": "DefinedTerm",
+      "@id": `${currentUrl}#term`,
+      "name": term.term,
+      "alternateName": term.question,
+      "description": term.answer,
+      "url": currentUrl,
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "@id": `${siteUrl}glossary#termset`,
+        "name": "SEO & Marketing Glossary",
+        "description": "Comprehensive glossary of SEO and marketing terms",
+        "url": `${siteUrl}glossary`
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": currentUrl,
+      "url": currentUrl,
       "name": term.question,
       "headline": term.question,
       "description": term.answer,
-      "datePublished": term.updated,
-      "dateModified": term.updated,
+      "datePublished": term.updated || new Date().toISOString(),
+      "dateModified": term.updated || new Date().toISOString(),
       "inLanguage": "en-US",
+      "mainEntity": {
+        "@id": `${currentUrl}#term`
+      },
       "isPartOf": {
         "@type": "WebSite",
-        "@id": `${Astro.site}`,
+        "@id": siteUrl,
         "name": "yxr.io",
-        "url": `${Astro.site}`
+        "url": siteUrl
       },
       "author": {
         "@type": "Organization",
-        "@id": `${Astro.site}#organization`,
         "name": "yxr.io",
-        "url": `${Astro.site}`
+        "url": siteUrl
       },
       "publisher": {
         "@type": "Organization",
-        "@id": `${Astro.site}#organization`,
         "name": "yxr.io",
-        "url": `${Astro.site}`
-      },
-      "mainEntity": {
-        "@type": "DefinedTerm",
-        "@id": `${Astro.site}glossary/${term.slug}#term`,
-        "name": term.term,
-        "alternateName": term.question,
-        "description": term.answer,
-        "inDefinedTermSet": {
-          "@type": "DefinedTermSet",
-          "@id": `${Astro.site}glossary#termset`,
-          "name": "SEO & Marketing Glossary",
-          "description": "Comprehensive glossary of SEO and marketing terms",
-          "url": `${Astro.site}glossary`
+        "url": siteUrl,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${siteUrl}logo.png`
         }
       }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": `${Astro.site}glossary/${term.slug}#breadcrumbs`,
+      "@id": `${currentUrl}#breadcrumbs`,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Glossary",
-          "item": {
-            "@type": "WebPage",
-            "@id": `${Astro.site}glossary`
-          }
+          "item": `${siteUrl}glossary`
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": `Letter ${firstLetter}`,
-          "item": {
-            "@type": "CollectionPage",
-            "@id": `${Astro.site}glossary/letters/${firstLetter.toLowerCase()}`
-          }
+          "item": `${siteUrl}glossary/letters/${firstLetter.toLowerCase()}`
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": term.term,
-          "item": {
-            "@type": "DefinitionPage",
-            "@id": `${Astro.site}glossary/${term.slug}`
-          }
+          "item": currentUrl
         }
       ]
     }
   ]
+};
+
+// FAQ structured data if the content has FAQ-like structure
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": {
+    "@type": "Question",
+    "name": term.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": term.answer
+    }
+  }
 };
 
 const pageTitle = `${term.question} - SEO Glossary`;
@@ -118,8 +133,20 @@ const pageDescription = term.answer;
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
-    <link rel="canonical" href={`${Astro.site}glossary/${term.slug}`} />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <link rel="canonical" href={currentUrl} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={currentUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    
+    <!-- Main structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    
+    <!-- FAQ structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
   </Fragment>
 
   <!-- Breadcrumb Navigation -->
@@ -276,4 +303,4 @@ const pageDescription = term.answer;
   .prose td {
     color: #374151;
   }
-</style> 
+</style>
