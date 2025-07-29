@@ -29,106 +29,98 @@ const relatedTerms = [
 // Get the first letter for breadcrumbs
 const firstLetter = term.term.charAt(0).toUpperCase();
 
-// Ensure we have a proper site URL
-const siteUrl = Astro.site?.toString() || 'https://yxr.io/';
-const currentUrl = `${siteUrl}glossary/${term.slug}`;
+// Fixed URL handling - ensure no double slashes
+const siteUrl = 'https://yxr.io';
+const currentUrl = `${siteUrl}/glossary/${term.slug}`;
+const glossaryUrl = `${siteUrl}/glossary`;
+const letterUrl = `${siteUrl}/glossary/letters/${firstLetter.toLowerCase()}`;
 
-// Structured Data - Fixed and simplified
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "DefinedTerm",
-      "@id": `${currentUrl}#term`,
-      "name": term.term,
-      "alternateName": term.question,
-      "description": term.answer,
-      "url": currentUrl,
-      "inDefinedTermSet": {
-        "@type": "DefinedTermSet",
-        "@id": `${siteUrl}glossary#termset`,
-        "name": "SEO & Marketing Glossary",
-        "description": "Comprehensive glossary of SEO and marketing terms",
-        "url": `${siteUrl}glossary`
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": currentUrl,
-      "url": currentUrl,
-      "name": term.question,
-      "headline": term.question,
-      "description": term.answer,
-      "datePublished": term.updated || new Date().toISOString(),
-      "dateModified": term.updated || new Date().toISOString(),
-      "inLanguage": "en-US",
-      "mainEntity": {
-        "@id": `${currentUrl}#term`
-      },
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": siteUrl,
-        "name": "yxr.io",
-        "url": siteUrl
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "yxr.io",
-        "url": siteUrl
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "yxr.io",
-        "url": siteUrl,
-        "logo": {
-          "@type": "ImageObject",
-          "url": `${siteUrl}logo.png`
-        }
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${currentUrl}#breadcrumbs`,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Glossary",
-          "item": `${siteUrl}glossary`
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": `Letter ${firstLetter}`,
-          "item": `${siteUrl}glossary/letters/${firstLetter.toLowerCase()}`
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": term.term,
-          "item": currentUrl
-        }
-      ]
+// Simplified structured data with better error handling
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "name": term.term,
+    "alternateName": term.question,
+    "description": term.answer,
+    "url": currentUrl,
+    "inDefinedTermSet": {
+      "@type": "DefinedTermSet",
+      "name": "SEO & Marketing Glossary",
+      "description": "Comprehensive glossary of SEO and marketing terms",
+      "url": glossaryUrl
     }
-  ]
-};
-
-// FAQ structured data if the content has FAQ-like structure
-const faqStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": {
-    "@type": "Question",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": currentUrl,
     "name": term.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": term.answer
+    "headline": term.question,
+    "description": term.answer,
+    "datePublished": term.updated || "2024-01-01T00:00:00Z",
+    "dateModified": term.updated || new Date().toISOString(),
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "yxr.io",
+      "url": siteUrl
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "yxr.io",
+      "url": siteUrl
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "yxr.io",
+      "url": siteUrl
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Glossary",
+        "item": glossaryUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": `Letter ${firstLetter}`,
+        "item": letterUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": term.term,
+        "item": currentUrl
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": {
+      "@type": "Question",
+      "name": term.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": term.answer
+      }
     }
   }
-};
+];
 
 const pageTitle = `${term.question} - SEO Glossary | yxr.io`;
 const pageDescription = term.answer;
+
+// Debug logging (remove in production)
+console.log('Current URL:', currentUrl);
+console.log('Structured Data:', JSON.stringify(structuredData, null, 2));
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -142,40 +134,46 @@ const pageDescription = term.answer;
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
     
-    <!-- Main structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
-    
-    <!-- FAQ structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
+    <!-- Individual structured data scripts for better parsing -->
+    {structuredData.map((schema, index) => (
+      <script 
+        type="application/ld+json" 
+        set:html={JSON.stringify(schema)}
+        key={`schema-${index}`}
+      />
+    ))}
   </Fragment>
 
   <!-- Breadcrumb Navigation -->
   <section class="py-8">
     <div class="mx-auto px-4 lg:px-8 max-w-4xl">
       <nav aria-label="Breadcrumb" class="text-sm">
-        <ol class="flex items-center space-x-2 text-gray-500">
-          <li>
-            <a href="/glossary" class="hover:text-accent-500 transition-colors">
-              Glossary
+        <ol class="flex items-center space-x-2 text-gray-500" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/glossary" class="hover:text-accent-500 transition-colors" itemprop="item">
+              <span itemprop="name">Glossary</span>
             </a>
+            <meta itemprop="position" content="1" />
           </li>
           <li>
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
           </li>
-          <li>
-            <a href={`/glossary/letters/${firstLetter.toLowerCase()}`} class="hover:text-accent-500 transition-colors">
-              {firstLetter}
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href={`/glossary/letters/${firstLetter.toLowerCase()}`} class="hover:text-accent-500 transition-colors" itemprop="item">
+              <span itemprop="name">{firstLetter}</span>
             </a>
+            <meta itemprop="position" content="2" />
           </li>
           <li>
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
           </li>
-          <li class="text-gray-700 font-medium">
-            {term.term}
+          <li class="text-gray-700 font-medium" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">{term.term}</span>
+            <meta itemprop="position" content="3" />
           </li>
         </ol>
       </nav>
@@ -188,13 +186,13 @@ const pageDescription = term.answer;
       
       <!-- H1 - Exact question for featured snippets -->
       <header class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-6">
+        <h1 class="text-4xl font-bold text-gray-900 mb-6" itemscope itemtype="https://schema.org/Question" itemprop="name">
           {term.question}
         </h1>
         
         <!-- Answer paragraph - 40-60 words for featured snippets -->
-        <div class="text-lg text-gray-700 leading-relaxed mb-8 p-6 bg-accent-50 rounded-lg border-l-4 border-accent-500">
-          <p class="font-medium">{term.answer}</p>
+        <div class="text-lg text-gray-700 leading-relaxed mb-8 p-6 bg-accent-50 rounded-lg border-l-4 border-accent-500" itemscope itemtype="https://schema.org/Answer">
+          <p class="font-medium" itemprop="text">{term.answer}</p>
         </div>
       </header>
 
