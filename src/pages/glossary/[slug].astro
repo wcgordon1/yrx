@@ -102,9 +102,10 @@ const structuredData = [
     ]
   },
   {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
       "@type": "Question",
       "name": term.question,
       "acceptedAnswer": {
@@ -112,7 +113,8 @@ const structuredData = [
         "text": term.answer
       }
     }
-  }
+  ]
+}
 ];
 
 const pageTitle = `${term.question} - SEO Glossary | yxr.io`;
